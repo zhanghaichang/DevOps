@@ -14,12 +14,24 @@ yum makecache
 ## 二、安装 saltstack-master 并配置
 ```
 saltstack-master 安装： yum -y install salt-master
-saltstack-master 配置： 如下图，修改 salt-master 本身监听地址
+
 ```
 
 
 ## 三、安装 saltstack-minion 并配置
 ```
 saltstack-minion 安装： yum -y install salt-minion
-saltstack-minion 配置： 如下图，指定 salt-master 地址
+
+vi /etc/salt/minion
+# 设置salt-master服务
+master: www.linuxprobe.com
+# master 使用域名的话需要设置本机host解析
+```
+## 四、测试
+```
+salt-key -y -A
+
+salt-key -L 
+
+ salt "*" test.ping 
 ```
