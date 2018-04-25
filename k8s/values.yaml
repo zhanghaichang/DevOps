@@ -1,0 +1,42 @@
+replicaCount: 2 # 应用副本数量
+image:
+  repository: "testharbor.quark.com/playground/echo" # docker image 名称 
+  tag: "RELEASE-20180319" # docker images tag
+service:
+  name: echo-service # 应用名称
+  externalPort: 8080 # 应用外部端口，用来暴露给负载均衡器的。（现在统一设置为和内部端口一样即可）
+  internalPort: 8080 # 应用内部端口（即tomcat端口号）。
+resources:
+  limits:  # 最大可用cpu、内存
+    cpu: 2  # 几个核，可以是0.1 0.5这样的数字
+    memory: 2Gi #注意单位是Gi，Mi，注意大小写
+  requests: # 启动必备最小cpu、内存
+    cpu: 1
+    memory: 1Gi
+env:  # 下面所有的值都会作为环境变量植入到容器中。对于spring boot类的应用，可以通过修改环境变量来覆盖原有配置。
+  JVM_OPTS: -Xms512m -Xmx512m 
+  APP_OPTS:
+config: # 应用配置项的名称（以下key会议环境变量的形式植入容器中）。只有需要改动的配置才应该出现在这里，不需要改动的配置不能出现在这里。
+  - quark_config_info
+  - quark_config_demo
+# fileConfig: /etc/echo # 将多个文本文件挂载到指定目录，一般用于挂载crt等证书，多数应用不需要配置此项
+livenessProbe: # 应用存活检测
+  config:
+    initialDelaySeconds: 15  # 容器启动后第一次执行探测是需要等待多少秒。 一般比应用启动时间大10秒比较好。如，应用启动需要30秒，那这里应该设置40比较合适。
+    timeoutSeconds: 1  # 超时时间，接口超时的话认为是一次失败请求。
+    periodSeconds: 10  # 执行探测的频率
+    successThreshold: 1 # 探测失败后，最少连续探测成功多少次才被认定为成功
+    failureThreshold: 3 # 探测成功后，最少连续探测失败多少次才被认定为失败
+  httpGet:
+    path: / # 通过 HTTP GET方法请求此地址，需要在1秒内返回HTTP STATUS 200。失败三次后，即认为应用挂掉了，会自动重新启动一个节点。
+    #port: 8080 # tomcat端口，默认和上面的端口保持一致
+readinessProbe: # 应用就绪检测。只有应用通过就绪检测了，才可以被访问到。
+  config:
+    initialDelaySeconds: 15
+    timeoutSeconds: 1
+    periodSeconds: 10
+    successThreshold: 1
+    failureThreshold: 3
+  httpGet:
+    path: /
+    #port: 8080
