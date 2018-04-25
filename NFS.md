@@ -54,12 +54,16 @@ all_squash    不论登入 NFS 的使用者身份为何， 他的身份都会被
 
 anonuid　　anongid    anon 意指 anonymous (匿名者) 前面关于 *_squash 提到的匿名用户的 UID 设定值，通常为 nobody(nfsnobody)，但是你可以自行设定这个 UID 的值！当然，这个 UID 必需要存在于你的 /etc/passwd 当中！ anonuid 指的是 UID 而 anongid 则是群组的 GID 啰。
 
-配置生效
+### 配置生效
 
+```
 [root@bogon lys]# exportfs -r
+```
+
 启动rpcbind、nfs服务
 
 
+```
 [root@bogon lys]# service rpcbind start
 正在启动 rpcbind：                                         [确定]
 [root@bogon lys]# service nfs start
@@ -67,6 +71,8 @@ anonuid　　anongid    anon 意指 anonymous (匿名者) 前面关于 *_squash 
 启动 NFS mountd：                                          [确定]
 启动 NFS 守护进程：                                        [确定]
 正在启动 RPC idmapd：                                      [确定]
+
+```
 
 查看 RPC 服务的注册状况
 
@@ -136,20 +142,26 @@ Export list for localhost:
 
 创建挂载目录
 
+```
 [root@bogon ~]# mkdir /lys
+```
 查看服务器抛出的共享目录信息
 
+```
 [root@bogon ~]# showmount -e 192.168.2.203
 Export list for 192.168.2.203:
 /data/lys 192.168.2.0/24
+```
 为了提高NFS的稳定性，使用TCP协议挂载，NFS默认用UDP协议
 
+```
 [root@bogon ~]# mount -t nfs 192.168.2.203:/data/lys /lys -o proto=tcp -o nolock
+```
 ## 七、测试结果
 
 查看挂载结果
 
-
+```
 [root@bogon ~]# df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/mapper/VolGroup-lv_root
@@ -158,9 +170,11 @@ tmpfs                 112M     0  112M   0% /dev/shm
 /dev/sda1             477M   54M  398M  12% /boot
 192.168.2.203:/data/lys
                        18G  1.1G   16G   7% /lys
+```
 
 服务端
 
+```
 [root@bogon lys]# echo "test" > test.txt
 客户端
 
@@ -172,6 +186,7 @@ test
 [root@bogon lys]# cat /data/lys/test.txt 
 test
 204
+```
 卸载已挂在的NFS
 
 ```
