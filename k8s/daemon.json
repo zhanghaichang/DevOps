@@ -1,0 +1,4 @@
+{
+  "insecure-registries" : ["gcr.io"],
+  "registry-mirrors": ["https://merhduid.mirror.aliyuncs.com"]
+}
