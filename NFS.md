@@ -1,4 +1,4 @@
-1、查看系统是否已安装NFS
+##1、查看系统是否已安装NFS
 
 ```
 [root@bogon ~]# rpm -qa | grep nfs
@@ -29,7 +29,7 @@ Loading mirror speeds from cached hostfile
  
 
 在NFS服务端上创建共享目录/data/lys并设置权限
-
+```
 [root@bogon ~]# mkdir -p /data/lys
 [root@bogon ~]# ll /data/
 总用量 4
@@ -40,7 +40,7 @@ drwxr-xr-x. 2 root root 4096 10月 21 18:10 lys
 [root@bogon ~]# vim /etc/exports 
 
 /data/lys 192.168.2.0/24(rw,no_root_squash,no_all_squash,sync)
-
+```
 常见的参数则有：
 
 参数值    内容说明
@@ -115,11 +115,12 @@ Export list for localhost:
 -a ：显示目前主机与客户端的 NFS 联机分享的状态；
 -e ：显示某部主机的 /etc/exports 所分享的目录数据。
 ```
+
 六、客户端配置
 
 安装nfs-utils客户端
 
-
+```
 [root@bogon ~]# yum -y install nfs-utils
 已安装:
   nfs-utils.x86_64 1:1.2.3-70.el6_8.2                                                                                  
@@ -130,7 +131,7 @@ Export list for localhost:
   rpcbind.x86_64 0:0.2.0-12.el6      
 
 完毕！
-
+```
  
 
 创建挂载目录
@@ -173,7 +174,7 @@ test
 204
 卸载已挂在的NFS
 
-
+```
 [root@bogon ~]# umount /lys/
 [root@bogon ~]# df -h
 Filesystem            Size  Used Avail Use% Mounted on
@@ -181,7 +182,7 @@ Filesystem            Size  Used Avail Use% Mounted on
                        18G  1.1G   16G   7% /
 tmpfs                 112M     0  112M   0% /dev/shm
 /dev/sda1             477M   54M  398M  12% /boot
-
+```
  
 
 到此结束
@@ -225,10 +226,14 @@ NFS启动时会随机启动多个端口并向RPC注册，这样如果使用iptab
     100021    1   tcp  43271  nlockmgr
     100021    3   tcp  43271  nlockmgr
     100021    4   tcp  43271  nlockmgr
+```
 
 分配端口，编辑配置文件：
 
+```
 [root@bogon lys]# vim /etc/sysconfig/nfs
+```
+
 添加：
 
 RQUOTAD_PORT=30001
@@ -238,7 +243,7 @@ MOUNTD_PORT=30003
 STATD_PORT=30004                   
 重启
 
-
+```
 [root@bogon lys]# service nfs restart
 关闭 NFS 守护进程：                                        [确定]
 关闭 NFS mountd：                                          [确定]
@@ -248,10 +253,11 @@ Shutting down RPC idmapd:                                  [确定]
 启动 NFS mountd：                                          [确定]
 启动 NFS 守护进程：                                        [确定]
 正在启动 RPC idmapd：                                      [确定]
+```
 
 查看结果
 
-
+```
 [root@bogon lys]# rpcinfo -p localhost
    program vers proto   port  service
     100000    4   tcp    111  portmapper
@@ -282,6 +288,7 @@ Shutting down RPC idmapd:                                  [确定]
     100021    1   tcp  30002  nlockmgr
     100021    3   tcp  30002  nlockmgr
     100021    4   tcp  30002  nlockmgr
+```
 
 可以看到，随机端口以固定
 
