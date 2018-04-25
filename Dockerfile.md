@@ -354,3 +354,11 @@ Removing intermediate container 23aa52c1897c
 ```
 
 最后Docker完成构建并报告结果：
+
+```
+Step 3 : CMD /usr/games/fortune -a | cowsay
+ ---> Running in a8e6faa88df3
+ ---> 7d9495d03763
+Removing intermediate container a8e6faa88df3
+Successfully built 7d9495d03763
+```
