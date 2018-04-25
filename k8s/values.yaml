@@ -40,3 +40,4 @@ readinessProbe: # 应用就绪检测。只有应用通过就绪检测了，才�
   httpGet:
     path: /
     #port: 8080
+    #应用至少需要修改image.repository,image.tag,service.name,livenessProbe.httpGet.path,readinessProbe.httpGet.path
