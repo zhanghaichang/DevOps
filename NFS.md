@@ -25,9 +25,7 @@ Loading mirror speeds from cached hostfile
 ```
 
 ## 五、服务端配置
-
  
-
 在NFS服务端上创建共享目录/data/lys并设置权限
 ```
 [root@bogon ~]# mkdir -p /data/lys
@@ -35,8 +33,11 @@ Loading mirror speeds from cached hostfile
 总用量 4
 drwxr-xr-x. 2 root root 4096 10月 21 18:10 lys
 [root@bogon ~]# chmod 666 /data/lys/
+```
+
 编辑export文件
 
+```
 [root@bogon ~]# vim /etc/exports 
 
 /data/lys 192.168.2.0/24(rw,no_root_squash,no_all_squash,sync)
@@ -176,13 +177,15 @@ tmpfs                 112M     0  112M   0% /dev/shm
 
 ```
 [root@bogon lys]# echo "test" > test.txt
+```
 客户端
-
+```
 [root@bogon ~]# cat /lys/test.txt 
 test
 [root@bogon ~]# echo "204" >> /lys/test.txt 
+```
 服务端
-
+```
 [root@bogon lys]# cat /data/lys/test.txt 
 test
 204
