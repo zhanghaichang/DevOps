@@ -1,4 +1,4 @@
-##1、查看系统是否已安装NFS
+## 1、查看系统是否已安装NFS
 
 ```
 [root@bogon ~]# rpm -qa | grep nfs
@@ -6,7 +6,7 @@
 ```
 
 
-2、安装NFS
+## 2、安装NFS
 
 ```
 [root@bogon ~]# yum -y install nfs-utils rpcbind
@@ -24,7 +24,7 @@ Loading mirror speeds from cached hostfile
 完毕！
 ```
 
-五、服务端配置
+## 五、服务端配置
 
  
 
@@ -116,7 +116,7 @@ Export list for localhost:
 -e ：显示某部主机的 /etc/exports 所分享的目录数据。
 ```
 
-六、客户端配置
+## 六、客户端配置
 
 安装nfs-utils客户端
 
@@ -145,7 +145,7 @@ Export list for 192.168.2.203:
 为了提高NFS的稳定性，使用TCP协议挂载，NFS默认用UDP协议
 
 [root@bogon ~]# mount -t nfs 192.168.2.203:/data/lys /lys -o proto=tcp -o nolock
-七、测试结果
+## 七、测试结果
 
 查看挂载结果
 
