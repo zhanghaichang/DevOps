@@ -113,8 +113,8 @@ anonuid　　anongid    anon 意指 anonymous (匿名者) 前面关于 *_squash 
 -p ：针对某 IP (未写则预设为本机) 显示出所有的 port 与 porgram 的信息；
 -t ：针对某主机的某支程序检查其 TCP 封包所在的软件版本；
 -u ：针对某主机的某支程序检查其 UDP 封包所在的软件版本；
-在你的 NFS 服务器设定妥当之后，我们可以在 server 端先自我测试一下是否可以联机喔！就是利用 showmount 这个指令来查阅！
 ```
+在你的 NFS 服务器设定妥当之后，我们可以在 server 端先自我测试一下是否可以联机喔！就是利用 showmount 这个指令来查阅！
 
 ```
 [root@bogon lys]# showmount -e localhost
