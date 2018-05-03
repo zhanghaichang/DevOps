@@ -283,5 +283,155 @@ def deploy():
 def mysql_start()
     sudo('/etc/init.d/mysql start')
 ```
+## 自动部署代码
+
+**一. 前提条件**
+
+1.  服务器是Linux的
+2.  安装了Fabric [安装指导](https://www.jianshu.com/p/9c08cfada595)
+3.  安装了svn [安装指导](https://www.jianshu.com/p/b9c46c4bac15)
+
+**二. 整体思路**
+
+1.  从svn获取项目主干代码，去掉.svn文件，打成压缩包
+2.  将压缩包发到需要部署的服务器上
+3.  对原项目进行备份
+4.  备份完后，解压新版本代码到服务器相应的路径
+5.  Do the thins one-by-one
+
+**三. 脚本的代码**
+
+```
+#! /usr/bin/env python
+# coding:utf-8
+
+import os
+from fabric.api import *
+from fabric.context_managers import *  
+from fabric.contrib.console import confirm
+from fabric.colors import red, green
+
+local_dir = "/usr/local/auto_deploy/"
+remote_webroot = "/var/www/html/"
+remote_dir = "/tmp/"
+remote_back_up_dir = "/var/backup/"
+svn_path = "svn://svn-server-ip-address/project/trunks/"
+
+env.user = 'root'
+env.hosts = ['host1','host2']
+env.password = 'your-password'
+
+def svn_to_local(project_main,project_name):
+"""
+把项目svn的主干最新版本checkout到本地；
+:return:
+"""
+    print(green("Checking out the project")) 
+    if not os.path.exists(local_dir):
+        local("sudo mkdir " + local_dir)
+
+    with lcd(local_dir):
+        local("sudo rm -rf " + local_dir + project_main)
+        local("sudo rm -rf " + local_dir + project_name)
+        local("sudo rm -rf " + local_dir + "*.tar.gz")
+        local("sudo svn co " + svn_path + project_main)
+        local("sudo mv " + project_main + " " + project_name)
+
+    print(green("Checkout the project --- Finished"))
+
+def pack_project(project_name):
+"""
+将项目打成zip包
+:return:
+"""
+    with lcd(local_dir):
+        local("find " + local_dir + project_name + " -name '.svn' | xargs sudo rm -rf")
+        print(green("Removed the .svn file --- Finished, Pack the project"))
+        #local("\cp -a /usr/local/cimp_deloy/conf/settings.py /usr/local/cimp_deloy/CIMP/cimp_web/cimp/.")
+        local("sudo tar cfz " + project_name + ".tar.gz " + project_name)
+
+    print(green("Pack the project --- Finished"))
+
+def back_up_server_file(project_name):
+"""
+备份服务器的文件
+"""
+    print(green("Back the project on server"))
+    with cd(remote_webroot):
+        with settings(warn_only=True):
+            #创建备份文件目录
+            run("mkdir " + remote_back_up_dir)
+            run("tar cfz " + remote_back_up_dir + project_name + "_bak.tar.gz " + project_name + "/")
+            run("mv " + project_name +" "+project_name + "_bak")
+    print(green("Back up the project on server --- Finished")) 
+
+@runs_once
+def prepare_deploy(project_name):
+"""
+部署前准备，下载最新版代码，打包代码
+"""
+    svn_to_local(project_name + "_main", project_name)
+    pack_project(project_name)
+
+def put_package(project_name):
+"""
+上传发布包到远程服务器
+"""
+    print(green("Start upload the project to the Server ..."))
+    with cd(remote_dir):
+        with settings(warn_only=True):
+            result = put(local_dir + project_name + ".tar.gz", remote_dir + project_name + ".tar.gz")  
+        if result.failed and not confirm("put file failed, Continue?"):  
+            abort("Aborting file put task!")
+    print(green("Put the package to remote server --- Finished"))
+
+def deploy_project(project_name):
+    with cd(remote_dir):
+        with settings(warn_only = True):
+            result = run("tar zxf "+project_name+".tar.gz -C " + remote_webroot)
+        if result.failed:
+            print(red("Deploy the project failed , Roll backing"))
+            roll_back(project_name)
+
+    print(green("Deploy the package at the server --- Finished"))
+
+def clear_deploy(project_name):
+"""
+删除部署过程中的多余文件
+"""
+  with cd(remote_webroot):
+   run("rm -rf " + project_name + "_bak")
+  with cd(remote_dir):
+   run("rm -f " + project_name + ".tar.gz")
+  print(green("Clear the files at the server --- Finished"))
+
+def roll_back(project_name):
+  run("rm -rf " + project_name)
+  run("mv " + project_name + "_bak " + project_name)
+  print(red("Roll back deploy --- finished"))
+
+@task
+def deploy(project_name,prepared = True):
+"""
+将代码发布到所有hosts
+参数1，project_name 项目名称
+参数2，prepared  是否进行项目部署准备，从svn checkout代码并打包
+:return:
+"""
+  if prepared == True:
+    prepare_deploy(project_name)
+
+  put_package(project_name)
+  back_up_server_file(project_name)
+  deploy_project(project_name)
+  clear_deploy(project_name)
+
+```
+
+**四. 运行命令**
+
+```
+fab deploy:my_project_name
+```
 
 [官方中文说明文档](http://fabric-chs.readthedocs.io/zh_CN/chs/tutorial.html)
