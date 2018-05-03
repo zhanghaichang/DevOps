@@ -56,4 +56,4 @@ Disconnecting from localhost... done.
 至此fabric简单安装及使用到此为止
 
 fabric好用之处就是你可以编写fabfiles 重复利用。
-()[http://fabric-chs.readthedocs.io/zh_CN/chs/tutorial.html]
+[](http://fabric-chs.readthedocs.io/zh_CN/chs/tutorial.html)
