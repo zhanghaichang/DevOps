@@ -78,19 +78,86 @@ $ sudo service nfs-kernel-server restart
 
 ### pv和pvc创建与使用
 
-本例中使用的yaml可参考[这里](./nfs.zip)
-
 1. 首先创建pv和pvc
+
+nfs-pv.yaml 
+
+```
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs
+spec:
+  capacity:
+    storage: 1Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    # FIXME: use the right IP
+    server: localhost 
+    path: "/"
+
+```
 
 ```
 $ kubectl create -f nfs-pv.yaml 
 persistentvolume "nfs" created
 
+nfs-pvc.yaml
+
+```
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Mi
+
+```
 $ kubectl create -f nfs-pvc.yaml 
 persistentvolumeclaim "nfs" created
 ```
 
 2. 接下来创建nfs-busybox rc。对应的pod会向存储卷中不定期的更新index.html
+
+nfs-busybox-rc.yaml
+
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nfs-busybox
+spec:
+  replicas: 1
+  selector:
+    name: nfs-busybox
+  template:
+    metadata:
+      labels:
+        name: nfs-busybox
+    spec:
+      containers:
+      - image: index.tenxcloud.com/google_containers/busybox
+        command:
+          - sh
+          - -c
+          - 'while true; do date > /mnt/index.html; hostname >> /mnt/index.html; sleep $(($RANDOM % 5 + 5)); done'
+        imagePullPolicy: IfNotPresent
+        name: busybox
+        volumeMounts:
+          # name must match the volume name below
+          - name: nfs
+            mountPath: "/mnt"
+      volumes:
+      - name: nfs
+        persistentVolumeClaim:
+          claimName: nfs
+
+```
 
 ```
 $ kubectl create -f nfs-busybox-rc.yaml 
@@ -99,12 +166,59 @@ replicationcontroller "nfs-busybox" created
 
 3. 再创建nfs-web rc和service。对应的pod会将存储卷挂载到nginx的静态目录中，这样我们可以通过service来访问index.html。
 
+nfs-web-rc.yaml 
+
+```
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nfs-web
+spec:
+  replicas: 1
+  selector:
+    role: web-frontend
+  template:
+    metadata:
+      labels:
+        role: web-frontend
+    spec:
+      containers:
+      - name: web
+        image: index.tenxcloud.com/docker_library/nginx 
+        ports:
+          - name: web
+            containerPort: 80
+        volumeMounts:
+            # name must match the volume name below
+            - name: nfs
+              mountPath: "/usr/share/nginx/html"
+      volumes:
+      - name: nfs
+        persistentVolumeClaim:
+          claimName: nfs
+
+```
+
 ```
 $ kubectl create -f nfs-web-rc.yaml 
 replicationcontroller "nfs-web" created
 
 $ kubectl create -f nfs-web-service.yaml 
 service "nfs-web" created
+```
+nfs-web-service.yaml 
+
+```
+kind: Service
+apiVersion: v1
+metadata:
+  name: nfs-web
+spec:
+  ports:
+    - port: 80
+  selector:
+    role: web-frontend
+
 ```
 
 4. 查看结果。可以看到index.html会不定期的更新显示时间。
