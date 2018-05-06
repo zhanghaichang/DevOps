@@ -102,7 +102,7 @@ spec:
 ```
 $ kubectl create -f nfs-pv.yaml 
 persistentvolume "nfs" created
-
+```
 nfs-pvc.yaml
 
 ```
@@ -120,7 +120,6 @@ spec:
 ```
 $ kubectl create -f nfs-pvc.yaml 
 persistentvolumeclaim "nfs" created
-```
 
 2. 接下来创建nfs-busybox rc。对应的pod会向存储卷中不定期的更新index.html
 
