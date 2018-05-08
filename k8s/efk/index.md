@@ -6,6 +6,7 @@ cat /etc/selinux/config
 永久关闭,可以修改配置文件/etc/selinux/config,将其中SELINUX设置为disabled，如下，
 SELINUX=disabled  
 
+```
  <match **>
       @id elasticsearch
       @type elasticsearch_dynamic
@@ -31,3 +32,4 @@ SELINUX=disabled
         queue_limit_length 8
         overflow_action block
       </buffer>
+```
