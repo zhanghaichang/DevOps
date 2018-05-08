@@ -1,5 +1,10 @@
 # EFK install
 
+docker run -p 9200:9200 --name elastic -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -d docker.elastic.co/elasticsearch/elasticsearch:5.6.4
+
+docker run -p 5601:5601 -e "ELASTICSEARCH_URL=http://localhost:9200" --name my-kibana --network host -d docker.elastic.co/kibana/kibana:5.6.4
+
+
 setenforce 0
 
 cat /etc/selinux/config  
