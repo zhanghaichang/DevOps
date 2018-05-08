@@ -38,3 +38,13 @@ SELINUX=disabled
         overflow_action block
       </buffer>
 ```
+
+# Lable
+kubectl get nodes --show-labels
+
+# Node 节点打标签
+$ kubectl label node node0.localdomain beta.kubernetes.io/fluentd-ds-ready=true 
+# 重新运行 fluentd
+$ kubectl apply -f fluentd-es-ds.yaml
+# 查看 Pod 是否启动成功
+$ kubectl get pods -n kube-system
