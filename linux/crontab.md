@@ -32,6 +32,8 @@ crontab -l -u root #查看root用户
 
 
 基本格式 :
+
+```
 *　　*　　*　　*　　*　　command
 分　时　日　月　周　命令
 第1列表示分钟1～59 每分钟用*或者 */1表示
@@ -59,3 +61,4 @@ crontab文件的一些例子：
 每月的4号与每周一到周三的11点重启apache
 0 4 1 jan * /usr/local/etc/rc.d/lighttpd restart
 一月一号的4点重启apache
+```
