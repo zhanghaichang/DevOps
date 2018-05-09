@@ -1,4 +1,4 @@
-# cron服务是Linux的内置服务，但它不会开机自动启动。可以用以下命令启动和停止服务：
+### cron服务是Linux的内置服务，但它不会开机自动启动。可以用以下命令启动和停止服务：
 
 /sbin/service crond start
 /sbin/service crond stop
@@ -16,14 +16,14 @@
 
 
 
-添加任务
+### 添加任务
 ```
 crontab -e
 0 */1 * * * command
 0 */2 * * * command
 ```
 
-查询任务是否加了：
+### 查询任务是否加了：
 ```
 crontab -l -u root #查看root用户
 0 */1 * * * command
@@ -31,7 +31,7 @@ crontab -l -u root #查看root用户
 ```
 
 
-基本格式 :
+### 基本格式 :
 
 ```
 *　　*　　*　　*　　*　　command
