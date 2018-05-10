@@ -4,6 +4,8 @@ curl -XGET http://localhost:9200/_cat/indices?v
 删除索引文件以释放空间：
 curl -XDELETE http://localhost:9200/filebeat-2016.12.28
 
+curl -u 'elastic:changeme' -XDELETE http://localhost:9200/*
+
 单节点的elk可在索引目录删除索引文件:集群环境删除某节点的索引文件，会导致集群服务不可用.集群环境需要使用API的方式进行删除.
 
 索引文件保留在服务器中，大大减小服务器的性能，占用硬盘空间，
