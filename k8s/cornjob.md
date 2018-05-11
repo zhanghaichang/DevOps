@@ -1,7 +1,7 @@
 ### Creating a Cron Job
 
 
-```
+```shell
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
