@@ -4,14 +4,14 @@ kind: ServiceAccount
 metadata:
   labels:
     k8s-app: kubernetes-dashboard
-  name: kubernetes-dashboard-admin
+  name: kubernetes-dashboard
   namespace: kube-system
   
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: kubernetes-dashboard-admin
+  name: kubernetes-dashboard
   labels:
     k8s-app: kubernetes-dashboard
 roleRef:
@@ -20,5 +20,5 @@ roleRef:
   name: cluster-admin
 subjects:
 - kind: ServiceAccount
-  name: kubernetes-dashboard-admin
+  name: kubernetes-dashboard
   namespace: kube-system
