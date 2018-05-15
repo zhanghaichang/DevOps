@@ -5,7 +5,7 @@ docker run -p 9200:9200 --name elastic -e "http.host=0.0.0.0" -e "transport.host
 docker run -p 5601:5601 -e "ELASTICSEARCH_URL=http://localhost:9200" --name my-kibana --network host -d docker.elastic.co/kibana/kibana:5.6.4
 
 
-$$$ elasticsearch启动时遇到的错误
+### elasticsearch启动时遇到的错误
 
 问题翻译过来就是：elasticsearch用户拥有的内存权限太小，至少需要262144；
 
