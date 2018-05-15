@@ -5,6 +5,40 @@ docker run -p 9200:9200 --name elastic -e "http.host=0.0.0.0" -e "transport.host
 docker run -p 5601:5601 -e "ELASTICSEARCH_URL=http://localhost:9200" --name my-kibana --network host -d docker.elastic.co/kibana/kibana:5.6.4
 
 
+$$$ elasticsearch启动时遇到的错误
+
+问题翻译过来就是：elasticsearch用户拥有的内存权限太小，至少需要262144；
+
+
+解决：
+
+切换到root用户
+
+执行命令：
+```
+sysctl -w vm.max_map_count=262144
+```
+查看结果：
+```
+sysctl -a|grep vm.max_map_count
+```
+显示：
+```
+vm.max_map_count = 262144
+```
+ 
+
+上述方法修改之后，如果重启虚拟机将失效，所以：
+
+解决办法：
+
+在   /etc/sysctl.conf文件最后添加一行
+```
+vm.max_map_count=262144
+```
+即可永久修改
+
+
 setenforce 0
 
 cat /etc/selinux/config  
