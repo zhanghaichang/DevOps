@@ -1,3 +1,22 @@
+# Deployment
+
+### 扩容：
+```
+kubectl scale deployment nginx-deployment --replicas 10
+```
+
+### 更新镜像：
+```
+kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1
+```
+### 回滚：
+```
+kubectl rollout undo deployment/nginx-deployment
+
+kubectl rollout status命令查看Deployment是否完成。如果rollout成功完成，kubectl rollout status将返回一个0值的Exit Code。
+
+kubectl rollout status deploy/nginx
+```
 # ConfigMap
 
 ### 从key-value字符串创建ConfigMap
