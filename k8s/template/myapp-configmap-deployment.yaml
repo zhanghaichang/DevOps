@@ -1,0 +1,31 @@
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: my-nginx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: my-nginx
+    spec:
+      containers:
+      - name: my-nginx
+        image: nginx
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/config
+        - name: my-secret
+          mountPath: /etc/secrets
+          readOnly: true
+      volumes:
+        - name: config-volume
+          configMap:
+            name: env-config
+        - name: my-secret
+          secret:
+            secretName: my-secret
