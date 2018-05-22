@@ -1,17 +1,13 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: test
+  name: nginx-ingress
 spec:
   rules:
-  - host: foo.bar.com
+  - host: zhanghaichang.com
     http:
       paths:
-      - path: /foo
+      - path: /
         backend:
-          serviceName: s1
-          servicePort: 80
-      - path: /bar
-        backend:
-          serviceName: s2
+          serviceName: nginx-service
           servicePort: 80
