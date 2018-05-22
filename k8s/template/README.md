@@ -69,6 +69,7 @@ git clone https://github.com/kubernetes-incubator/metrics-server.git
 # Kubernetes > 1.8
 $ kubectl create -f deploy/1.8+/
 ```
+### HPA
 
 ```
 # 创建pod和service
