@@ -18,3 +18,56 @@ mongodb
 
 2 directories, 6 files
 ```
+
+## 检查配置和模板是否有效
+使用helm install --dry-run --debug <chart_dir>命令来验证chart配置。该输出中包含了模板的变量配置与最终渲染的yaml文件。
+
+```
+$ helm install --dry-run --debug mychart
+```
+
+## 部署到kubernetes
+在mychart目录下执行下面的命令将nginx部署到kubernetes集群上。
+
+```
+helm install .
+```
+
+
+## 查看部署的relaese
+```
+$ helm list
+NAME            REVISION    UPDATED                     STATUS      CHART            NAMESPACE
+eating-hound    1           Wed Oct 25 14:58:15 2017    DEPLOYED    mychart-0.1.0    default
+```
+
+## 删除部署的release
+
+```
+$ helm delete eating-hound
+release "eating-hound" deleted
+```
+## 打包分享
+
+```
+helm package .
+
+我们可以修改Chart.yaml中的helm chart配置信息，然后使用下列命令将chart打包成一个压缩文件。
+打包出mychart-0.1.0.tgz文件。
+```
+## 依赖
+我们可以在requirement.yaml中定义应用所依赖的chart，例如定义对mariadb的依赖：
+```
+dependencies:
+- name: mariadb
+  version: 0.6.0
+  repository: https://kubernetes-charts.storage.googleapis.com
+使用helm lint .命令可以检查依赖和模板配置是否正确。
+```
+## 安装源
+
+使用第三方chat库 添加fabric8库
+
+```
+$helm repo add fabric8 https://fabric8.io/helm
+```
