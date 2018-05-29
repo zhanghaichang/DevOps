@@ -35,7 +35,7 @@ spec:
 SPECIAL_LEVEL_KEY=very
 SPECIAL_TYPE_KEY=charm
 log_level=INFO
-``
+```
 
 用ConfigMap设置命令行参数
 
