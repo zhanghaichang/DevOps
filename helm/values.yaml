@@ -29,7 +29,7 @@ livenessProbe: # 应用存活检测
     failureThreshold: 3 # 探测成功后，最少连续探测失败多少次才被认定为失败
   httpGet:
     path: / # 通过 HTTP GET方法请求此地址，需要在1秒内返回HTTP STATUS 200。失败三次后，即认为应用挂掉了，会自动重新启动一个节点。
-    #port: 8080 # tomcat端口，默认和上面的端口保持一致
+    port: 8080 # tomcat端口，默认和上面的端口保持一致
 readinessProbe: # 应用就绪检测。只有应用通过就绪检测了，才可以被访问到。
   config:
     initialDelaySeconds: 15
@@ -39,5 +39,5 @@ readinessProbe: # 应用就绪检测。只有应用通过就绪检测了，才�
     failureThreshold: 3
   httpGet:
     path: /
-    #port: 8080
+    port: 8080
     #应用至少需要修改image.repository,image.tag,service.name,livenessProbe.httpGet.path,readinessProbe.httpGet.path
