@@ -1,4 +1,5 @@
 ### heapster插件部署
+
 下面安装Heapster为集群添加使用统计和监控功能，为Dashboard添加仪表盘。 使用InfluxDB做为Heapster的后端存储，开始部署：
 
 ```
