@@ -1,3 +1,4 @@
+```groovy
 node{
     stage('get clone'){
         //check CODE
@@ -28,3 +29,4 @@ node{
         
     }
 }
+```
