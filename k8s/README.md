@@ -16,7 +16,7 @@ kubectl delete -f xxx.yaml
 
  
 
-**查看kube-system namespace下面的pod/svc/deployment 等等（-o wide  选项可以查看存在哪个对应的节点）
+**查看kube-system namespace下面的pod/svc/deployment 等等（-o wide  选项可以查看存在哪个对应的节点）**
 
 kubectl get pod/svc/deployment -n kube-system
 
@@ -63,67 +63,73 @@ kubectl scale deployment spark-worker-deployment --replicas=8
  
 
 **导出配置文件：**
-　　导出proxy
-　　kubectl get ds -n kube-system -l k8s-app=kube-proxy -o yaml>kube-proxy-ds.yaml
-　　导出kube-dns
-　　kubectl get deployment -n kube-system -l k8s-app=kube-dns -o yaml >kube-dns-dp.yaml
-　　kubectl get services -n kube-system -l k8s-app=kube-dns -o yaml >kube-dns-services.yaml
-　　导出所有 configmap
-　　kubectl get configmap -n kube-system -o wide -o yaml > configmap.yaml
+
+ 导出proxy
+ kubectl get ds -n kube-system -l k8s-app=kube-proxy -o yaml>kube-proxy-ds.yaml
+ 导出kube-dns
+ kubectl get deployment -n kube-system -l k8s-app=kube-dns -o yaml >kube-dns-dp.yaml
+ kubectl get services -n kube-system -l k8s-app=kube-dns -o yaml >kube-dns-services.yaml
+ 导出所有 configmap
+ kubectl get configmap -n kube-system -o wide -o yaml > configmap.yaml
 
  
 
 **复杂操作命令：**
 
-　　删除kube-system 下Evicted状态的所有pod：
+删除kube-system 下Evicted状态的所有pod：
 
-　　kubectl get pods -n kube-system |grep Evicted| awk '{print $1}'|xargs kubectl delete pod  -n kube-system
+kubectl get pods -n kube-system |grep Evicted| awk '{print $1}'|xargs kubectl delete pod  -n kube-system
 
  
 
 # 以下为维护环境相关命令：
 
 **重启kubelet服务**
+
 systemctl daemon-reload
 systemctl restart kubelet
 
  
 
 **修改启动参数**
+
 vim /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 
  
 
-** 查看集群信息**
+**查看集群信息**
 kubectl cluster-info
 
  
 
-** 查看各组件信息**
+**查看各组件信息**
 kubectl get componentstatuses
 
  
 
 **查看kubelet进程启动参数**
+
 ps -ef | grep kubelet
 
  
 
 **查看日志:**
+
 journalctl -u kubelet -f
 
  
 
 **设为不可调度状态：**
+
 kubectl cordon node1
 
  
 
 **将pod赶到其他节点：**
+
 kubectl drain node1
 
  
-
 **解除不可调度状态**
 kubectl uncordon node1
 
