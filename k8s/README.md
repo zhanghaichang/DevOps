@@ -46,7 +46,7 @@ kubectl describe pod XXX -n kube-system
 **查看pod 日志 （如果pod有多个容器需要加-c 容器名）**
 ```shell
 kubectl logs xxx -n kube-system  
-
+```
  
 
 **删除应用（先确定是由说明创建的，再删除对应的kind）：**
