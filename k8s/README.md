@@ -144,8 +144,10 @@ kubectl uncordon node1
  
 
 **污点master运行pod**
+
 ```shell
 kubectl taint nodes master.k8s node-role.kubernetes.io/master-
+```
 
 **污点master不运行pod**
 ```shell
