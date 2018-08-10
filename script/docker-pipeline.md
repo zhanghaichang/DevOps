@@ -1,4 +1,3 @@
-```groovy
 node{
     stage('get clone'){
         //check CODE
@@ -19,14 +18,19 @@ node{
         sh "mvn clean install -Dmaven.test.skip=true"
     }
 
-    stage('deploy'){
+    stage('docker build'){
+        //执行推送
+        echo "docker build ......" 
+		def image="${name}:${tag}"
+        sh "docker build -t ${image} ."
+		withCredentials([usernamePassword(credentialsId: 'dockerHub', passwordVariable: 'dockerHubPassword', usernameVariable: 'dockerHubUser')]) {
+        sh "docker login -u ${dockerHubUser} -p ${dockerHubPassword}"
+        sh "docker push ${image}"
+		}
+	}
+    stage('docker deploy'){
         //执行部署脚本
-        echo "deploy ......" 
-        sh "docker build -t zhanghaichang/springboot-helloworld:20180809-0001 ."
-        sh "docker login -u zhanghaichang@163.com -p zhanghaichang521 https://hub.docker.com/"
-        sh "docker tag 20180809-0001 zhanghaichang/springboot-helloworld"
-        sh "docker push zhanghaichang/springboot-helloworld:20180809-0001"
+        echo "docker deploy ......" 
         
     }
 }
-```
