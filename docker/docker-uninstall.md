@@ -28,3 +28,19 @@ docker-common.x86_64 2:1.12.6-16.el7.centos @extra
 [root@localhost ~]# 
 ```
 如果没有搜索到，那么表示已经卸载成功。
+
+
+## 或者
+
+```shell
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+```
