@@ -1,5 +1,15 @@
 # EFK install
 
+
+### Docker 日志格式
+
+> vim /etc/sysconfig/docker
+
+修改 --log-driver=json-file 
+
+重启docker服务： service docker restart即可
+
+
 docker run -p 9200:9200 --name elastic -e "http.host=0.0.0.0" -e "transport.host=127.0.0.1" -d docker.elastic.co/elasticsearch/elasticsearch:5.6.4
 
 docker run -p 5601:5601 -e "ELASTICSEARCH_URL=http://localhost:9200" --name my-kibana --network host -d docker.elastic.co/kibana/kibana:5.6.4
