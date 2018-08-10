@@ -27,3 +27,4 @@ yum install -y --setopt=obsoletes=0 \
 systemctl start docker
 systemctl enable docker
 ```
+[官方安装教程](https://docs.docker.com/install/linux/docker-ce/centos/#prerequisites)
