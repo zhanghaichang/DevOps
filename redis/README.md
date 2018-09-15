@@ -33,7 +33,7 @@ $ docker pull redis
 配置持久化方式启动
 
 ```
-$ docker run --name some-redis -v /docker/host/dir:/data -d redis redis-server --appendonly yes
+$ docker run --name some-redis -v /docker/host/redis:/data -d redis redis-server --appendonly yes
 ```
 
 自定义 redis.conf
