@@ -1,4 +1,4 @@
-# Redis docker install
+# Redis install
 
 
 ## Installation
@@ -10,9 +10,9 @@ $ cd redis-4.0.11
 $ make
 ```
 
-The binaries that are now compiled are available in the src directory. Run Redis with:
+Run Redis with:
 ```
-$ src/redis-server
+$ nohup src/redis-server &
 ```
 
 You can interact with Redis using the built-in client:
