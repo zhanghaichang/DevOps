@@ -2,9 +2,8 @@
 
 ### 方案1:使用阿里云yum镜像
 
-
+### docker yum源
 ```
-#docker yum源
 cat >> /etc/yum.repos.d/docker.repo <<EOF
 [docker-repo]
 name=Docker Repository
@@ -12,8 +11,10 @@ baseurl=http://mirrors.aliyun.com/docker-engine/yum/repo/main/centos/7
 enabled=1
 gpgcheck=0
 EOF
+```
 
-#kubernetes yum源
+### kubernetes yum源
+```
 cat >> /etc/yum.repos.d/kubernetes.repo <<EOF
 [kubernetes]
 name=Kubernetes
