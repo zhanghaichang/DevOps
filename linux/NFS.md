@@ -28,11 +28,8 @@ Loading mirror speeds from cached hostfile
  
 在NFS服务端上创建共享目录/data/lys并设置权限
 ```
-[root@bogon ~]# mkdir -p /data/lys
+[root@bogon ~]# mkdir -p /data/k8s
 [root@bogon ~]# ll /data/
-总用量 4
-drwxr-xr-x. 2 root root 4096 10月 21 18:10 lys
-[root@bogon ~]# chmod 666 /data/lys/
 ```
 
 编辑export文件
@@ -40,7 +37,7 @@ drwxr-xr-x. 2 root root 4096 10月 21 18:10 lys
 ```
 [root@bogon ~]# vim /etc/exports 
 
-/data/lys 192.168.2.0/24(rw,no_root_squash,no_all_squash,sync)
+/data/k8s 192.168.2.0/24(rw,no_root_squash,no_all_squash,sync)
 ```
 常见的参数则有：
 
@@ -146,19 +143,19 @@ Export list for localhost:
 创建挂载目录
 
 ```
-[root@bogon ~]# mkdir /lys
+[root@bogon ~]# mkdir /k8s
 ```
 查看服务器抛出的共享目录信息
 
 ```
 [root@bogon ~]# showmount -e 192.168.2.203
 Export list for 192.168.2.203:
-/data/lys 192.168.2.0/24
+/data/k8s 192.168.2.0/24
 ```
 为了提高NFS的稳定性，使用TCP协议挂载，NFS默认用UDP协议
 
 ```
-[root@bogon ~]# mount -t nfs 192.168.2.203:/data/lys /lys -o proto=tcp -o nolock
+[root@bogon ~]# mount -t nfs 192.168.2.203:/data/k8s /k8s -o proto=tcp -o nolock
 ```
 ## 七、测试结果
 
@@ -184,18 +181,18 @@ tmpfs                 112M     0  112M   0% /dev/shm
 ```
 [root@bogon ~]# cat /lys/test.txt 
 test
-[root@bogon ~]# echo "204" >> /lys/test.txt 
+[root@bogon ~]# echo "204" >> /k8s/test.txt 
 ```
 服务端
 ```
-[root@bogon lys]# cat /data/lys/test.txt 
+[root@bogon lys]# cat /data/k8s/test.txt 
 test
 204
 ```
 卸载已挂在的NFS
 
 ```
-[root@bogon ~]# umount /lys/
+[root@bogon ~]# umount /k8s/
 [root@bogon ~]# df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/mapper/VolGroup-lv_root
