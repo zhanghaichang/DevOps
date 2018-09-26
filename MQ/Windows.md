@@ -20,6 +20,6 @@
 * 三：以管理员身份运行cmd.exe，进入目录D:\softInstall\rabbitMQ\rabbitmq_server-3.6.9\sbin（RabbitMQ Server安装目录），运行cmd命令：rabbitmq-plugins.bat enable rabbitmq_management
 
 * 四：以管理员身份运行cmd.exe，运行命令：net stop RabbitMQ && net start RabbitMQ。启动RabbitMQ Server，在浏览器输入地址：
-[](http://localhost:15672)，输入默认账号：guest  密码：guest，就能进入RabbitMQ界面了。
+[http://localhost:15672](http://localhost:15672)，输入默认账号：guest  密码：guest，就能进入RabbitMQ界面了。
 
 至此，RabbitMQ Server安装完成。
