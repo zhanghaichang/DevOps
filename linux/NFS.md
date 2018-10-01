@@ -116,7 +116,7 @@ anonuid　　anongid    anon 意指 anonymous (匿名者) 前面关于 *_squash 
 ```
 [root@bogon lys]# showmount -e localhost
 Export list for localhost:
-/data/lys 192.168.2.0/24
+/data/k8s 192.168.2.0/24
 选项与参数：
 -a ：显示目前主机与客户端的 NFS 联机分享的状态；
 -e ：显示某部主机的 /etc/exports 所分享的目录数据。
@@ -143,7 +143,7 @@ Export list for localhost:
 创建挂载目录
 
 ```
-[root@bogon ~]# mkdir /k8s
+[root@bogon ~]# mkdir /data/k8s
 ```
 查看服务器抛出的共享目录信息
 
@@ -168,7 +168,7 @@ Filesystem            Size  Used Avail Use% Mounted on
                        18G  1.1G   16G   7% /
 tmpfs                 112M     0  112M   0% /dev/shm
 /dev/sda1             477M   54M  398M  12% /boot
-192.168.2.203:/data/lys
+192.168.2.203:/data/k8s
                        18G  1.1G   16G   7% /lys
 ```
 
@@ -179,7 +179,7 @@ tmpfs                 112M     0  112M   0% /dev/shm
 ```
 客户端
 ```
-[root@bogon ~]# cat /lys/test.txt 
+[root@bogon ~]# cat /data/k8s/test.txt 
 test
 [root@bogon ~]# echo "204" >> /k8s/test.txt 
 ```
