@@ -57,9 +57,9 @@
 [root@linux-node ~]# rm -f /etc/localtime
 #链接到上海时区文件       
 [root@linux-node ~]# ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-
-#### 备注：
 ```
+#### 备注：
+
 执行完上述过程后，重启机器，即可看到时区已经更改。
 
 ```
