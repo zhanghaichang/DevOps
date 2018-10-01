@@ -66,3 +66,27 @@
 在centos7中设置时区的命令可以通过 timedatectl 命令来实现
 [root@linux-node ~]# timedatectl set-timezone Asia/Shanghai
 ```
+#### ntpdate进行时间同步
+
+1、安装ntpdate，执行以下命令
+
+> # yum install ntpdate -y
+
+2、手工同步网络时间，执行以下命令，将从time.nist.gov同步时间
+
+> # ntpdate 0.asia.pool.ntp.org
+
+若上面的时间服务器不可用，也可以选择以下服务器同步时间
+```
+　　time.nist.gov
+
+　　time.nuri.net
+
+　　0.asia.pool.ntp.org
+
+　　1.asia.pool.ntp.org
+
+　　2.asia.pool.ntp.org
+
+　　3.asia.pool.ntp.org
+```
