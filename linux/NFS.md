@@ -155,7 +155,7 @@ Export list for 192.168.2.203:
 为了提高NFS的稳定性，使用TCP协议挂载，NFS默认用UDP协议
 
 ```
-[root@bogon ~]# mount -t nfs 192.168.2.203:/data/k8s /k8s -o proto=tcp -o nolock
+[root@bogon ~]# mount -t nfs 192.168.2.203:/data/k8s /data/k8s -o proto=tcp -o nolock
 ```
 ## 七、测试结果
 
