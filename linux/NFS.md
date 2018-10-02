@@ -155,7 +155,8 @@ Export list for 192.168.2.203:
 为了提高NFS的稳定性，使用TCP协议挂载，NFS默认用UDP协议
 
 ```
-[root@bogon ~]# mount -t nfs 192.168.2.203:/data/k8s /data/k8s -o proto=tcp -o nolock
+               mount  -t  nfs   服务器IP:/服务器目录      客户端挂载目录 
+[root@bogon ~]# mount -t nfs 192.168.1.13:/data/k8s /data/k8s -o proto=tcp -o nolock
 ```
 ## 七、测试结果
 
@@ -192,7 +193,7 @@ test
 卸载已挂在的NFS
 
 ```
-[root@bogon ~]# umount /k8s/
+[root@bogon ~]# umount /data/k8s/
 [root@bogon ~]# df -h
 Filesystem            Size  Used Avail Use% Mounted on
 /dev/mapper/VolGroup-lv_root
@@ -201,6 +202,20 @@ tmpfs                 112M     0  112M   0% /dev/shm
 /dev/sda1             477M   54M  398M  12% /boot
 ```
  
+
+
+开机自动挂载：
+
+如果服务端或客户端的服务器重启之后需要手动挂载，我们可以加入到开机自动挂载
+
+在客户端/etc/fstab里添加
+
+> 192.168.1.13:/data/k8s      /data/k8s      nfs  defaults,_rnetdev  1  1
+
+备注：第1个1表示备份文件系统，第2个1表示从/分区的顺序开始fsck磁盘检测，0表示不检测。
+
+_rnetdev  表示主机无法挂载直接跳过，避免无法挂载主机无法启动
+
 
 到此结束
 
