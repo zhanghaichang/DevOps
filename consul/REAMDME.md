@@ -11,6 +11,7 @@ $ docker run -d -e CONSUL_BIND_INTERFACE=eth0 consul agent -dev -join=172.17.0.2
 ... server 3 starts
 ```
 
+#### 查看成员数量
 ```
 $ docker exec -t dev-consul consul members
 ```
