@@ -27,4 +27,11 @@ yum install -y --setopt=obsoletes=0 \
 systemctl start docker
 systemctl enable docker
 ```
+
+### DaoCloud 镜像加速
+
+```
+curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2.m.daocloud.io
+
+```
 [官方安装教程](https://docs.docker.com/install/linux/docker-ce/centos/#prerequisites)
