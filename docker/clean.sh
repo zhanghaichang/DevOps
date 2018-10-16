@@ -1,6 +1,5 @@
 #!/bin/bash
 docker rm -f $(docker ps -qa)
-docker rmi -f $(docker images -q)
 rm -rf /var/etcd/
 for m in $(tac /proc/mounts | awk '{print $2}' | grep /var/lib/kubelet); do
     umount $m || true
