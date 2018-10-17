@@ -10,11 +10,11 @@
 
 ### 第二种
 ```
-> hostnamectl set-hostname <hostname>
+ hostnamectl set-hostname <hostname>
 
-> $ hostnamectl set-hostname node1
+ $ hostnamectl set-hostname node1
 
-> $ reboot
+ $ reboot
 ```
 ## CentOs6.5 修改主机名
 
