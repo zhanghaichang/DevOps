@@ -90,3 +90,5 @@ www[01:50].example.com
 
 db-[a:f].example.com
 ```
+
+[更多](https://www.cnblogs.com/wangxiaoqiangs/p/5685239.html)
