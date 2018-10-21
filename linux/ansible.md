@@ -10,15 +10,20 @@ shell >  yum -y install ansible
 
 
 ```
-shell > ls /etc/ansible   # ansible.cfg 是 Ansible 工具的配置文件；hosts 用来配置被管理的机器；roles 是一个目录，playbook 将使用它
+shell > ls /etc/ansible   
+
 ansible.cfg hosts roles
+
+ansible.cfg 是 Ansible 工具的配置文件；
+hosts 用来配置被管理的机器；
+roles 是一个目录，playbook 将使用它
+
 ```
 
-* hosts 文件添加被管理机
+**hosts 文件添加被管理机**
 
 ```
  vim /etc/ansible/hosts 
- 
 [Client]
 192.168.12.129
 
@@ -26,12 +31,15 @@ ansible.cfg hosts roles
 ## 三、测试 Ansible
 
 ```
-shell > ansible Client -m ping     # 操作 Client 组 ( all 为操作 hosts 文件中所有主机 )，-m 指定执行 ping 模块，下面是返回结果
+shell > ansible Client -m ping    
+
+下面是返回结果
 192.168.12.129 | SUCCESS => {
 "changed": false, 
 "ping": "pong"
 }
 
+# 操作 Client 组 ( all 为操作 hosts 文件中所有主机 )，-m 指定执行 ping 模块，
 # -i          指定 hosts 文件位置
 # -u username 指定 SSH 连接的用户名
 # -k          指定远程用户密码
@@ -42,7 +50,7 @@ shell > ansible Client -m ping     # 操作 Client 组 ( all 为操作 hosts 文
 
 ## 四、附加
 
-* 1、/etc/ansible/hosts 文件
+1、/etc/ansible/hosts 文件
 
 ## Ansible 定义主机、组规则的配置文件
 
