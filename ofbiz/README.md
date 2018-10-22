@@ -1,5 +1,7 @@
 ## Ofbiz
 
+https://cwiki.apache.org/confluence/display/OFBIZ/Technical+Documentation
+
 https://docs.huihoo.com/apache/ofbiz/config_deploy_maint.html
 
 
