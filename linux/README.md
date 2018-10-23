@@ -20,7 +20,7 @@ ss -tanls
 
 **4.Linux查看cpu相关信息，包括型号、主频、内核信息等**
 
-> cat /etc/cpuinfo
+> cat /proc/cpuinfo
 
 **1.查看系统版本信息的命令**
 
