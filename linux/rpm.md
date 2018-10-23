@@ -3,9 +3,9 @@
 
 ### 1、安装
 
-```
-rpm -i 需要安装的包文件名
+> rpm -i 需要安装的包文件名
 
+```
 举例如下：
 
 rpm -i example.rpm 安装 example.rpm 包；
