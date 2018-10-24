@@ -30,8 +30,56 @@ systemctl enable docker
 
 ### DaoCloud 镜像加速
 
+
+#### 配置镜像加速地址
+```
+> /etc/docker/daemon.json
+
+{
+"registry-mirrors": ["https://7bezldxe.mirror.aliyuncs.com/"]
+}
+
+```
+
+#### 配置insecure-registries私有仓库
+
+Docker默认只信任TLS加密的仓库地址(https)，所有非https仓库默认无法登陆也无法拉取镜像。insecure-registries字面意思为不安全的仓库，通过添加这个参数对非https仓库进行授信。可以设置多个insecure-registries地址，以数组形式书写，地址不能添加协议头(http)。
+
+编辑/etc/docker/daemon.json加入以下内容:
+
+```
+{
+"insecure-registries": ["192.168.1.100","IP:PORT"]
+}
+```
+
+
+#### 配置镜像加速地址 shell
 ```
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2.m.daocloud.io
 
 ```
+
+
+### 配置Docker存储驱动
+
+OverlayFS是一个新一代的联合文件系统，类似于AUFS，但速度更快，实现更简单。Docker为OverlayFS提供了两个存储驱动程序:旧版的overlay，新版的overlay2(更稳定)。
+
+先决条件:
+
+* overlay2: Linux内核版本4.0或更高版本，或使用内核版本3.10.0-514+的RHEL或CentOS。
+* overlay: 主机Linux内核版本3.18+
+* 支持的磁盘文件系统
+    * ext4(仅限RHEL 7.1)
+    * xfs(RHEL7.2及更高版本)，需要启用d_type=true。 >具体详情参考 Docker Use the OverlayFS storage driver
+    
+编辑/etc/docker/daemon.json加入以下内容
+
+```
+{
+"storage-driver": "overlay2",
+"storage-opts": ["overlay2.override_kernel_check=true"]
+}
+```
+
 [官方安装教程](https://docs.docker.com/install/linux/docker-ce/centos/#prerequisites)
