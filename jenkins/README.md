@@ -3,13 +3,13 @@
 ## docker install 
 
 ```
-docker pull jenkins:latest
+docker pull jenkins/jenkins:lts
 ```
 
 ## docker run
 
 ```
-docker run -p 8080:8080 -p 50000:50000 -u 0 -v /root/home/jenkins/:/var/jenkins_home -d jenkins:latest
+docker run -p 8080:8080 -p 50000:50000 -u 0 -v /root/home/jenkins/:/var/jenkins_home -d jenkins/jenkins:lts
 ```
 #### 永久关闭,可以修改配置文件/etc/selinux/config
 
