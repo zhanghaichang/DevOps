@@ -3,11 +3,11 @@
 ## docker install 
 
 ```
-docker pull jenkins
+docker pull jenkins:latest
 ```
 
 ## docker run
 
 ```
-docker run -p 8080:8080 -p 50000:50000 -v /root/home/jenkins/:/home/jenkins_home -d jenkins
+docker run -p 8080:8080 -p 50000:50000 -v /root/home/jenkins/:/home/jenkins_home -d jenkins:latest
 ```
