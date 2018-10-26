@@ -11,3 +11,33 @@
 查看登录用户：who
 查看用户登录历史记录：last
 ```
+
+## 添加用户
+```
+useradd -d /usr/username -m username
+
+为用户增加密码：passwd username
+
+```
+
+## 删除用户
+```
+userdel username
+
+```
+
+## 添加组别
+
+```
+groupadd groupname
+```
+## 删除组
+
+```
+groupdel groupname
+```
+
+## 将用户添加进工作组
+```
+usermod -G groupname username
+```
