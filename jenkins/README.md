@@ -17,11 +17,11 @@ chown -R 1000:1000 jenkins/
 ## docker run
 
 ```
-docker run -d -p 8080:8080 -p 50000:50000  --privileged=true --name jenkins --restart=always \
+docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=always \
 -v /root/home/jenkins/:/var/jenkins_home \
 -v $(which docker):/usr/bin/docker \
--v /var/run/docker.sock:/var/run/docker.sock\
--d jenkins/jenkins:lts
+-v /var/run/docker.sock:/var/run/docker.sock \
+-d zhanghaichang/jenkins:latest
 ```
 
 ### 获取初始密码
