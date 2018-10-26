@@ -47,4 +47,4 @@ OS name: "linux", version: "3.13.0-35-generic", arch: "amd64", family: "unix"
 
 ### 创建maven项目
 
-mvn archetype:create -DgroupId=helloworld -DartifactId=helloworld
+> mvn archetype:create -DgroupId=helloworld -DartifactId=helloworld
