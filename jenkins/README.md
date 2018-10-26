@@ -27,7 +27,9 @@ docker run -d -p 8080:8080 -p 50000:50000  --privileged=true --name jenkins --re
 ### 获取初始密码
 
 ```
-cd /home/jenkins/secrets tail initialAdminPassword 
+cd /home/jenkins/secrets 
+
+tail initialAdminPassword 
 ```
 
 ## 添加Jenkins用户到Docker用户组
