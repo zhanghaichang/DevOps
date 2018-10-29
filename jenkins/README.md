@@ -81,6 +81,10 @@ SELINUX=disabled
 #     mls - Multi Level Security protection.  
 SELINUXTYPE=targeted
 
+## 刷新
+
+[root@rdo ~]# setenforce 0
+
 [root@rdo ~]# sestatus  
 SELinux status:                 disabled
 ```
