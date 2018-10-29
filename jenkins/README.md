@@ -14,6 +14,17 @@ mkdir /home/jenkins
 chown -R 1000:1000 jenkins/ 
 ```
 
+## 官方镜像 docker run
+
+```
+docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=always \
+-v /root/home/jenkins/:/var/jenkins_home \
+-v $(which docker):/usr/bin/docker \
+-v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
+-d jenkins/jenkins:lts
+```
+
 ## docker run
 
 ```
@@ -21,6 +32,7 @@ docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=alwa
 -v /root/home/jenkins/:/var/jenkins_home \
 -v $(which docker):/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
+-v /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
 -d zhanghaichang/jenkins:latest
 ```
 
