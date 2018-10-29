@@ -13,6 +13,20 @@ mkdir /home/jenkins
 
 chown -R 1000:1000 jenkins/ 
 ```
+##  centos library 安装
+
+```
+yum install libltdl.so.7
+
+##
+which libltdl.so.7
+
+/usr/lib64/libltdl.so.7
+
+```
+
+在 Jenkins 镜像中使用这个 library 的位置是 /usr/lib/x86_64-linux-gnu/libltdl.so.7，通过 -v 映射即可。
+
 
 ## 官方镜像 docker run
 
@@ -21,18 +35,16 @@ docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=alwa
 -v /root/home/jenkins/:/var/jenkins_home \
 -v $(which docker):/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
--v /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
+-v /usr/lib/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
 -d jenkins/jenkins:lts
 ```
-
-## docker run
+## docker run 
 
 ```
-docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=always \
+docker run -d -p 8080:8080 -p 50000:50000  --name jenkins --restart=always \
 -v /root/home/jenkins/:/var/jenkins_home \
 -v $(which docker):/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
--v /usr/lib/x86_64-linux-gnu/libltdl.so.7:/usr/lib/x86_64-linux-gnu/libltdl.so.7 \
 -d zhanghaichang/jenkins:latest
 ```
 
