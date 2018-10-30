@@ -6,7 +6,8 @@
 server.xml
 
 ```xml
-<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" maxThreads="2000" acceptCount="1000" redirectPort="8443" />
+<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" maxThreads="2000" 
+           acceptCount="1000" redirectPort="8443" />
 ```
 
 ### tomcat管理界面登录
@@ -30,12 +31,14 @@ tomcat/webapps/manager/META-INF/context.xml
 
 ```
 <Context antiResourceLocking="false" privileged="true" >
-    <Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+    allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />
 </Context>
 
 改为
 
 <Context antiResourceLocking="false" privileged="true" >
-    <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve" allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
+    <!--<Valve className="org.apache.catalina.valves.RemoteAddrValve" 
+    allow="127\.\d+\.\d+\.\d+|::1|0:0:0:0:0:0:0:1" />-->
 </Context>
 ```
