@@ -2,6 +2,23 @@
 
 ### 方法一
 
+
+
+```
+1、安装ntp服务软件包：yum -y install ntp
+
+2、将ntp设置为缺省启动：systemctl enable ntpd
+
+3、修改启动参数，增加-g -x参数，允许ntp服务在系统时间误差较大时也能正常工作：vi /etc/sysconfig/ntpd
+
+4、启动ntp服务：service ntpd restart
+
+5、将系统时区改为上海时间（即CST时区）：ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+6、输入date命令查看时间是否正确
+
+```
+
 #### 一、date 查看/设置系统时间
 
 ```
@@ -66,6 +83,7 @@
 在centos7中设置时区的命令可以通过 timedatectl 命令来实现
 [root@linux-node ~]# timedatectl set-timezone Asia/Shanghai
 ```
+
 #### ntpdate进行时间同步
 
 1、安装ntpdate，执行以下命令
