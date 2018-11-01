@@ -1,3 +1,11 @@
+# docker 一键在线安装
+
+```
+curl -s https://releases.rancher.com/install-docker/17.03.sh|sh
+
+```
+
+
 # rancher 2.0安装
 
 ```
