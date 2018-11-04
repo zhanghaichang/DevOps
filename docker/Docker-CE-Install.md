@@ -1,5 +1,17 @@
 # docker ce
 
+
+### SELINUX
+
+安全增强型 Linux（Security-Enhanced Linux）简称 SELinux，它是一个 Linux 内核模块，也是 Linux 的一个安全子系统
+
+修改/etc/selinux/config 文件
+
+将SELINUX=enforcing改为SELINUX=disabled
+
+重启机器即可
+
+
 ### 安装源
 ```
 yum install -y yum-utils device-mapper-persistent-data lvm2
