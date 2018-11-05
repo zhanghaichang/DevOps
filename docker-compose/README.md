@@ -15,7 +15,10 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.22.0/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
-#### 3.（可选）为 和shell 安装命令完成。bashzsh
+#### 3.（可选）为 和shell 安装命令完成。
+```
+bashzsh
+```
 
 #### 4.测试安装
 
