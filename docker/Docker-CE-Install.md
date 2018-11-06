@@ -97,7 +97,12 @@ Docker默认只信任TLS加密的仓库地址(https)，所有非https仓库默�
 curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2.m.daocloud.io
 
 ```
+#### 重新启动
 
+```
+systemctl daemon-reload && systemctl start docker
+
+```
 
 ### 配置Docker存储驱动
 
