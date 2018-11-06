@@ -10,7 +10,7 @@ curl -s https://releases.rancher.com/install-docker/17.03.sh|sh
 安全增强型 Linux（Security-Enhanced Linux）简称 SELinux，它是一个 Linux 内核模块，也是 Linux 的一个安全子系统
 
 ```
-vi /etc/selinux/config
+sudo vi /etc/selinux/config
 
 SELINUX=enforcing
 
