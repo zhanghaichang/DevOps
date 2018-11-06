@@ -1,5 +1,9 @@
 # docker ce
 
+### docker 一键在线安装
+```
+curl -s https://releases.rancher.com/install-docker/17.03.sh|sh
+```
 
 ### SELINUX
 
@@ -39,6 +43,25 @@ yum install -y --setopt=obsoletes=0 \
 ```
 systemctl start docker
 systemctl enable docker
+```
+
+### docker命令不需要敲sudo的方法
+
+1.创建一个docker组
+
+```
+$ sudo groupadd docker
+```
+2.添加当前用户到docker组
+
+```
+$ sudo usermod -aG docker $USER
+```
+
+3.登出，重新登录shell验证
+
+```
+$ docker info
 ```
 
 ### DaoCloud 镜像加速
