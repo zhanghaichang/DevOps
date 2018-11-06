@@ -71,7 +71,7 @@ $ docker info
 
 #### 配置镜像加速地址
 ```
-> /etc/docker/daemon.json
+sudo vi /etc/docker/daemon.json
 
 {
 "registry-mirrors": ["https://7bezldxe.mirror.aliyuncs.com/"]
@@ -119,5 +119,5 @@ OverlayFS是一个新一代的联合文件系统，类似于AUFS，但速度更�
 "storage-opts": ["overlay2.override_kernel_check=true"]
 }
 ```
-
+[rpm下载地址](https://download.docker.com/linux/centos/7/x86_64/stable/Packages/)
 [官方安装教程](https://docs.docker.com/install/linux/docker-ce/centos/#prerequisites)
