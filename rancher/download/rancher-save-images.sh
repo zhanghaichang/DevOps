@@ -1,0 +1,45 @@
+#!/bin/sh
+set -e -x
+
+docker pull rancher/alertmanager-helper:v0.0.2
+docker pull rancher/alpine-git:1.0.4
+docker pull rancher/calico-cni:v3.1.1
+docker pull rancher/calico-ctl:v2.0.0
+docker pull rancher/calico-node:v3.1.1
+docker pull rancher/cluster-proportional-autoscaler-amd64:1.0.0
+docker pull rancher/coreos-etcd:v3.0.17
+docker pull rancher/coreos-etcd:v3.1.12
+docker pull rancher/coreos-flannel-cni:v0.2.0
+docker pull rancher/coreos-flannel:v0.9.1
+docker pull rancher/docker-elasticsearch-kubernetes:5.6.2
+docker pull rancher/fluentd-helper:v0.1.2
+docker pull rancher/fluentd:v0.1.7
+docker pull rancher/hyperkube:v1.10.0-rancher1
+docker pull rancher/hyperkube:v1.10.1-rancher2
+docker pull rancher/hyperkube:v1.8.10-rancher2
+docker pull rancher/hyperkube:v1.8.11-rancher2
+docker pull rancher/hyperkube:v1.9.5-rancher1
+docker pull rancher/hyperkube:v1.9.7-rancher2
+docker pull rancher/jenkins-jenkins:2.107-slim
+docker pull rancher/jenkins-jnlp-slave:3.10-1-alpine
+docker pull rancher/jenkins-plugins-docker:17.12
+docker pull rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.5
+docker pull rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.7
+docker pull rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.8
+docker pull rancher/k8s-dns-kube-dns-amd64:1.14.5
+docker pull rancher/k8s-dns-kube-dns-amd64:1.14.7
+docker pull rancher/k8s-dns-kube-dns-amd64:1.14.8
+docker pull rancher/k8s-dns-sidecar-amd64:1.14.5
+docker pull rancher/k8s-dns-sidecar-amd64:1.14.7
+docker pull rancher/k8s-dns-sidecar-amd64:1.14.8
+docker pull rancher/kibana:5.6.4
+docker pull rancher/log-aggregator:v0.1.3
+docker pull rancher/nginx-ingress-controller-defaultbackend:1.4
+docker pull rancher/nginx-ingress-controller:0.10.2-rancher3
+docker pull rancher/pause-amd64:3.0
+docker pull rancher/pause-amd64:3.1
+docker pull rancher/prom-alertmanager:v0.11.0
+docker pull rancher/rke-tools:v0.1.4
+docker pull rancher/rancher:v2.0.0
+docker pull rancher/rancher-agent:v2.0.0
+docker save rancher/alertmanager-helper:v0.0.2 rancher/alpine-git:1.0.4 rancher/calico-cni:v3.1.1 rancher/calico-ctl:v2.0.0 rancher/calico-node:v3.1.1 rancher/cluster-proportional-autoscaler-amd64:1.0.0 rancher/coreos-etcd:v3.0.17 rancher/coreos-etcd:v3.1.12 rancher/coreos-flannel-cni:v0.2.0 rancher/coreos-flannel:v0.9.1 rancher/docker-elasticsearch-kubernetes:5.6.2 rancher/fluentd-helper:v0.1.2 rancher/fluentd:v0.1.7 rancher/hyperkube:v1.10.0-rancher1 rancher/hyperkube:v1.10.1-rancher2 rancher/hyperkube:v1.8.10-rancher2 rancher/hyperkube:v1.8.11-rancher2 rancher/hyperkube:v1.9.5-rancher1 rancher/hyperkube:v1.9.7-rancher2 rancher/jenkins-jenkins:2.107-slim rancher/jenkins-jnlp-slave:3.10-1-alpine rancher/jenkins-plugins-docker:17.12 rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.5 rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.7 rancher/k8s-dns-dnsmasq-nanny-amd64:1.14.8 rancher/k8s-dns-kube-dns-amd64:1.14.5 rancher/k8s-dns-kube-dns-amd64:1.14.7 rancher/k8s-dns-kube-dns-amd64:1.14.8 rancher/k8s-dns-sidecar-amd64:1.14.5 rancher/k8s-dns-sidecar-amd64:1.14.7 rancher/k8s-dns-sidecar-amd64:1.14.8 rancher/kibana:5.6.4 rancher/log-aggregator:v0.1.3 rancher/nginx-ingress-controller-defaultbackend:1.4 rancher/nginx-ingress-controller:0.10.2-rancher3 rancher/pause-amd64:3.0 rancher/pause-amd64:3.1 rancher/prom-alertmanager:v0.11.0 rancher/rke-tools:v0.1.4 rancher/rancher:v2.0.0 rancher/rancher-agent:v2.0.0 | gzip -c > rancher-images.tar.gz
