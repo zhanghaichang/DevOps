@@ -28,7 +28,7 @@ redis> get foo
 拉镜像
 
 ```
-$ docker pull redis
+$ docker pull redis:4.0.11
 ```
 配置持久化方式启动
 
