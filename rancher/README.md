@@ -17,7 +17,7 @@ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 
 ### 稳定版本
 ```
-sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:stable
+sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:v2.1.0
 ```
 
 ### 关闭防火墙 
