@@ -39,14 +39,11 @@ $ docker run --name some-redis -v /docker/host/redis:/data -d redis redis-server
 自定义 redis.conf
 
 ```
-$ docker run -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name myredis redis redis-server /usr/local/etc/redis/redis.conf
+$ docker run -v /data/redis/redis.conf:/usr/local/etc/redis/redis.conf --name myredis redis:4.0.11 redis-server /usr/local/etc/redis/redis.conf
 ```
 自己用的 启动方式
 
 ```
-$ docker run -d -v /home/hydratest/redis/redis.conf:/usr/local/etc/redis/redis.conf -p 6379:6379  -d --restart=always --network=hydra_work --name h-redis redis redis-server /usr/local/etc/redis/redis.conf
-
-
-docker run --name redis-test -p 6379:6379 redis:latest redis-server --appendonly yes --requirepass "your passwd"
+$ docker run -d -v /data/redis/redis.conf:/usr/local/etc/redis/redis.conf -v /data/redis:/data -p 66379:6379  -d --restart=always --network=hydra_work --name redis-4.0.11 redis:4.0.11 redis-server /usr/local/etc/redis/redis.conf
 
 ```
