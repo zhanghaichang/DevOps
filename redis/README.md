@@ -44,6 +44,9 @@ $ docker run -v /myredis/conf/redis.conf:/usr/local/etc/redis/redis.conf --name 
 自己用的 启动方式
 
 ```
-$ docker run -d -v /home/hydratest/redis/redis.conf:/usr/local/etc/redis/redis.conf -p 6379:6379 --network=hydra_work --name h-redis redis redis-server /usr/local/etc/redis/redis.conf
+$ docker run -d -v /home/hydratest/redis/redis.conf:/usr/local/etc/redis/redis.conf -p 6379:6379  -d --restart=always --network=hydra_work --name h-redis redis redis-server /usr/local/etc/redis/redis.conf
+
+
+docker run --name redis-test -p 6379:6379 redis:latest redis-server --appendonly yes --requirepass "your passwd"
 
 ```
