@@ -1,11 +1,6 @@
 ## harbor 安装
 
-### Hardware
-|Resource|Capacity|Description|
-|---|---|---|
-|CPU|minimal 2 CPU|4 CPU is preferred|
-|Mem|minimal 4GB|8GB is preferred|
-|Disk|minimal 40GB|160GB is preferred|
+
 ### Software
 |Software|Version|Description|
 |---|---|---|
@@ -144,6 +139,7 @@ verify_remote_cert = on
 ```
 $  docker-compose down -v
 $ vim harbor.cfg
+$ ./prepare
 $  docker-compose up -d
 ```
 
