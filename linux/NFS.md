@@ -143,7 +143,7 @@ Export list for localhost:
 创建挂载目录
 
 ```
-[root@bogon ~]# mkdir /data/k8s
+[root@bogon ~]# mkdir -p /data/k8s
 ```
 查看服务器抛出的共享目录信息
 
