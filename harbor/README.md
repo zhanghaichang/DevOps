@@ -139,7 +139,7 @@ verify_remote_cert = on
 ```
 $  docker-compose down -v
 $ vim harbor.cfg
-$ ./prepare
+$ sudo ./prepare
 $  docker-compose up -d
 ```
 
