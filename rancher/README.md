@@ -61,11 +61,6 @@ systemctl stop firewalld
 </tr>
 <tr>
 <td width="98">TCP</td>
-<td width="114">22</td>
-<td width="418">SSH provisioning of nodes using Node Driver</td>
-</tr>
-<tr>
-<td width="98">TCP</td>
 <td width="114">2379</td>
 <td width="418">etcd client requests</td>
 </tr>
@@ -88,16 +83,6 @@ systemctl stop firewalld
 <td width="98">TCP/UDP</td>
 <td width="114">30000-32767</td>
 <td width="418">NodePort port range</td>
-</tr>
-<tr>
-<td width="98">TCP</td>
-<td width="114">8081</td>
-<td width="418">Nexus Port</td>
-</tr>
-<tr>
-<td width="98">TCP</td>
-<td width="114">5001</td>
-<td width="418">Registry Port</td>
 </tr>
 </tbody>
 </table>
