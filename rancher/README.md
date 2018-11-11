@@ -79,10 +79,5 @@ systemctl stop firewalld
 <td width="114">10250</td>
 <td width="418">kubelet</td>
 </tr>
-<tr>
-<td width="98">TCP/UDP</td>
-<td width="114">30000-32767</td>
-<td width="418">NodePort port range</td>
-</tr>
 </tbody>
 </table>
