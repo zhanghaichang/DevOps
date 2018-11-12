@@ -101,9 +101,7 @@ file locks                      (-x) unlimited
 open files                      (-n) 1024         代表每个
 
 ```
-修改linux系统参数。vi /etc/security/limits.conf 添加
 
-```
 ### 查看系统打开句柄最大数量
 
 ```
