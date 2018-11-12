@@ -123,6 +123,10 @@ lsof|awk '{print $2}'|sort|uniq -c|sort -nr|more
 ```
 ps -ef |grep XXXXX
 ```
+### 修改linux单进程最大文件连接数
+
+修改linux系统参数。vi /etc/security/limits.conf 添加
+```
 *　　soft　　nofile　　65536
 *　　hard　　nofile　　65536
 ```
