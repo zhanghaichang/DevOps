@@ -83,7 +83,7 @@ sudo vi /etc/docker/daemon.json
 
 Docker默认只信任TLS加密的仓库地址(https)，所有非https仓库默认无法登陆也无法拉取镜像。insecure-registries字面意思为不安全的仓库，通过添加这个参数对非https仓库进行授信。可以设置多个insecure-registries地址，以数组形式书写，地址不能添加协议头(http)。
 
-编辑/etc/docker/daemon.json加入以下内容:
+编辑sudo  /etc/docker/daemon.json 加入以下内容:
 
 ```
 {
@@ -100,7 +100,7 @@ curl -sSL https://get.daocloud.io/daotools/set_mirror.sh | sh -s http://f1361db2
 #### 重新启动
 
 ```
-systemctl daemon-reload && systemctl start docker
+sudo systemctl daemon-reload && systemctl restart docker
 
 ```
 
