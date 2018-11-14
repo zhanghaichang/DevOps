@@ -154,4 +154,6 @@ kubectl taint nodes master.k8s node-role.kubernetes.io/master-
 kubectl taint nodes master.k8s node-role.kubernetes.io/master=:NoSchedule
 ```
 ----
+```
 kubectl exec `kubectl get pods -l run=my-nginx  -o=name|cut -d "/" -f2` cat /tmp/log_level
+```
