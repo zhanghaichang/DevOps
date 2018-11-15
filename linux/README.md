@@ -2,6 +2,13 @@
 ```
 du -h --max-depth=1
 ```
+
+## 测试UDP端口
+```
+yum -y install nv
+nc -vuz IP port
+```
+
 ## 查看端口
 
 ```
