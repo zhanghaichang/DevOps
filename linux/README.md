@@ -1,3 +1,9 @@
+
+## 远程复制
+
+```
+scp -r  server-jre-8u191-linux-x64.tar.gz zhanghc@172.18.161.168:/data/java/
+```
 ## Linux中查看各文件夹大小命令
 ```
 du -h --max-depth=1
