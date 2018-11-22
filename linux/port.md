@@ -12,7 +12,7 @@ netstat命令各个参数说明如下：
 
 　　-n : 不进行DNS轮询，显示IP(可以加速操作)
 ```
-即可显示当前服务器上所有端口及进程服务，于grep结合可查看某个具体端口及服务情况··
+## 即可显示当前服务器上所有端口及进程服务，于grep结合可查看某个具体端口及服务情况··
 
 netstat -ntlp   //查看当前所有tcp端口·
 
@@ -20,19 +20,19 @@ netstat -ntulp |grep 80   //查看所有80端口使用情况·
 
 netstat -an | grep 3306   //查看所有3306端口使用情况·
 
-查看一台服务器上面哪些服务及端口
+## 查看一台服务器上面哪些服务及端口
 
 netstat  -lanp
 
-查看一个服务有几个端口。比如要查看mysqld
+## 查看一个服务有几个端口。比如要查看mysqld
 
 ps -ef |grep mysqld
 
-查看某一端口的连接数量,比如3306端口
+## 查看某一端口的连接数量,比如3306端口
 
 netstat -pnt |grep :3306 |wc
 
-查看某一端口的连接客户端IP 比如3306端口
+## 查看某一端口的连接客户端IP 比如3306端口
 
 netstat -anp |grep 3306
 
@@ -40,7 +40,7 @@ netstat -an 查看网络端口
 
 lsof -i :port，使用lsof -i :port就能看见所指定端口运行的程序，同时还有当前连接。 
 
-nmap 端口扫描
+## nmap 端口扫描
 netstat -nupl  (UDP类型的端口)
 netstat -ntpl  (TCP类型的端口)
 netstat -anp 显示系统端口使用情况
