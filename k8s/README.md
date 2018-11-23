@@ -53,7 +53,7 @@ kubectl logs xxx -n kube-system
 ```shell
 kubectl delete deployment xxx -n kube-system
 ```
-**强制删除pod命令: **
+**强制删除pod命令:**
  ```
  kubectl delete pods <pod> --grace-period=0 --force
 ```
