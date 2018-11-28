@@ -1,4 +1,14 @@
-vim /etc/sysconfig/docker
+# 修改日志类型
 
-修改 --log-driver=json-file
-重启docker服务： service docker restart即可
+```
+vim /etc/sysconfig/docker
+```
+修改 
+```
+--log-driver=json-file
+```
+重启docker服务： 
+
+```
+service docker restart
+```
