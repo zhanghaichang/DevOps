@@ -46,6 +46,9 @@ eating-hound    1           Wed Oct 25 14:58:15 2017    DEPLOYED    mychart-0.1.
 ```
 $ helm delete eating-hound
 release "eating-hound" deleted
+# 强制删除
+
+helm del --purge my-release
 ```
 ## 打包分享
 
