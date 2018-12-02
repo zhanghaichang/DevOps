@@ -62,8 +62,10 @@ dependencies:
 - name: mariadb
   version: 0.6.0
   repository: https://kubernetes-charts.storage.googleapis.com
-使用helm lint .命令可以检查依赖和模板配置是否正确。
+
 ```
+使用helm lint .命令可以检查依赖和模板配置是否正确。你也可以通过运行`helm dependency update` ，它会使用你的依赖关系文件将所有指定的chart下载到你的charts/目录中
+
 ## 安装源
 
 使用第三方chat库 添加fabric8库
