@@ -19,15 +19,13 @@ sudo docker run -d -p 8081:8081 --restart=always --name nexus -v /data/nexus:/ne
       <username>admin</username>
       <password>admin123</password>
     </server>
-  </servers>
 
 
  <!--配置私服-->
     <mirror>
-      <id>central</id>
+      <id>nexus</id>
       <name>central</name>
-      <url>http://192.168.xx.xxx:8081/repository/maven-group/</url>
+      <url>http://123.207.66.156:8081/repository/maven-public/</url>
       <mirrorOf>*</mirrorOf>
     </mirror>
-  </mirrors>
 ```
