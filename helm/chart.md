@@ -40,7 +40,18 @@ $ helm list
 NAME            REVISION    UPDATED                     STATUS      CHART            NAMESPACE
 eating-hound    1           Wed Oct 25 14:58:15 2017    DEPLOYED    mychart-0.1.0    default
 ```
+## 管理 chart
+```
+# 创建一个新的 chart
+helm create hello-chart
 
+# validate chart
+helm lint
+
+# 打包 chart 到 tgz
+helm package hello-chart
+
+```
 ## 删除部署的release
 
 ```
