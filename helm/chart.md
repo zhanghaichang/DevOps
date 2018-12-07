@@ -67,6 +67,8 @@ helm package .
 
 我们可以修改Chart.yaml中的helm chart配置信息，然后使用下列命令将chart打包成一个压缩文件。
 打包出mychart-0.1.0.tgz文件。
+
+helm upgrade --install -f values.yaml --namespace dev springboot-demo  ./
 ```
 ## 依赖
 我们可以在requirement.yaml中定义应用所依赖的chart，例如定义对mariadb的依赖：
