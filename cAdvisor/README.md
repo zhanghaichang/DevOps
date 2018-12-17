@@ -39,3 +39,13 @@ docker run -d -p 9100:9100 \
   注意，这里我们使用了 --net=host，这样 Prometheus Server 可以直接与 Node Exporter 通信
   
   2. Node Exporter 启动后，将通过 9100 提供 host 的监控数据。在浏览器中通过 http://192.168.131:9100/metrics 测试一下。
+  
+  
+#  运行以下命令安装普罗米修斯服务
+```shell
+docker run -d -p 9090:9090 \
+  -v /root/prometheus.yml:/etc/prometheus/prometheus.yml \
+  --name prometheus \
+  --net=host \
+  prom/prometheus
+```
