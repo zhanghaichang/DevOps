@@ -54,7 +54,7 @@ docker run -d -p 9090:9090 \
 
 ```sehll
 docker run -d -i -p 3000:3000 \
--e "GF_SERVER_ROOT_URL=http://grafana.server.name"; \
+-e "GF_SERVER_ROOT_URL=http://grafana.server.name" \
 -e "GF_SECURITY_ADMIN_PASSWORD=secret" \
 --net=host \
 grafana/grafana
