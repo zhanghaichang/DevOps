@@ -17,6 +17,27 @@ google/cadvisor:latest
  ```
  注意，这里我们使用了 --net=host，这样 Prometheus Server 可以直接与 cAdvisor 通信。
  
+ 没有找这个文件, 这是一个bug,在系统中,是cpu,cpuacct
+
+可以去文件的目录下查看:
+
+ll -d /sys/fs/cgroup/
+
+解决方法:
+
+使用 软连接
+
+sudo mount -o remount,rw '/sys/fs/cgroup'
+
+sudo  ln -s /sys/fs/cgroup/cpu,cpuacct /sys/fs/cgroup/cpuacct,cpu
+
+第一条命令是设置cgroup 为可读写文件, 不然的话会报:只读文件系统
+
+第二句是建立软连接
+
+这样就可以启动了.
+
+ 
  2.通过web访问  http：//【host_ip】:8080访问cadvisor
  
  
