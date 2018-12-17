@@ -49,3 +49,16 @@ docker run -d -p 9090:9090 \
   --net=host \
   prom/prometheus
 ```
+
+# 8. 在DockerMachine上运行Grafana
+
+```sehll
+docker run -d -i -p 3000:3000 \
+-e "GF_SERVER_ROOT_URL=http://grafana.server.name"; \
+-e "GF_SECURITY_ADMIN_PASSWORD=secret" \
+--net=host \
+grafana/grafana
+```
+注意，这里我们使用了 --net=host，这样 Grafana 可以直接与 Prometheus Server 通信。
+
+-e "GF_SECURITY_ADMIN_PASSWORD=secret 指定了 Grafana admin用户密码 secret。
