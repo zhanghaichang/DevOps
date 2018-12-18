@@ -16,7 +16,7 @@ $ sudo docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=Sa123456!' -p 1433:14
 
 其中ACCEPT_EULA=Y的意思是同意许可协议，必选；MSSQL_SA_PASSWORD为密码，要求是最少8位的强密码，要有大写字母，小写字母，数字以及特殊符号，不然会有一个大坑（docker启动sqlserver容器后过几秒就停止了）；1433是docker内部SQLserver的端口。
 
-3. （可选）使用sqlcdm连接，这里插播一下sqlcmd的安装
+3. 使用sqlcdm连接，这里插播一下sqlcmd的安装
 
 首先下载yum的repo：
 
