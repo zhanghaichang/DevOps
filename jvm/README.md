@@ -188,7 +188,9 @@ D:\j2sdk15\bin>javac HelloWorld.java
 D:\j2sdk15\bin>java -Xms256M -Xmx512M HelloWorld
 Hello World!
 
+Linux 修改 /root/tomcat/bin/catalina.sh 文件，把下面信息添加到文件第一行。
 
+Windows 和 Linux 有点不一样的地方在于，在 Linux 下，下面的的参数值是被引号包围的，而 Windows 不需要引号包围。
 
 ```shell
 机子内存如果是 4G：
