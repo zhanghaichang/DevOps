@@ -71,15 +71,7 @@ CATALINA_OPTS="-Dfile.encoding=UTF-8 -server -Xms16384m -Xmx16384m
 
 -XX:+DisableExplicitGC：这个将会忽略手动调用 GC 的代码使得 System.gc() 的调用就会变成一个空调用，完全不会触发任何 GC
  etails/82908289 
- 
- 
 
-tomcat内存的设置：1.4GBJVM+256MB的池
-
-```shell
-set JAVA_HOME=C:\JAVA\JDK15
-set CATALINA_OPTS=-server -Xms 1400m -Xmx1400m -XX:PermSize=256m -XX:MaxPermSize=256m
-```
 tomcat线程的设置：初始产生1000线程数最大支持2000线程
 ```xml
 <Connector port="80" maxHttpHeaderSize="8192"
