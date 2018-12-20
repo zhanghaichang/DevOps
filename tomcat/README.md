@@ -1,5 +1,6 @@
 # Tomcat 性能调优
 
+https://tomcat.apache.org/tomcat-8.0-doc/config/http.html
 
 tomcat内存的设置：1.4GBJVM+256MB的池
 
