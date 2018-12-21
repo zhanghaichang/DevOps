@@ -15,3 +15,5 @@ ps aux|grep <your java name>
 > netstat -apn|grep <your processid>
   
 可以看到具体的链接的个数，用来检验是否你的链接池是正确的
+
+## 分区
