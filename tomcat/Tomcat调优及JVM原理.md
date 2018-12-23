@@ -26,7 +26,7 @@ https://blog.csdn.net/david_pfw/article/details/82918331
 **生产环境Tomcat配置：**
 
 ```xml
-<Connector port="8080" protocol="org.apache.coyote.http11.Http11NioProtocol" maxThreads="1000" minSpareThreads="100" maxSpareThreads="200" acceptCount="900" disableUploadTimeout="true" connectionTimeout="20000" URIEncoding="UTF-8" enableLookups="false" compression="on" compressionMinSize="1024" compressableMimeType="text/html,text/xml,text/css,text/javascript"/>
+<Connector port="8080" protocol="org.apache.coyote.http11.Http11Nio2Protocol" maxThreads="1000" minSpareThreads="100" maxSpareThreads="200" acceptCount="900" disableUploadTimeout="true" connectionTimeout="20000" URIEncoding="UTF-8" enableLookups="false" compression="on" compressionMinSize="1024" compressableMimeType="text/html,text/xml,text/css,text/javascript"/>
 ```
 
 **参数说明：**  
