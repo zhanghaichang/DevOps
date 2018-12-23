@@ -113,7 +113,7 @@ G1收集器工作工程分为4个步骤，包括：
 
 了解了JVM基础知识，下面配置下相关Java参数，将下面一段放到catalina.sh里面：
 ```
-set JAVA_OPTS=-server -Xms1024m -Xmx1536m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC -XX:+UseParallelGCThreads=8XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0  -XX:-PrintGC -XX:-PrintGCDetails-XX:-PrintGCTimeStamps -Xloggc:../logs/gc.log
+JAVA_OPTS="-server -Xms1024m -Xmx1536m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:+UseConcMarkSweepGC -XX:+UseParallelGCThreads=8 XX:CMSInitiatingOccupancyFraction=80 -XX:+UseCMSCompactAtFullCollection -XX:CMSFullGCsBeforeCompaction=0 -XX:-PrintGC -XX:-PrintGCDetails -XX:-PrintGCTimeStamps -Xloggc:../logs/gc.log"
 ```
 注意：不是JVM内存设置越大越好，具体还是根据项目对象实际占用内存大小而定，可以通过Java自带的分析工具来查看。如果设置过大，会增加回收时间，从而增加暂停应用时间。
 
