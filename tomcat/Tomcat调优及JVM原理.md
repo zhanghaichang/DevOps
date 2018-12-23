@@ -1,6 +1,13 @@
 
 # Tomcat性能调优及JVM内存工作原理 
 
+
+https://blog.csdn.net/jinyehong/article/details/79042050
+
+
+https://blog.csdn.net/david_pfw/article/details/82918331
+
+
 **Java性能优化方向：** 代码运算性能、内存回收、应用配置。
 
 注：影响Java程序主要原因是垃圾回收，下面会重点介绍这方面
