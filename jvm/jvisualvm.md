@@ -8,10 +8,18 @@ JMX_OPTS="-Dcom.sun.management.jmxremote.port=7969
 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.authenticate=false 
 -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=xx.xx.xx.xx"
 
-
 ## 启动
 nohup java ${JMX_OPTS} -jar xxxxx.jar
 
+```
+## 开启JMX监控
+```shell
+-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.port=12345
+-Dcom.sun.management.jmxremote.rmi.port=12345
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Djava.rmi.server.hostname=139.196.107.149
 ```
 
 * Djava.rmi.server.hostname填写JAVA进程所在服务器的IP地址，
