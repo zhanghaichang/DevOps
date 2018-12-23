@@ -2,6 +2,22 @@
 
 https://tomcat.apache.org/tomcat-8.0-doc/config/http.html
 
+### Jmx JVM
+
+先修改Tomcat的启动脚本，windows下为bin/catalina.bat（linux下为catalina.sh），添加以下内容:
+```
+set JMX_REMOTE_CONFIG=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false  
+set CATALINA_OPTS=%CATALINA_OPTS% %JMX_REMOTE_CONFIG% 
+```
+
+linux为
+```
+JAVA_OPTS=-Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.port=8999，是jmxremote使用的端口号，可修改。
+-Dcom.sun.management.jmxremote.authenticate=false，表示不需要鉴权，主机+端口号即可监控。
+```
+
+
 ###  tomcat jvm
 
 Linux 修改 /root/tomcat/bin/catalina.sh 文件，把下面信息添加到文件第一行。
