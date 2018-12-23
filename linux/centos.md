@@ -7,8 +7,10 @@ ulimit -SHn 1024000
 echo "ulimit -SHn 1024000" >> /etc/rc.d/rc.local 
 source /etc/rc.d/rc.local
 ```
-内核参数优化/etc/sysctl.conf
+内核参数优化  
 ```
+vim /etc/sysctl.conf
+
 #关闭ipv6
 net.ipv6.conf.all.disable_ipv6 = 1
 net.ipv6.conf.default.disable_ipv6 = 1
