@@ -1,11 +1,12 @@
 
 # Tomcat性能调优及JVM内存工作原理 
 
-**Java性能优化方向：**代码运算性能、内存回收、应用配置。
+**Java性能优化方向：** 代码运算性能、内存回收、应用配置。
 
 注：影响Java程序主要原因是垃圾回收，下面会重点介绍这方面
 
-**代码层优化：**避免过多循环嵌套、调用和复杂逻辑。  
+**代码层优化：** 避免过多循环嵌套、调用和复杂逻辑。  
+
 **Tomcat调优主要内容如下：**  
 1、增加最大连接数  
 2、调整工作模式  
@@ -17,19 +18,21 @@
 
 **生产环境Tomcat配置：**
 
-1.  Connectorport="8080"protocol="org.apache.coyote.http11.Http11NioProtocol"
-2.   maxThreads="1000"
-3.   minSpareThreads="100"
-4.   maxSpareThreads="200"
-5.   acceptCount="900"
-6.   disableUploadTimeout="true"
-7.   connectionTimeout="20000"
-8.    URIEncoding="UTF-8"
-9.   enableLookups="false"
-10.   redirectPort="8443"
-11.   compression="on"
-12.   compressionMinSize="1024"
-13.   compressableMimeType="text/html,text/xml,text/css,text/javascript"
+```xml
+Connectorport="8080"protocol="org.apache.coyote.http11.Http11NioProtocol"
+               maxThreads="1000"
+               minSpareThreads="100"
+               maxSpareThreads="200"
+               acceptCount="900"
+               disableUploadTimeout="true"
+              connectionTimeout="20000"
+               URIEncoding="UTF-8"
+               enableLookups="false"
+               redirectPort="8443"
+               compression="on"
+              compressionMinSize="1024"
+              compressableMimeType="text/html,text/xml,text/css,text/javascript"
+```
 
 **参数说明：**  
 org.apache.coyote.http11.Http11NioProtocol：调整工作模式为Nio  
@@ -45,7 +48,7 @@ compression：启用压缩功能
 compressionMinSize：最小压缩大小，单位Byte  
 compressableMimeType：压缩的文件类型
 
-**Tomcat有三种工作模式：**Bio、Nio和Apr
+**Tomcat有三种工作模式：** Bio、Nio和Apr
 
 下面简单了解下他们工作原理：
 
@@ -114,56 +117,61 @@ G1收集器工作工程分为4个步骤，包括：
 初始标记与CMS一样，标记一下GC Roots能直接关联到的对象。并发标记从GC Root开始标记存活对象，这个阶段耗时比较长，但也可以与应用线程并发执行。而最终标记也是为了修正在并发标记期间因用户程序继续运作而导致标记产生变化的那一部分标记记录。最后在筛选回收阶段对各个Region回收价值和成本进行排序，根据用户所期望的GC暂停时间来执行回收。
 
 了解了JVM基础知识，下面配置下相关Java参数，将下面一段放到catalina.sh里面：
-
-1.  JAVA_OPTS=-server-Xms1024m  -Xmx1536m  -XX:PermSize=256m  -XX:MaxPermSize=512m-XX:+UseConcMarkSweepGC  -XX:+UseParallelGCThreads=8XX:CMSInitiatingOccupancyFraction=80  -XX:+UseCMSCompactAtFullCollection-XX:CMSFullGCsBeforeCompaction=0  -XX:-PrintGC  -XX:-PrintGCDetails-XX:-PrintGCTimeStamps  -Xloggc:../logs/gc.log
-
+```
+JAVA_OPTS=-server-Xms1024m  -Xmx1536m  -XX:PermSize=256m  -XX:MaxPermSize=512m-XX:+UseConcMarkSweepGC  -XX:+UseParallelGCThreads=8XX:CMSInitiatingOccupancyFraction=80  -XX:+UseCMSCompactAtFullCollection-XX:CMSFullGCsBeforeCompaction=0  -XX:-PrintGC  -XX:-PrintGCDetails-XX:-PrintGCTimeStamps  -Xloggc:../logs/gc.log
+```
 注意：不是JVM内存设置越大越好，具体还是根据项目对象实际占用内存大小而定，可以通过Java自带的分析工具来查看。如果设置过大，会增加回收时间，从而增加暂停应用时间。
 
-**参数**
+<table cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td width="272" height="23"><strong>参数</strong></td>
+<td width="265" height="23"><strong>描述</strong></td>
+</tr>
+<tr>
+<td width="272" height="23">-Xms</td>
+<td width="265" height="23">堆内存初始大小，单位m、g</td>
+</tr>
+<tr>
+<td width="272" height="23">-Xmx</td>
+<td width="265" height="23">堆内存最大允许大小，一般不要大于物理内存的80%</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:PermSize</td>
+<td width="265" height="23">非堆内存初始大小，一般应用设置初始化200m，最大1024m就够了</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:MaxPermSize</td>
+<td width="265" height="23">非堆内存最大允许大小</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:+UseParallelGCThreads=8</td>
+<td width="265" height="23">并行收集器线程数，同时有多少个线程进行垃圾回收，一般与CPU数量相等</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:+UseParallelOldGC</td>
+<td width="265" height="23">指定老年代为并行收集</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:+UseConcMarkSweepGC</td>
+<td width="265" height="23">CMS收集器（并发收集器）</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:+UseCMSCompactAtFullCollection</td>
+<td width="265" height="23">开启内存空间压缩和整理，防止过多内存碎片</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:CMSFullGCsBeforeCompaction=0</td>
+<td width="265" height="23">表示多少次Full GC后开始压缩和整理，0表示每次Full GC后立即执行压缩和整理</td>
+</tr>
+<tr>
+<td width="272" height="23">-XX:CMSInitiatingOccupancyFraction=80%</td>
+<td width="265" height="23">表示老年代内存空间使用80%时开始执行CMS收集，防止过多的Full GC</td>
+</tr>
+</tbody>
+</table>
 
-**描述**
-
--Xms
-
-堆内存初始大小，单位m、g
-
--Xmx
-
-堆内存最大允许大小，一般不要大于物理内存的80%
-
--XX:PermSize
-
-非堆内存初始大小，一般应用设置初始化200m，最大1024m就够了
-
--XX:MaxPermSize
-
-非堆内存最大允许大小
-
--XX:+UseParallelGCThreads=8
-
-并行收集器线程数，同时有多少个线程进行垃圾回收，一般与CPU数量相等
-
--XX:+UseParallelOldGC
-
-指定老年代为并行收集
-
--XX:+UseConcMarkSweepGC
-
-CMS收集器（并发收集器）
-
--XX:+UseCMSCompactAtFullCollection
-
-开启内存空间压缩和整理，防止过多内存碎片
-
--XX:CMSFullGCsBeforeCompaction=0
-
-表示多少次Full GC后开始压缩和整理，0表示每次Full GC后立即执行压缩和整理
-
--XX:CMSInitiatingOccupancyFraction=80%
-
-表示老年代内存空间使用80%时开始执行CMS收集，防止过多的Full GC
-
-**gzip压缩作用：**节省服务器流量和提高网站访问速度。客户端请求服务器资源后，服务器将资源文件压缩，再返回给客户端，由客户端的浏览器负责解压缩并浏览。
+**gzip压缩作用：** 节省服务器流量和提高网站访问速度。客户端请求服务器资源后，服务器将资源文件压缩，再返回给客户端，由客户端的浏览器负责解压缩并浏览。
 
 **作为Web时，动静分离：**  
 使用Apache或Nginx处理静态资源文件，Tomcat处理动态资源文件。因为Tomcat处理静态资源能力远不如Apache、Nginx，所以可以有效提高处理速度。
