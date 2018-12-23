@@ -17,7 +17,7 @@ docker run -d --user $ID --name=grafana  --volume "$PWD/grafana:/var/lib/grafana
 -p 3000:3000 grafana/grafana
 
 # 如果生产环境配置，最好提前配置好域名
-docker run -d --user $ID --name=grafana --volume "$PWD/data:/var/lib/grafana" /
+docker run -d --user $ID --name=grafana --volume "$PWD/data:/var/lib/grafana" \
 -p 3000:3000 -e "GF_SERVER_ROOT_URL=http://monitor.52itstyle.com" grafana/grafana
 ```
 
@@ -83,7 +83,7 @@ from_name = Grafana
 ### Influxdb
 
 ```
-docker run -d -p 8083:8083 -p 8086:8086 -e ADMIN_USER="root" -e INFLUXDB_INIT_PWD="root" /
+docker run -d -p 8083:8083 -p 8086:8086 -e ADMIN_USER="root" -e INFLUXDB_INIT_PWD="root" \
 -e PRE_CREATE_DB="telegraf" --name influxdb tutum/influxdb:latest
 
 ```
