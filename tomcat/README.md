@@ -22,7 +22,7 @@ JAVA_OPTS=-Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremot
 ###  tomcat  Jdk8 jvm 
 JVM垃圾回收的内存数是根据cpu核数推断的，而运行在容器中的JVM看到的是所有核。比如，宿主机有64核，允许容器使用2核，此时如果不指定线程数的话，JVM会启动64个线程来做垃圾回收。最终导致垃圾回收缓慢甚至失败。所以，如果应用运行在容器中时最好指定下垃圾回收的线程数。
 
-以下两个参数最好等于CPU核数（之所以设置两个，是因为不指定gc算法时，JVM是根据及其情况自动选择的，按上面的写法会选择ParallelGC）
+以下两个参数最好等于CPU核数（之所以设置两个，是因为不指定gc算法时，JVM是根据及其情况自动选择的。）
 
 ```
 CATALINA_OPTS "-Xms1g -Xmx1g -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2"
