@@ -17,79 +17,26 @@ JAVA_OPTS=-Dcom.sun.management.jmxremote.port=8999 -Dcom.sun.management.jmxremot
 -Dcom.sun.management.jmxremote.authenticate=false，表示不需要鉴权，主机+端口号即可监控。
 ```
 
+## 容器特别篇
 
-###  tomcat jvm
+###  tomcat  Jdk8 jvm 
+JVM垃圾回收的内存数是根据cpu核数推断的，而运行在容器中的JVM看到的是所有核。比如，宿主机有64核，允许容器使用2核，此时如果不指定线程数的话，JVM会启动64个线程来做垃圾回收。最终导致垃圾回收缓慢甚至失败。所以，如果应用运行在容器中时最好指定下垃圾回收的线程数。
 
-Linux 修改 /root/tomcat/bin/catalina.sh 文件，把下面信息添加到文件第一行。
-
-Windows 和 Linux 有点不一样的地方在于，在 Linux 下，下面的的参数值是被引号包围的，而 Windows 不需要引号包围。
-
-```shell
-机子内存如果是 4G：
- 
-CATALINA_OPTS="-Dfile.encoding=UTF-8 -server -Xms2048m -Xmx2048m -Xmn1024m -XX:PermSize=256m
--XX:MaxPermSize=512m -XX:SurvivorRatio=10 -XX:MaxTenuringThreshold=15 -XX:NewRatio=2 -XX:+DisableExplicitGC"
- 
-机子内存如果是 8G：
- 
-CATALINA_OPTS="-Dfile.encoding=UTF-8 -server -Xms4096m -Xmx4096m 
--Xmn2048m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:SurvivorRatio=10 -XX:MaxTenuringThreshold=15 -XX:NewRatio=2 
--XX:+DisableExplicitGC"
- 
-机子内存如果是 16G：
- 
-CATALINA_OPTS="-Dfile.encoding=UTF-8 -server -Xms8192m -Xmx8192m 
--Xmn4096m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:SurvivorRatio=10 -XX:MaxTenuringThreshold=15
--XX:NewRatio=2 -XX:+DisableExplicitGC"
- 
-机子内存如果是 32G：
- 
-CATALINA_OPTS="-Dfile.encoding=UTF-8 -server -Xms16384m -Xmx16384m 
--Xmn8192m -XX:PermSize=256m -XX:MaxPermSize=512m -XX:SurvivorRatio=10 -XX:MaxTenuringThreshold=15
--XX:NewRatio=2 -XX:+DisableExplicitGC"
- 
-如果是 8G 开发机
- 
--Xms2048m -Xmx2048m -XX:NewSize=512m -XX:MaxNewSize=1024m -XX:PermSize=256m -XX:MaxPermSize=512m
- 
-如果是 16G 开发机
- 
--Xms4096m -Xmx4096m -XX:NewSize=1024m -XX:MaxNewSize=2048m -XX:PermSize=256m -XX:MaxPermSize=512m
+以下两个参数最好等于CPU核数（之所以设置两个，是因为不指定gc算法时，JVM是根据及其情况自动选择的，按上面的写法会选择ParallelGC）
 
 ```
+CATALINA_OPTS "-Xms1g -Xmx1g -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:ParallelGCThreads=2 -XX:ConcGCThreads=2"
 
-参数说明：
+```
+#### 如何确定自己的应用能使用多少内存
+JDK8
 
--Dfile.encoding：默认文件编码
+去掉 `-Xms2g -Xmx2g`参数，增加`-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`。然后修改values.yaml中的limit为16G，request为4G。给应用与实际场景类似的压力，然后监控看JVM的堆内存使用情况。然后根据监测结果来计算堆大小和非堆内存的大小。
 
--server：表示这是应用于服务器的配置，JVM 内部会有特殊处理的
+下面说说为什么这样做。
 
--Xmx1024m：设置JVM最大可用内存为1024MB
+`-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`意思是让JVM根据Docker容器的限制自动配置堆大小。JVM会设置MaxHeapSize为limit/4。所以只要修改limit值为16，那么JVM的堆最大值就会被设置为4G。对于大多数应用4G的堆已经足够了，如果发现不够，可以加大limit继续测试。 request也设置为limit/4可以保证容器能申请足够的的内存给JVM。
 
--Xms1024m：设置JVM最小内存为1024m。此值可以设置与-Xmx相同，以避免每次垃圾回收完成后JVM重新分配内存。
-
--Xmn1024m：设置JVM新生代大小（JDK1.4之后版本）。一般-Xmn的大小是-Xms的1/2左右，不要设置的过大或过小，过大导致老年代变小，频繁Full GC，过小导致minor GC频繁。如果不设置-Xmn，可以采用-XX:NewRatio=2来设置，也是一样的效果
-
--XX:NewSize：设置新生代大小
-
--XX:MaxNewSize：设置最大的新生代大小
-
--XX:PermSize：设置永久代大小
-
--XX:MaxPermSize：设置最大永久代大小
-
--XX:NewRatio=4：设置年轻代（包括 Eden 和两个 Survivor 区）与终身代的比值（除去永久代）。设置为 4，则年轻代与终身代所占比值为 1：4，年轻代占整个堆栈的 1/5
-
--XX:MaxTenuringThreshold=10：设置垃圾最大年龄，默认为：15。
-
-如果设置为0 的话，则年轻代对象不经过 Survivor 区，直接进入年老代。
-
-对于年老代比较多的应用，可以提高效率。如果将此值设置为一个较大值，则年轻代对象会在 Survivor 区进行多次复制，这样可以增加对象再年轻代的存活时间，增加在年轻代即被回收的概论。
-
-需要注意的是，设置了 -XX:MaxTenuringThreshold，并不代表着，对象一定在年轻代存活15次才被晋升进入老年代，它只是一个最大值，事实上，存在一个动态计算机制，计算每次晋入老年代的阈值，取阈值和MaxTenuringThreshold中较小的一个为准。
-
--XX:+DisableExplicitGC：这个将会忽略手动调用 GC 的代码使得 System.gc() 的调用就会变成一个空调用，完全不会触发任何 GC
- etails/82908289 
 
 tomcat线程的设置：初始产生1000线程数最大支持2000线程
 ```xml
