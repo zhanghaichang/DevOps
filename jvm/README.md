@@ -1,6 +1,5 @@
-## JMX
+## JMX 配置
 
-Jconlose
 ```shell
 -Xms1024m -Xmx2048m -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 ```
