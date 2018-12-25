@@ -38,7 +38,10 @@ JDK8
 `-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap`意思是让JVM根据Docker容器的限制自动配置堆大小。JVM会设置MaxHeapSize为limit/4。所以只要修改limit值为16，那么JVM的堆最大值就会被设置为4G。对于大多数应用4G的堆已经足够了，如果发现不够，可以加大limit继续测试。 request也设置为limit/4可以保证容器能申请足够的的内存给JVM。
 
 
-tomcat线程的设置：初始产生1000线程数最大支持2000线程
+### tomcat线程的设置：
+
+初始产生1000线程数最大支持2000线程
+
 ```xml
 <Connector port="80" maxHttpHeaderSize="8192"
                maxThreads="4000" minSpareThreads="1000" maxSpareThreads="2000"
