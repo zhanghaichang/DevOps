@@ -171,7 +171,7 @@ The -X options are non-standard and subject to change without notice.
 -----------------------------------------------------------------------
  
 怎么用这这些参数呢？其实所有的命令行都是这么一用，下面我就给出一个最简单的HelloWorl的例子来演示这个参数的用法，非常的简单。
- 
+```
 HelloWorld.java
 -----------------------------------------------
 public class  HelloWorld
@@ -181,25 +181,26 @@ public class  HelloWorld
   System.out.println("Hello World!");
  }
 }
- 
+```
 编译并运行：
+```
 D:\j2sdk15\bin>javac HelloWorld.java
  
 D:\j2sdk15\bin>java -Xms256M -Xmx512M HelloWorld
 Hello World!
-
-### java -verbose命令
+```
+## java -verbose命令
 
 java -verbose[:class|gc|jni] 在输出设备上显示虚拟机运行信息。
 
-1、 -verbose:class
+* 1、 `-verbose:class`
 在程序运行的时候究竟会有多少类被加载呢，一个简单程序会加载上百个类的！你可以用verbose:class来监视，在启动参数中加上 -verbose:class 可以查看到加载的类的情况。
 
-2、 –verbose:gc
+* 2、 `–verbose:gc`
 
 在启动参数中加上 -verbose:gc 当发生gc时，可以打印出gc相关的信息；该信息不够高全面，等同于-XX:+PrintGC。其实只要设置-XX:+PrintGCDetails 就会自动带上-verbose:gc和-XX:+PrintGC
 
-3、–verbose:jni
+* 3、`–verbose:jni`
 
 输出native方法调用的相关情况，一般用于诊断jni调用错误信息。在虚拟机调用native方法时输出设备显示信息，格式如下： [Dynamic-linking native method HelloNative.sum ... JNI] 该参数用来监视虚拟机调用本地方法的情况，在发生jni错误时可为诊断提供便利。
  
