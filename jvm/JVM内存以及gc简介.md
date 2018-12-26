@@ -1,4 +1,4 @@
-# [JVM内存以及gc简介](https://www.cnblogs.com/imyanzu/articles/5212230.html) 
+# JVM内存以及gc简介
 
 https://unixboy.iteye.com/blog/174173
 
