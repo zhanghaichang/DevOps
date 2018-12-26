@@ -1,8 +1,5 @@
 # JVM内存以及gc简介
 
-https://unixboy.iteye.com/blog/174173
-
-
 数据类型
 ----
 
@@ -83,7 +80,7 @@ Class NewObject {
     Object ob;
 }
 ```
-    其大小为：空对象大小(8byte)+int大小(4byte)+Boolean大小(1byte)+空Object引用的大小(4byte)=17byte。但是因为Java在对对象内存分配时都是以8的整数倍来分，因此大于17byte的最接近8的整数倍的是24，因此此对象的大小为24byte。
+其大小为：空对象大小(8byte)+int大小(4byte)+Boolean大小(1byte)+空Object引用的大小(4byte)=17byte。但是因为Java在对对象内存分配时都是以8的整数倍来分，因此大于17byte的最接近8的整数倍的是24，因此此对象的大小为24byte。
 
 
 这里需要注意一下基本类型的包装类型的大小。因为这种包装类型已经成为对象了，因此需要把他们作为对象来看待。包装类型的大小至少是12byte（声明一个空Object至少需要的空间），而且12byte没有包含任何有效信息，同时，因为Java对象大小是8的整数倍，因此一个基本类型包装类的大小至少是16byte。这个内存占用是很恐怖的，它是使用基本类型的N倍（N>2），有些类型的内存占用更是夸张（随便想下就知道了）。因此，可能的话应尽量少使用包装类。在JDK5.0以后，因为加入了自动类型装换，因此，Java虚拟机会在存储方面进行相应的优化。
@@ -372,7 +369,7 @@ JVM提供了大量命令行参数，打印信息，供调试使用。主要有�
 -XX:+PrintGCApplicationStoppedTime：打印垃圾回收期间程序暂停的时间。可与上面混合使用。输出形式：Total time for which application threads were stopped: 0.0468229 seconds
 
 -XX:PrintHeapAtGC: 打印GC前后的详细堆栈信息。输出形式：
-
+```shell
 34.702: \[GC {Heap before gc invocations=7:  
 def new generation total 55296K, used 52568K \[0x1ebd0000, 0x227d0000, 0x227d0000)  
 eden space 49152K, 99% used \[0x1ebd0000, 0x21bce430, 0x21bd0000)  
@@ -399,7 +396,7 @@ rw space 12288K, 46% used \[0x2b3d0000, 0x2b972060, 0x2b972200, 0x2bfd0000)
 , 0.0757599 secs\]
 
 -Xloggc:filename:与上面几个配合使用，把相关日志信息记录到文件以便分析。
-
+```
 常见配置汇总
 ------
 
