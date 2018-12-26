@@ -121,27 +121,3 @@ SWAP和GC同时发生会导致GC时间很长，JVM严重卡顿，极端的情况
 ====
 
 本文详细分析了Linux与JVM的内存关系，比较了一般进程与JVM进程使用内存的异同点，理解这些特性将对Linux系统内存分配、JVM调优、Java程序优化有帮助。限于篇幅关系仅仅列举两个案例，希望起到抛砖引玉的作用。
-
-**扩展阅读**
---------
-
-[Linux与JVM的内存关系分析](/lib/view/open1420814127390.html "Linux与JVM的内存关系分析")  
-[Tomcat启动过程及JVM内存溢出与合理配置](/lib/view/open1453730058980.html "Tomcat启动过程及JVM内存溢出与合理配置")  
-[进程、线程与JVM、CLR](/lib/view/open1429358332752.html "进程、线程与JVM、CLR")  
-[JAVA内存溢出解析](/lib/view/open1390545214929.html "JAVA内存溢出解析")  
-[JVM性能调优](/lib/view/open1384130797618.html "JVM性能调优")  
-
-**为您推荐**
---------
-
-[JVM性能监控及故障处理工具](/lib/view/open1395022111103.html "JVM性能监控及故障处理工具")  
-[Java内存泄露监控检测工具-- JVM监控工具介绍jstack, jconsole, jinfo, jmap, jdb, jstat](/lib/view/open1454504656214.html "Java内存泄露监控检测工具--")  
-[Android 操作系统的内存回收机制](/lib/view/open1344683989991.html "Android")  
-[jvm调优总结](/lib/view/open1340100383299.html "jvm调优总结")  
-[Java 应用性能调优实践](/lib/view/open1467181347360.html "Java")  
-
-**更多**
-------
-
-[JVM](https://www.baidu.com/s?wd=site:open-open.com JVM "JVM")  
-[Java开发](https://www.baidu.com/s?wd=site:open-open.com Java开发 "Java开发")
