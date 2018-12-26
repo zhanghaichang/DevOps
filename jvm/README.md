@@ -3,8 +3,8 @@
 ```shell
 -Xms1024m -Xmx2048m -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
 ```
-
-用java -X 命令查看JVM的配置说明：运行后如下结果，这些就是配置JVM参数的秘密武器，这些信息都是英文的，为了方便阅读，我根据自己的理解翻译成中文了（不准确的地方还请各位博友斧正）
+## java -X 命令
+查看JVM的配置说明：运行后如下结果，这些就是配置JVM参数的秘密武器，这些信息都是英文的，为了方便阅读，我根据自己的理解翻译成中文了.
 ```
 -----------------------------------------------------------------------
 D:\j2sdk15\bin>java -X
