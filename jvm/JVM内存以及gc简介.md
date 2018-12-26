@@ -142,7 +142,7 @@ java中，栈的大小通过-Xss来设置，当栈中存储的数据比较多时
 
      如何分代
 
-         如图所示：
+   如图所示：
 
     虚拟机中共划分了三个代：**年轻代（Young Generation）、年老代（Old Generation）和持久代（Permanent Generation）。** 其中持久代主要存放的是java类的类信息，与垃圾收集要收集的java对象关系不大。年轻代和年老代的划分是对垃圾收集影响比较大的。
 
@@ -150,7 +150,7 @@ java中，栈的大小通过-Xss来设置，当栈中存储的数据比较多时
 
      所有新生成的对象首先都是放在年轻代的。年轻代的目标就是尽可能快速的收集掉那些生命周期短的对象。年轻代分为三个区。一个Eden区，两个Survivor区（一般而言）。大部分对象在Eden区中生成。当Eden区满时，还存活的对象将被复制到Survivor区（两个中的一个），当这个Survivor区满时，此区的存活将被复制到另外一个Survivor区，当这个Survivor区也满了的时候，从第一个Survivor区复制过来的并且此时还存活的对象，将被复制“年老区（Tenured）”。需要注意，Survivor的两个区是对称的，没先后关系，所以同一个区中可能同时存在从Eden复制过来的对象和从前一个Survivor复制过来的对象，而复制到年老区的只有从第一个Survivor区过来的对象。而且，Survivor区总有一个是空的。同时，根据程序需要，Survivor区是可以配置为多个的（多于两个），这样可以增加对象在年轻代中的存在时间，减少被放到年老代的可能。
 
-    ** 年老代：**
+    **年老代：**
 
     在年轻代中经历了N次垃圾回收后仍然存活的对象，就会被放到年老代中。因此，可以认为年老代中存放的都是一些生命周期较长的对象。
 
@@ -237,7 +237,7 @@ java中，栈的大小通过-Xss来设置，当栈中存储的数据比较多时
 
         JVM中最大堆大小有三方面限制：相关操作系统的数据模型（32-bit 还是64-bit）限制；系统的可用虚拟内存限制；系统的可用物理内存限制。32位系统下，一般限制在1.5G~2G；64位操作系统对内存无限制。在Windows Server 2003系统，3.5G物理内存，JDK5.0下测试，最大可设置为1478m。
 
-        ** 典型设置：**
+        **典型设置：**
 
           java **-Xmx3550m  -Xms3550m -Xmn2g  -Xss128k**
 
@@ -273,19 +273,19 @@ java中，栈的大小通过-Xss来设置，当栈中存储的数据比较多时
 
           **-XX:+UseParallelGC** ：选择垃圾收集器为并行收集器。**此配置仅对年轻代有效。即上述配置下，年轻代使用并发收集，而年老代仍旧使用串行收集**。
 
-          **-XX:+ParallelGCThreads** =20：配置并行收集器的线程数，即：同时多少个线程一起进行垃圾回收。此值最好配置与处理器数目相等。
+         **-XX:+ParallelGCThreads** =20：配置并行收集器的线程数，即：同时多少个线程一起进行垃圾回收。此值最好配置与处理器数目相等。
 
             java  -Xmx3550m  -Xms3550m  -Xmn2g  -Xss128k  -XX:+UseParallelGC  -XX:ParallelGCThreads=20 **-XX:+UseParallelOldGC**
 
-         ** -XX:+UseParallelOldGC** ：配置年老代垃圾收集方式为并行收集。JDK6.0支持对年老代并行收集。
+         **-XX:+UseParallelOldGC** ：配置年老代垃圾收集方式为并行收集。JDK6.0支持对年老代并行收集。
 
             java  -Xmx3550m  -Xms3550m  -Xmn2g  -Xss128k  -XX:+UseParallelGC  **-XX:MaxGCPauseMillis=100**
 
            **-XX:MaxGCPauseMillis=100** ：设置每次年轻代垃圾回收的最长时间，如果无法满足此时间，JVM会自动调整年轻代大小，以满足此值。
 
-            java  -Xmx3550m  -Xms3550m  -Xmn2g  -Xss128k  -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100 ** -XX:+UseAdaptiveSizePolicy**
+            java  -Xmx3550m  -Xms3550m  -Xmn2g  -Xss128k  -XX:+UseParallelGC  -XX:MaxGCPauseMillis=100 **-XX:+UseAdaptiveSizePolicy**
 
-          ** -XX:+UseAdaptiveSizePolicy** ：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低响应时间或者收集频率等，此值建议使用并行收集器时，一直打开。 
+          **-XX:+UseAdaptiveSizePolicy** ：设置此选项后，并行收集器会自动选择年轻代区大小和相应的Survivor区比例，以达到目标系统规定的最低响应时间或者收集频率等，此值建议使用并行收集器时，一直打开。 
 
         响应时间优先的并发收集器
 
@@ -293,17 +293,17 @@ java中，栈的大小通过-Xss来设置，当栈中存储的数据比较多时
 
         典型配置：
 
-        java  -Xmx3550m  -Xms3550  -Xmn2g  -Xss128k  -XX:ParallelGCThreads=20 ** -XX:+UseConcMarkSweepGC  -XX:+UseParNewGC**
+        java  -Xmx3550m  -Xms3550  -Xmn2g  -Xss128k  -XX:ParallelGCThreads=20 **-XX:+UseConcMarkSweepGC  -XX:+UseParNewGC**
 
-        **-XX:+UseConcMarkSweepGC** ：设置年老代为并发收集。测试中配置这个以后，-XX:NewRatio=4的配置失效了，原因不明。所以，此时年轻代大小最好用-Xmn设置。
+      **-XX:+UseConcMarkSweepGC** ：设置年老代为并发收集。测试中配置这个以后，-XX:NewRatio=4的配置失效了，原因不明。所以，此时年轻代大小最好用-Xmn设置。
 
-       ** -XX:+UseParNewGC** ：设置年轻代为并行收集。可与CMS收集同时使用。JDK5.0以上，JVM会根据系统配置自行设置，所以无需再设置此值。
+       **-XX:+UseParNewGC** ：设置年轻代为并行收集。可与CMS收集同时使用。JDK5.0以上，JVM会根据系统配置自行设置，所以无需再设置此值。
 
-        java  -Xmx3550m  -Xms3550  -Xmn2g  -Xss128k  -XX:+UseConcMarkSweepGC  **-XX:CMSFullGCsBeforeCompaction=5  -XX:+UseCMSCompactAtFullCollection **
+        java  -Xmx3550m  -Xms3550  -Xmn2g  -Xss128k  -XX:+UseConcMarkSweepGC  **-XX:CMSFullGCsBeforeCompaction=5  -XX:+UseCMSCompactAtFullCollection**
 
         **-XX:CMSFullGCsBeforeCompaction** ：由于并发收集器不对内存空间进行压缩、整理，所以运行一段时间后会产生“碎片”，使得运行效率降低。此值设置运行多少次GC以后对内存空间进行压缩、整理。
 
-       ** -XX:+UseCMSCompactAtFullCollection** ：打开对年老代的压缩。可能会影响性能，但是可以消除碎片。
+       **-XX:+UseCMSCompactAtFullCollection** ：打开对年老代的压缩。可能会影响性能，但是可以消除碎片。
 
        **常见配置汇总**
 
