@@ -24,7 +24,7 @@ Get将数据放在url后面，安全性差，且对提交的数据长度有限�
 浏览器分析Response中的 HTML，发现其中引用了很多其他文件，比如图片，CSS文件，JS文件。浏览器会自动发起请求下载相关文件，等所有文件下载结束，整个页面也就渲染完成。
 
 
-###数据结构
+### 数据结构
 request：Request 消息分为3部分，第一部分叫Request line, 第二部分叫Request header, 第三部分是body。header和body之间有个空行
 
 ![image](img/1.png)
