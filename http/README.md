@@ -252,7 +252,7 @@ Expires: Tue, 08 Feb 2022 11:35:14 GMT
 例如: Content-Length: 19847
 ```
 
-###压缩过程
+### 压缩过程
 
 * 浏览器发送Http request 给Web服务器,  request 中有Accept-Encoding: gzip, deflate。 (告诉服务器， 浏览器支持gzip压缩)
 * Web服务器接到request后， 生成原始的Response, 其中有原始的Content-Type和Content-Length。 
