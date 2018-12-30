@@ -54,19 +54,21 @@ kubectl -n kube-system describe replicaset-controller-token-wsv4v
 访问dashboard
 
 通过node节点的ip，加刚刚我们设置的nodePort就可以访问了。
-```
 
 认证有两种方式：
 
 通过我们刚刚获取的token直接认证
+
 通过Kubeconfig文件认证
+
 只需要在kubeadm生成的admin.conf文件末尾加上刚刚获取的token就好了
+
 ```
 - name: kubernetes-admin
   user:
     client-certificate-data: xxxxxxxx
     client-key-data: xxxxxx
     token: "在这里加上token"
-```
+    
 https://<node-ip>:<node-port>
 ```
