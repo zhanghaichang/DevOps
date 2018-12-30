@@ -25,3 +25,4 @@ kube-system     Active    1h
 
 ## 部署Bookinfo示例应用
 
+https://preliminary.istio.io/zh/docs/examples/bookinfo/
