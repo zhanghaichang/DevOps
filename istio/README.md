@@ -4,9 +4,9 @@
 
 在你的命名空间里添加一个istio-injected标签，Istio sidecar容器会自动注入你的节点，运行下方的kubectl命令（如上文所述，你可以从Rancher内部启动kubectl）。
 ```shell
-> kubectl label namespace bookinfo istio-injection=enabled
+> kubectl label namespace default istio-injection=enabled
 
-namespace "bookinfo" labeled
+namespace "default" labeled
 
 > kubectl get namespace -L istio-injection
 
