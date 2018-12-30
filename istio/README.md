@@ -21,8 +21,23 @@ kube-system     Active    1h
 ```
 这一标签将使得Istio-Sidecar-Injector自动将Envoy容器注入您的应用程序节点。
 
-
+使用外部负载均衡器时确定 IP 和端口
+```
+export INGRESS_HOST=127.0.0.1
+export INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="http2")].port}')
+export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.spec.ports[?(@.name=="https")].port}')
+# export INGRESS_HOST=$(kubectl get po -l istio=ingressgateway -n istio-system -o 'jsonpath={.items[0].status.hostIP}')
+```
 
 ## 部署Bookinfo示例应用
 
 https://preliminary.istio.io/zh/docs/examples/bookinfo/
+
+
+### Grafana
+
+```
+export GRAFANA_HOST=$(kubectl -n istio-system get service grafana -o 'jsonpath={.items[0].status.hostIP}')
+echo $GRAFANA_HOST
+
+```
