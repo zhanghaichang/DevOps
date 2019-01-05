@@ -1,5 +1,45 @@
-# Java Tools
+# JDK的命令行工具
 
+## Jcmd：综合工具
+
+```
+jcmd -l  列出当前运行的所有虚拟机
+
+参数-l表示列出所有java虚拟机
+```
+针对每一个虚拟机，可以使用help命令列出该虚拟机支持的所有命令
+
+```
+jcmd [pid] help
+```
+查看虚拟机启动时间VM.uptime
+
+```
+jcmd [pid] VM.uptime   
+
+```
+打印线程栈信息Thread.print
+```
+jcmd [pid] Thread.print  
+```
+导出堆信息GC.heap_dump  这个命令功能和 jmap -dump 功能一样
+
+```
+jcmd [pid] GC.heap_dump [filepath&name]  
+```
+
+获取系统Properties内容VM.system_properties
+```
+jcmd [pid] VM.system_properties 
+```
+获取启动参数VM.flags
+```
+jcmd [pid] VM.flags 
+```
+获取所有性能相关数据PerfCounter.print
+```
+jcmd [pid] PerfCounter.print  
+```
 
 ## 查看java进程
 
