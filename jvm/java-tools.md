@@ -1,5 +1,5 @@
 # JDK的命令行工具
-
+--------------------------------
 # Jcmd 综合工具
 
 ```
@@ -40,6 +40,88 @@ jcmd [pid] VM.flags
 ```
 jcmd [pid] PerfCounter.print  
 ```
+------------------------------------
+
+# jps 虚拟机进程状况工具
+
+
+jps（JVM Process Status Tool）可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main()函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的是哪一个虚拟机进程。对于本地虚拟机进程来说，LVMID与操作系统的进程ID（Process Identifier,PID）是一致的，使用Windows的任务管理器或者UNIX的ps命令也可以查询到虚拟机进程的LVMID，但如果同时启动了多个虚拟机进程，无法根据进程名称定位时，那就只能依赖jps命令显示主类的功能才能区分了。
+
+命令格式
+
+ jps [options] [hostid]
+
+option参数
+
+-l : 输出主类全名或jar路径
+
+-q : 只输出LVMID
+
+-m : 输出JVM启动时传递给main()的参数
+
+-v : 输出JVM启动时显示指定的JVM参数
+
+其中[option]、[hostid]参数也可以不写。
+
+
+
+# jinfo
+
+jinfo(JVM Configuration info)这个命令作用是实时查看和调整虚拟机运行参数。 之前的jps -v口令只能查看到显示指定的参数，如果想要查看未被显示指定的参数的值就要使用jinfo口令 
+
+命令格式
+
+jinfo [option] [args] LVMID
+
+option参数
+
+-flag : 输出指定args参数的值
+
+-flags : 不需要args参数，输出所有JVM参数的值
+
+-sysprops : 输出系统属性，等同于System.getProperties()
+
+示例
+
+$ jinfo -flag 11494
+
+-XX:CMSInitiatingOccupancyFraction=80
+
+
+
+# jstat 虚拟机统计信息监视工具
+
+jstat(JVM statistics Monitoring)是用于监视虚拟机运行时状态信息的命令，它可以显示出虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据。
+
+命令格式
+
+ jstat [option] LVMID [interval] [count]
+
+参数
+
+[option] : 操作参数
+
+LVMID : 本地虚拟机进程ID
+
+[interval] : 连续输出的时间间隔
+
+[count] : 连续输出的次数
+
+对于命令格式中的VMID与LVMID需要特别说明一下：
+
+如果是本地虚拟机进程，VMID与LVMID是一致的;
+
+如果是远程虚拟机进程，那VMID的格式应当是：protocol://lvmid@hostname:port/servername
+
+参数interval和count代表查询间隔(单位毫秒)和次数，如果省略这两个参数，说明只查询一次。
+
+假设需要每250毫秒查询一次进程2764垃圾收集状况，一共查询20次，那命令应当是：jstat -gc 2764 250 20
+
+选项option代表着用户希望查询的虚拟机信息，主要分为3类：类装载、垃圾收集、运行期编译状况，具体选项及作用请参考表4-3中的描述。
+
+
+
+
 
 ## 查看java进程
 
