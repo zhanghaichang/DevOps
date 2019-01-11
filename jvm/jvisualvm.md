@@ -27,3 +27,11 @@ nohup java ${JMX_OPTS} -jar xxxxx.jar
 * -Dcom.sun.management.jmxremote.port=7969是指定JMX监控端口的，这里是7969。
 
 重新启动进程后，打开本地的(我用的是Window10)jvisualvm，添加JMX配置。配置成功后，可以点击线程那个tab，因为我们要做线程dump，观察线程的执行情况。
+
+
+
+## JMX 配置
+
+```shell
+-Xms1024m -Xmx2048m -Dcom.sun.management.jmxremote.port=9999 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false
+```
