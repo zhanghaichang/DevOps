@@ -48,7 +48,7 @@ http://blog.sina.com.cn/s/blog_185a4b04b0102xqdk.html
 
 
 
-## 仓库初始化命令
+# 仓库初始化命令
 
 ### Git 初始化配置
 
