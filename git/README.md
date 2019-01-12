@@ -88,3 +88,8 @@ git push -u origin --all
 git push -u origin --tags
 
 ```
+### 克隆某一个特定的远程分支
+
+```shell
+git clone -b <branch name>   git@47.106.216.108:zhanghc/npm-demo.git
+```
