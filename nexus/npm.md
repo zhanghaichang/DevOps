@@ -34,6 +34,6 @@
 
 确保要发布的模块跟目录有 package.json 文件
 
-添加用户 `npm adduser -registry http://192.168.0.102:8081/repository/npm-xueyou/`
-发布包, npm publish –registry http://192.168.0.102:8081/repository/npm-xueyou/
-修改 `package.json 添加 "publishConfig": { "registry": "http://192.168.0.102:8081/repository/npm-xueyou/" }`, 这样直接npm publish就发布了
+* 添加用户 `npm adduser -registry http://192.168.0.102:8081/repository/npm-xueyou/`
+* 发布包, npm publish –registry http://192.168.0.102:8081/repository/npm-xueyou/
+* 修改 `package.json 添加 "publishConfig": { "registry": "http://192.168.0.102:8081/repository/npm-xueyou/" }`, 这样直接npm publish就发布了
