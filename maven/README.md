@@ -8,6 +8,12 @@ wget http://mirror.bit.edu.cn/apache/maven/maven-3/3.2.3/binaries/apache-maven-3
 
 ### 安装
 
+一键脚本安装
+
+```shell
+ curl -L https://raw.githubusercontent.com/zhanghaichang/DevOps/master/maven/maven-install.sh| sh
+```
+
 ```
 tar vxf apache-maven-3.2.3-bin.tar.gz
 
