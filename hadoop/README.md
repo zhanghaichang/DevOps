@@ -1,10 +1,10 @@
 # Hadoop 
 
 
-1.准备Linux环境
-	1.0先将虚拟机的网络模式选为NAT
-		
-	1.1修改主机名
+## 1.准备Linux环境
+1.0先将虚拟机的网络模式选为NAT
+	
+1.1修改主机名
 		vi /etc/sysconfig/network
 		
 		NETWORKING=yes
@@ -190,6 +190,40 @@ vi /etc/inittab
 		ssh A  #在B中执行
 	
 	
-	
-	
+## 启动Hadoop
+启动Hadoop集群需要启动HDFS集群和Map/Reduce集群。
+
+格式化一个新的分布式文件系统：
+```
+$ bin/hadoop namenode -format
+```
+在分配的NameNode上，运行下面的命令启动HDFS：
+```
+$ bin/start-dfs.sh
+```
+
+bin/start-dfs.sh脚本会参照NameNode上${HADOOP_CONF_DIR}/slaves文件的内容，在所有列出的slave上启动DataNode守护进程。
+
+在分配的JobTracker上，运行下面的命令启动Map/Reduce：
+```
+$ bin/start-mapred.sh
+```
+
+bin/start-mapred.sh脚本会参照JobTracker上${HADOOP_CONF_DIR}/slaves文件的内容，在所有列出的slave上启动TaskTracker守护进程。
+
+## 停止Hadoop
+在分配的NameNode上，执行下面的命令停止HDFS：
+```
+$ bin/stop-dfs.sh
+```
+
+bin/stop-dfs.sh脚本会参照NameNode上${HADOOP_CONF_DIR}/slaves文件的内容，在所有列出的slave上停止DataNode守护进程。
+
+在分配的JobTracker上，运行下面的命令停止Map/Reduce：
+```
+$ bin/stop-mapred.sh 
+```
+bin/stop-mapred.sh脚本会参照JobTracker上${HADOOP_CONF_DIR}/slaves文件的内容，在所有列出的slave上停止TaskTracker守护进程。
+
+ 
 	
