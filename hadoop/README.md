@@ -90,7 +90,8 @@ export PATH=$PATH:$JAVA_HOME/bin
 刷新配置
 > source /etc/profile
 		
-3.安装hadoop2.4.1
+## 3.安装hadoop
+
 先上传hadoop的安装包到服务器上去/home/hadoop/
 注意：hadoop2.x的配置文件$HADOOP_HOME/etc/hadoop
 伪分布式需要修改5个配置文件
@@ -188,7 +189,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 http://192.168.1.101:50070 （HDFS管理界面）
 http://192.168.1.101:8088 （MR管理界面）
 
-4.配置ssh免登陆
+## 4.配置ssh免登陆
 
 生成ssh免登陆密钥,进入到我的home目录
 
