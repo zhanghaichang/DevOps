@@ -44,6 +44,15 @@ $ cp zoo_sample.cfg zoo.cfg
 ```shell
 $ vi zoo.cfg
 ```
+修改一些配置：
+```
+tickTime=2000 心跳间隔 
+initLimit=10 初始容忍的心跳数  
+syncLimit=5 等待最大容忍的心跳数  
+dataDir=/tmp/zookeeper 本地保存数据的目录，tmp存放的临时数据，可以修改为自己的目录；  
+clientPort=2181 客户端默认端口号  
+dataLogDir=/home/hadoop/zookeeper/log
+```
 先把`dataDir=/tmp/zookeeper`注释掉，然后添加以下核心配置。
 ```shell
 dataDir=/usr/local/zookeeper/data
@@ -58,6 +67,14 @@ server.3=192.168.10.33:2888:3888
  $ echo "1">>myid
 ```
 每台机器的myid里面的值对应server.后面的数字x。
+
+**/etc/profile**
+
+vim /etc/profile
+```
+export ZK_HOME=/usr/local/zookeeper/
+export PATH=$ZK_HOME/bin:$PATH
+```
 
 **5、开放3个端口**
 ```shell
