@@ -4,20 +4,20 @@
 
 ### 下载
 
-[下载地址](http://zookeeper.apache.org/) 我们下载了最新的`zookeeper-3.4.11`。
+[下载地址](http://mirror.bit.edu.cn/apache/zookeeper/zookeeper-3.4.13/zookeeper-3.4.13.tar.gz) 我们下载了最新的`zookeeper-3.4.13`。
 
 ### 安装
 
 **1、解压**
 
 ```shell
-$ tar zxvf zookeeper-3.4.11.tar.gz
+$ tar zxvf zookeeper-3.4.13.tar.gz
 ```
 
 **2、移动到/usr/local目录下**
 
 ```shell
-$ mv zookeeper-3.4.11 /usr/local/zookeeper
+$ mv zookeeper-3.4.13 /usr/local/zookeeper
 ```
 
 ### 集群配置
