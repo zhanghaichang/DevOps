@@ -31,12 +31,14 @@ Zookeeper集群原则上需要2n+1个实例才能保证集群有效性，所以�
 **1、创建数据文件存储目录**
 
 ```shell
-$ cd /usr/local/zookeeper$ mkdir data
+$ cd /usr/local/zookeeper
+$ mkdir data
 ```
 **2、添加主配置文件**
 
 ```shell
-$ cd conf$ cp zoo_sample.cfg zoo.cfg
+$ cd conf
+$ cp zoo_sample.cfg zoo.cfg
 ```
 **3、修改配置**
 ```shell
@@ -51,7 +53,9 @@ server.3=192.168.10.33:2888:3888
 ```
 **4、创建myid文件**
 ```shell
- $ cd ../data$ touch myid$ echo "1">>myid
+ $ cd ../data
+ $ touch myid
+ $ echo "1">>myid
 ```
 每台机器的myid里面的值对应server.后面的数字x。
 
