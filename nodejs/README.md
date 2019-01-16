@@ -10,18 +10,18 @@
 是因为以后在执行类似：npm install express [-g] （后面的可选参数-g，g代表global全局安装的意思）的安装语句时，
 会将安装的模块安装到【C:\Users\用户名\AppData\Roaming\npm】路径中，占C盘空间
 
-我希望将全模块所在路径和缓存路径放在我node.js安装的文件夹中，则在我安装的文件夹【D:\Develop\nodejs】
+我希望将全模块所在路径和缓存路径放在我node.js安装的文件夹中，则在我安装的文件夹【C:\Program Files\nodejs】
 下创建两个文件夹【node_global】及【node_cache】
 
 打开cmd命令窗口，输入
 ```
-npm config set prefix "D:\Develop\nodejs\node_global"
-npm config set cache "D:\Develop\nodejs\node_cache"
+npm config set prefix "C:\Program Files\nodejs\node_global"
+npm config set cache "C:\Program Files\nodejs\node_cache"
 
 ```
 接下来设置环境变量，关闭cmd窗口，“我的电脑”-右键-“属性”-“高级系统设置”-“高级”-“环境变量”
-进入环境变量对话框，在【系统变量】下新建【NODE_PATH】，输入【D:\Develop\nodejs\node_global\node_modules】，
-将【用户变量】下的【Path】修改为【D:\Develop\nodejs\node_global】
+进入环境变量对话框，在【系统变量】下新建【NODE_PATH】，输入【C:\Program Files\nodejs\node_global\node_modules】，
+将【用户变量】下的【Path】修改为【C:\Program Files\nodejs\node_global】
 
 ## 配置国内镜像
 
