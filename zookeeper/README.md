@@ -42,7 +42,10 @@ $ vi zoo.cfg
 ```
 先把`dataDir=/tmp/zookeeper`注释掉，然后添加以下核心配置。
 ```shell
-dataDir=/usr/local/zookeeper/dataserver.1=192.168.10.31:2888:3888server.2=192.168.10.32:2888:3888server.3=192.168.10.33:2888:3888
+dataDir=/usr/local/zookeeper/data
+server.1=192.168.10.31:2888:3888
+server.2=192.168.10.32:2888:3888
+server.3=192.168.10.33:2888:3888
 ```
 **4、创建myid文件**
 ```shell
@@ -52,7 +55,14 @@ dataDir=/usr/local/zookeeper/dataserver.1=192.168.10.31:2888:3888server.2=192.16
 
 **5、开放3个端口**
 ```shell
-$ sudo /sbin/iptables -I INPUT -p tcp --dport 2181 -j ACCEPT$ sudo /sbin/iptables -I INPUT -p tcp --dport 2888 -j ACCEPT$ sudo /sbin/iptables -I INPUT -p tcp --dport 3888 -j ACCEPT$ sudo /etc/rc.d/init.d/iptables save$ sudo /etc/init.d/iptables restart$ sudo /sbin/iptables -L -nChain INPUT (policy ACCEPT)target     prot opt source               destination         ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3888 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2888 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2181
+$ sudo /sbin/iptables -I INPUT -p tcp --dport 2181 -j ACCEPT
+$ sudo /sbin/iptables -I INPUT -p tcp --dport 2888 -j ACCEPT
+$ sudo /sbin/iptables -I INPUT -p tcp --dport 3888 -j ACCEPT
+$ sudo /etc/rc.d/init.d/iptables save
+$ sudo /etc/init.d/iptables restart
+$ sudo /sbin/iptables -L -nChain 
+
+INPUT (policy ACCEPT)target     prot opt source               destination         ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:3888 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2888 ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           tcp dpt:2181
 ```
 **6、配置集群其他机器**
 
@@ -68,7 +78,9 @@ $ /usr/local/zookeeper/bin/zkServer.sh start
 
 **8、查看集群状态**
 ```shell
-$ /usr/local/zookeeper/bin/zkServer.sh status ZooKeeper JMX enabled by defaultUsing config: /usr/local/zookeeper/bin/../conf/zoo.cfgMode: follower
+$ /usr/local/zookeeper/bin/zkServer.sh status ZooKeeper 
+
+JMX enabled by defaultUsing config: /usr/local/zookeeper/bin/../conf/zoo.cfgMode: follower
 ```
 ### 客户端连接
 ```shell
