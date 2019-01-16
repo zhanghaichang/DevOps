@@ -68,13 +68,15 @@ server.3=192.168.10.33:2888:3888
 ```
 每台机器的myid里面的值对应server.后面的数字x。
 
-**/etc/profile**
+**环境变量**
 
 vim /etc/profile
+
 ```
 export ZK_HOME=/usr/local/zookeeper/
 export PATH=$ZK_HOME/bin:$PATH
 ```
+source  /etc/profile
 
 **5、开放3个端口**
 ```shell
