@@ -103,9 +103,10 @@ $ /usr/local/zookeeper/bin/zkServer.sh start
 
 **8、查看集群状态**
 ```shell
-$ /usr/local/zookeeper/bin/zkServer.sh status ZooKeeper 
-
-JMX enabled by defaultUsing config: /usr/local/zookeeper/bin/../conf/zoo.cfgMode: follower
+$ /usr/local/zookeeper/bin/zkServer.sh status  
+ZooKeeper JMX enabled by defaultUsing 
+config: /usr/local/zookeeper/bin/../conf/zoo.cfg
+Mode: follower
 ```
 ### 客户端连接
 ```shell
