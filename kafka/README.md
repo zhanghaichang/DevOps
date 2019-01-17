@@ -15,17 +15,17 @@ cd kafka
 mkdir kafkalogs #创建kafka消息目录，主要存放kafka消息
 
 #下载软件
-wget  http://apache.opencas.org/kafka/0.9.0.1/kafka_2.11-0.9.0.1.tgz
+wget  http://mirror.bit.edu.cn/apache/kafka/2.1.0/kafka_2.11-2.1.0.tgz
 
 #解压软件
-tar -zxvf kafka_2.11-0.9.0.1.tgz
+tar -zxvf kafka_2.11-2.1.0.tgz
 ```
 
 ## 3、修改配置文件
 
 进入到config目录
 ```shell
-cd /opt/kafka/kafka_2.11-0.9.0.1/config/
+cd /opt/kafka/kafka_2.11-2.1.0/config/
 ```
 主要关注：server.properties 这个文件即可，我们可以发现在目录下：
 
@@ -95,7 +95,7 @@ zookeeper.connect=192.168.7.100:12181,192.168.7.101:12181,192.168.7.107:12181
 ```
 #从后台启动Kafka集群（3台都需要启动）
 cd
-/opt/kafka/kafka_2.11-0.9.0.1//bin #进入到kafka的bin目录 
+/opt/kafka/kafka_2.11-2.1.0//bin #进入到kafka的bin目录 
 ./kafka-server-start.sh -daemon ../config/server.properties
 ```
 2、检查服务是否启动
@@ -154,7 +154,7 @@ OK  kafka集群搭建完毕
 
 5.1、日志说明
 
-默认kafka的日志是保存在/opt/kafka/kafka_2.10-0.9.0.0/logs目录下的，这里说几个需要注意的日志
+默认kafka的日志是保存在/opt/kafka/kafka_2.11-2.1.0/logs目录下的，这里说几个需要注意的日志
 
 ```
 server.log #kafka的运行日志
