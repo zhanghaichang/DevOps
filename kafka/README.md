@@ -27,7 +27,7 @@ tar -zxvf kafka_2.11-2.1.0.tgz
 ```shell
 cd /opt/kafka/kafka_2.11-2.1.0/config/
 ```
-主要关注：server.properties 这个文件即可，我们可以发现在目录下：
+我们可以发现在目录下：
 
 有很多文件，这里可以发现有Zookeeper文件，我们可以根据Kafka内带的zk集群来启动，但是建议使用独立的zk集群
 
@@ -48,7 +48,7 @@ cd /opt/kafka/kafka_2.11-2.1.0/config/
 -rw-r--r--. 1 root root 1032 Feb 12 08:37 tools-log4j.properties
 -rw-r--r--. 1 root root 1023 Feb 12 08:37 zookeeper.properties
 ```
-修改配置文件：
+修改配置文件：server.properties：
 
 ```propertites
 broker.id=0  #当前机器在集群中的唯一标识，和zookeeper的myid性质一样
@@ -94,8 +94,8 @@ zookeeper.connect=192.168.7.100:12181,192.168.7.101:12181,192.168.7.107:12181
 
 ```shell
 #从后台启动Kafka集群（3台都需要启动）
-cd
-/opt/kafka/kafka_2.11-2.1.0//bin #进入到kafka的bin目录 
+cd /opt/kafka/kafka_2.11-2.1.0/bin
+#进入到kafka的bin目录 
 ./kafka-server-start.sh -daemon ../config/server.properties
 ```
 2、检查服务是否启动
