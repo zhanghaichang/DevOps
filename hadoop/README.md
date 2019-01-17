@@ -1,5 +1,17 @@
 # Hadoop 集群安装
 
+## hadoop 介绍
+
+* 1 hadoop数据的关注点：大数据的存储；并行计算模型====》分布式文件系统:HDFS;并行计算模型：mapreduce
+* 2 hadoop的组成部分：commom模块，hdfs模块，mapreduce模块，yarn模块（调度功能）
+* 3 hadoop有三种配置方式：1、本地模式；2、伪分布式；3、完全分布式
+* 4 本地模式使用的文件系统是：本机的文件系统；伪分布式使用的文件系统：单一节点的hdfs文件系统；完全分布式使用的文件系统是：多个节点的hdfs文件系统
+* 5 hdfs的高可用性，采取的方式是，一个文件会存储成三份副本，保证数据不丢失
+* 6 hdfs的文件路径是虚拟的文件路径，具体的存储路径是根据实际存储在服务器节点的物理机的磁盘上
+* 7 hadoop启动后的进程为5个进程：1、nameNode 名称节点 2、dataNode 数据节点 3、Secondary NameNode 辅助名称节点 4、ResourceManage 资源管理器 5、NodeManager 节点管理器
+* 8 一般，情况下，hadoop进行集群时，将一台服务器作为名称节点（相当于一个目录），另一个不一样的服务器作为JObTracer（调度），前两台都是master，后面的机器作为数据节点，作为slave.
+
+
 
 ## 1.准备Linux环境
 1.0先将虚拟机的网络模式选为NAT
@@ -177,7 +189,7 @@ export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 > sbin/start-yarn.sh
 
 3.5验证是否启动成功
-使用jps命令验证
+使用jps命令验证 5个进程
 ```
 27408 NameNode
 28218 Jps
