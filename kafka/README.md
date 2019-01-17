@@ -7,7 +7,7 @@
 
 ## 2、创建目录并下载安装软件
 
-```
+```shell
 #创建目录
 cd /opt/
 mkdir kafka #创建项目目录
@@ -92,7 +92,7 @@ zookeeper.connect=192.168.7.100:12181,192.168.7.101:12181,192.168.7.107:12181
 
 1、启动服务
 
-```
+```shell
 #从后台启动Kafka集群（3台都需要启动）
 cd
 /opt/kafka/kafka_2.11-2.1.0//bin #进入到kafka的bin目录 
@@ -109,7 +109,7 @@ cd
 
 3、创建Topic来验证是否创建成功
 
-```
+```shell
 #创建Topic
 ./kafka-topics.sh --create --zookeeper 192.168.7.100:12181 --replication-factor 2 --partitions 1 --topic shuaige
 #解释
@@ -132,13 +132,13 @@ cd
 
 4.1、查看topic
 
-```
+```shell
 ./kafka-topics.sh --list --zookeeper localhost:12181
 #就会显示我们创建的所有topic
 ```
 4.2、查看topic状态
 
-```
+```shell
 /kafka-topics.sh --describe --zookeeper localhost:12181 --topic shuaige
 #下面是显示信息
 Topic:ssports    PartitionCount:1    ReplicationFactor:2    Configs:
@@ -156,7 +156,7 @@ OK  kafka集群搭建完毕
 
 默认kafka的日志是保存在/opt/kafka/kafka_2.11-2.1.0/logs目录下的，这里说几个需要注意的日志
 
-```
+```shell
 server.log #kafka的运行日志
 state-change.log  #kafka他是用zookeeper来保存状态，所以他可能会进行切换，切换的日志就保存在这里
 
@@ -165,7 +165,7 @@ controller.log #kafka选择一个节点作为“controller”,当发现有节点
 
 5.2、上面的大家你完成之后可以登录zk来查看zk的目录情况
 
-```
+```shell
 #使用客户端进入zk
 ./zkCli.sh -server 127.0.0.1:12181  #默认是不用加’-server‘参数的因为我们修改了他的端口
 
@@ -173,10 +173,11 @@ controller.log #kafka选择一个节点作为“controller”,当发现有节点
 [zk: 127.0.0.1:12181(CONNECTED) 0] ls /
 
 #显示结果：[consumers, config, controller, isr_change_notification, admin, brokers, zookeeper, controller_epoch]
-'''
-上面的显示结果中：只有zookeeper是，zookeeper原生的，其他都是Kafka创建的
-'''
+```
 
+上面的显示结果中：只有zookeeper是，zookeeper原生的，其他都是Kafka创建的
+
+```shell
 #标注一个重要的
 [zk: 127.0.0.1:12181(CONNECTED) 1] get /brokers/ids/0
 {"jmx_port":-1,"timestamp":"1456125963355","endpoints":["PLAINTEXT://192.168.7.100:19092"],"host":"192.168.7.100","version":2,"port":19092}
