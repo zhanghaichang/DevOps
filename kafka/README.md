@@ -87,6 +87,9 @@ replica.fetch.max.bytes=5242880
 #设置zookeeper的连接端口
 zookeeper.connect=192.168.7.100:12181,192.168.7.101:12181,192.168.7.107:12181
 ```
+复制到其他Server上
+
+> $ scp -r /opt/kafka hadoop-002:/opt/kafka/
 
 ## 4、启动Kafka集群并测试
 
