@@ -117,3 +117,16 @@ Mode: follower
 ### 注意
 
 如果是在单机创建的多个Zookeeper伪集群，需要对应修改配置中的端口、日志文件、数据文件位置等配置信息。
+
+
+## zookeeper ui docker-zkui
+
+```shell
+docker pull qnib/zkui:latest
+```
+
+
+```
+$ docker run -d --name zkui -p 9090:9090 -e ZKUI_ZK_SERVER=hadoop-003:2181,hadoop-002:2181,hadoop-001:2181 qnib/zkui:latest
+
+``
