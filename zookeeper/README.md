@@ -126,7 +126,7 @@ docker pull qnib/zkui:latest
 ```
 
 
-```
+```shell
 $ docker run -d --name zkui -p 9090:9090 -e ZKUI_ZK_SERVER=hadoop-003:2181,hadoop-002:2181,hadoop-001:2181 qnib/zkui:latest
 
-``
+```
