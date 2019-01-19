@@ -41,7 +41,7 @@ docker run -d -p 8080:8080 -p 50000:50000  -u root --name jenkins --restart=alwa
 ## docker run 
 
 ```
-docker run -d -p 8080:8080 -p 50000:50000  --name jenkins --restart=always \
+docker run -d -p 8080:8080 --name jenkins --restart=always \
 -v /root/home/jenkins/:/var/jenkins_home \
 -v $(which docker):/usr/bin/docker \
 -v /var/run/docker.sock:/var/run/docker.sock \
