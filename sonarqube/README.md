@@ -38,7 +38,7 @@ $ docker pull sonarqube
 
 ```
 
-mkdir -p /data/sonarqube/extensions  &&  /data/sonarqube/data
+mkdir -p /data/sonarqube/extensions  &&  mkdir -p /data/sonarqube/data
 
 docker run --name sonarqube --link postgresql -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar -p 9000:9000 -d -v /data/sonarqube/data:/opt/sonarqube/data -v /data/sonarqube/extensions:/opt/sonarqube/extensions sonarqube
 
