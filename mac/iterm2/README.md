@@ -13,42 +13,43 @@
 
 ## 分屏
 
-垂直分屏：command + d
+垂直分屏：`command + d`
 
-水平分屏：command + shift + d
+水平分屏：`command + shift + d`
 
-切换屏幕：command + option + 方向键 command + [ 或 command + ]
+切换屏幕：`command + option + 方向键 command + [ 或 command + ]`
 
-查看历史命令：command + ;
+查看历史命令：`command + ;`
 
-查看剪贴板历史：command + shift + h
+查看剪贴板历史：`command + shift + h`
 
 ## 其他
-清除当前行：ctrl + u
 
-到行首：ctrl + a
+清除当前行：`ctrl + u`
 
-到行尾：ctrl + e
+到行首：`ctrl + a`
 
-前进后退：ctrl + f/b (相当于左右方向键)
+到行尾：`ctrl + e`
 
-上一条命令：ctrl + p
+前进后退：`ctrl + f/b (相当于左右方向键)`
 
-搜索命令历史：ctrl + r
+上一条命令：`ctrl + p`
 
-删除当前光标的字符：ctrl + d
+搜索命令历史：`ctrl + r`
 
-删除光标之前的字符：ctrl + h
+删除当前光标的字符：`ctrl + d`
 
-删除光标之前的单词：ctrl + w
+删除光标之前的字符：`ctrl + h`
 
-删除到文本末尾：ctrl + k
+删除光标之前的单词：`ctrl + w`
 
-交换光标处文本：ctrl + t
+删除到文本末尾：`ctrl + k`
 
-清屏1：command + r
+交换光标处文本：`ctrl + t`
 
-清屏2：ctrl + l
+清屏1：`command + r`
+
+清屏2：`ctrl + l`
 
 自带有哪些很实用的功能/快捷键
 ⌘ + 数字在各 tab 标签直接来回切换
