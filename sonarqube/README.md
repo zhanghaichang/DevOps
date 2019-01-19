@@ -7,6 +7,12 @@ Sonar是一个用于代码质量管理的开源平台，用于管理源代码的
 
 ## 安装使用
 
+非持久化安装
+
+```
+$ docker run -d --name sonarqube -p 9000:9000 sonarqube
+
+```
 获取 postgresql 的镜像
 
 ```
