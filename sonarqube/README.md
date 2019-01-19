@@ -60,3 +60,9 @@ mvn sonar:sonar
 # With boot2docker:
 mvn sonar:sonar -Dsonar.host.url=http://$(boot2docker ip):9000
 ```
+
+
+
+```
+mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=faeef1e48b8d00290a0f3cc00021720baf1ca4dd -Dsonar.java.binaries=D:\aiwb_s**
+```
