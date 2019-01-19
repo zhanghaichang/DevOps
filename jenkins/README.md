@@ -9,7 +9,7 @@ docker pull jenkins/jenkins:lts
 ## 创建目录赋权限 
 
 ```
-mkdir home/jenkins 
+mkdir -p home/jenkins 
 
 chown -R 1000:1000 jenkins/ 
 ```
