@@ -36,7 +36,7 @@ mkdir -p /data/sonarqube/extensions  &&  /data/sonarqube/data
 
 docker run --name sonarqube --link postgresql -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar -p 9000:9000 -d -v /data/sonarqube/data:/opt/sonarqube/data -v /data/sonarqube/extensions:/opt/sonarqube/extensions sonarqube
 
-#其中--link postgresqldb 是指和 postgresqldb 容器连接通讯， 用网关的方式也可以
+#其中--link postgresql 是指和 postgresql 容器连接通讯， 用网关的方式也可以
 
 ```
 
