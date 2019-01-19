@@ -38,8 +38,21 @@ $ docker pull sonarqube
 
 ```
 
+# 官方
+docker run -d --name sonarqube \
+    -p 9000:9000 \
+    -e sonar.jdbc.username=sonar \
+    -e sonar.jdbc.password=sonar \
+    -e sonar.jdbc.url=jdbc:postgresql://localhost:5432/sonar \
+    sonarqube
+    
+    
+    
 mkdir -p /data/sonarqube/extensions  &&  mkdir -p /data/sonarqube/data
 
+useradd sonarqube -g docker -p sonarqube
+
+# 非官方
 docker run --name sonarqube --link postgresql -e SONARQUBE_JDBC_URL=jdbc:postgresql://postgresql:5432/sonar -p 9000:9000 -d -v /data/sonarqube/data:/opt/sonarqube/data -v /data/sonarqube/extensions:/opt/sonarqube/extensions sonarqube
 
 #其中--link postgresql 是指和 postgresql 容器连接通讯， 用网关的方式也可以
