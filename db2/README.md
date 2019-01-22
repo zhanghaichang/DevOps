@@ -38,7 +38,7 @@ db2 create db databaseName using codeset utf-8 territory CN
 
 `1.出现错误：SQL1004C there` `is` `not` `enough storage` `on` `the file` `to` `process the command``----物理空间不足`
 
-`2.创建数据库失败（中间断掉或空间不足引起）无法重新创建，提示已存在，SQL1005N，此时需要删除掉重新创建 <br><strong>解决方案</strong>：`
+`2.创建数据库失败（中间断掉或空间不足引起）无法重新创建，提示已存在，SQL1005N，此时需要删除掉重新创建解决方案：`
 
 `查看是否存在系统数据库目录中`
 
