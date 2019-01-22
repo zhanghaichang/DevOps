@@ -125,7 +125,7 @@ db2 grant dbadm on database to user userName
 ```
 `db2 export` `to` `test.txt` `of` `del` `select` `*` `from` `test`
 ```
-17、导入单个表数据
+### 17、导入单个表数据
 
 ```
 `db2 import` `from` `test.txt` `of` `del` `insert` `into` `test`
