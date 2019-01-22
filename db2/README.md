@@ -202,3 +202,25 @@ DB2STOP FORCE
 DB2START
 
 ```
+
+```
+#创建pagesize为32K的bufferpool
+db2 => create BUFFERPOOL bigbuffer SIZE 5000 PAGESIZE 32K
+DB20000I  The SQL command completed successfully.
+
+#创建pagesize为32K的tablespace，同时使用新创建的bufferpool
+db2 => CREATE TABLESPACE bigtablespace PAGESIZE 32K BUFFERPOOL bigbuffer
+DB20000I  The SQL command completed successfully.
+
+```
+
+现在再来看一下表空间的情况
+```
+db2 => select TBSPACE, OWNER, PAGESIZE from syscat.tablespaces
+```
+接下来再来创建这张表，就OK了
+```
+db2 => CREATE TABLE BOND_BASE_INFO ( SRNO INTEGER NOT NULL , ANCMNT_DATE DATE,  ...)
+DB20000I  The SQL command completed successfully.
+```
+ 不过，如果你不想要使用多个表空间的话，也可以将之前tablespace中的数据导入到新的tablespace中，这里DB2支持直接导入到指定的tablespace，db2 databasename import -ts tablespace_name。
