@@ -136,3 +136,15 @@ db2 import from test.txt of del insert into test
 
 db2可以创建多个库，也可以只创建一个数据库使用不用的用户进行登录，管理各自的表
 
+
+```
+
+
+db2 get db cfg|grep -i buff
+list tablespaces
+list tablespaces show detail
+db2pd -d testdb -tablespaces
+get snapshot for tablespaces on testdb
+也可以查看sysibmadm.snaptbsp和sysibmadm.snapcontainer这两个视图
+
+```
