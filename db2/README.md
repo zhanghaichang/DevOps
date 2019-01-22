@@ -148,3 +148,57 @@ get snapshot for tablespaces on testdb
 也可以查看sysibmadm.snaptbsp和sysibmadm.snapcontainer这两个视图
 
 ```
+
+```sql
+--重启数据库
+FORCE APPLICATION ALL 
+DB2STOP
+DB2START 
+
+--创建数据库
+CREATE DATABASE mysdedb USING CODESET UTF-8 TERRITORY US COLLATE USING SYSTEM USER TABLESPACE MANAGED BY DATABASE USING (FILE 'd:\DB2\data\mysdedb\sdetbsp' 51200)
+
+CONNECT TO mysdedb 
+
+--创建缓冲池(使用32k的pagesize)
+create bufferpool sdepool size 12800 pagesize 32K
+create bufferpool sdepool1 size 12800 pagesize 32K
+
+--创建表空间并使用32k的pagesize和自定义的缓冲池
+CREATE REGULAR TABLESPACE regtbs PAGESIZE 32 K MANAGED BY DATABASE USING ( FILE 'C:\DB2\NODE0000\mysdedb\regtbs' 2g) bufferpool sdepool
+CREATE REGULAR TABLESPACE idxtbs PAGESIZE 32 K MANAGED BY DATABASE USING ( FILE 'C:\DB2\NODE0000\mysdedb\idxtbs' 1g) bufferpool sdepool
+CREATE LONG TABLESPACE lobtbs PAGESIZE 32 K MANAGED BY DATABASE USING ( FILE 'C:\DB2\NODE0000\mysdedb\lobtbs' 1g) bufferpool sdepool1
+CREATE USER TEMPORARY TABLESPACE sdespace PAGESIZE 32 K MANAGED BY SYSTEM USING ('C:\DB2\NODE0000\mysdedb\sdespace' ) bufferpool sdepool1
+
+--授权表空间给用户
+grant use of tablespace 
+
+--授权表空间
+GRANT USE OF TABLESPACE regtbs TO PUBLIC  
+GRANT USE OF TABLESPACE lobtbs TO PUBLIC 
+GRANT USE OF TABLESPACE idxtbs TO PUBLIC  
+GRANT USE OF TABLESPACE sdespace TO PUBLIC 
+
+COMMENT ON TABLESPACE sdespace IS '' 
+
+--优化数据库配置
+update db cfg for mysdedb using APPLHEAPSZ 2048
+update db cfg for mysdedb using APP_CTL_HEAP_SZ 2048
+update db cfg for mysdedb using LOGPRIMARY 10
+update db cfg for mysdedb using LOGFILSIZ 1000
+
+--重启数据库
+FORCE APPLICATION ALL 
+DB2STOP FORCE 
+DB2START
+
+
+--授予sde用户DBADM权限
+grant DBADM on database to user sde
+
+--重启数据库
+FORCE APPLICATION ALL 
+DB2STOP FORCE 
+DB2START
+
+```
