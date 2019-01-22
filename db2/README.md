@@ -48,17 +48,17 @@ db2 list db directory
 
 `若存在则可以直接删除`
 ```
-`db2` `drop` `db databasename`
+db2 drop db databasename
 ```
 `注意系统创建的文件不能随意删除再复制回来需要修改权限否者出现SQL1036C  An I/O error occurred while accessing the` `database``.  SQLSTATE=58030`
 
 `若不存在则需要添加进来再删除`
 ```
-`db2 catalog db databasename`
+db2 catalog db databasename
 ```
 `将数据库移除系统数据库目录中`
 ```
-`db2 uncatalog db databasename`
+db2 uncatalog db databasename
 ```
 ### 3、连接新数据库
 ```
@@ -87,9 +87,9 @@ db2 connect to databaseName
 ### 9、创建用户和密码用于连接数据库（一个库下使用不同用户连接数据库管理各自的表（但是数据库名字是同一个，只需连接是指定用户名密码）类似oracle）
 
 ```
-`useradd username`
+useradd username
 
-`passwd` `password`
+passwd password
 ```
 
 ### 10、db2inst1进行授权
@@ -102,7 +102,7 @@ db2 grant dbadm on database to user userName
 ### 11、使用创建用户重新连接数据库进行添加当前用户下的表
 
 ```
-`db2` `connect` `to` `databaseName` `user` `username using` `password`
+db2 connect to databaseName user username using password
 ```
 
 ### 12、导出数据库的所有表及数据（导出的文件是db2move.lst、export.out、tabxx.ixf、tabxx.msg）
@@ -123,12 +123,12 @@ db2 grant dbadm on database to user userName
 ```
 ### 16、导出单个表数据（只能导出一个表）
 ```
-`db2 export` `to` `test.txt` `of` `del` `select` `*` `from` `test`
+db2 export to test.txt of del select * from test
 ```
 ### 17、导入单个表数据
 
 ```
-`db2 import` `from` `test.txt` `of` `del` `insert` `into` `test`
+db2 import from test.txt of del insert into test
 ```
 总结：
 
