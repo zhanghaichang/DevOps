@@ -1,3 +1,79 @@
+# Kafka 单机安装
+
+
+### 获取镜像
+* zookeeper镜像：
+```
+docker pull zookeeper:3.4.9
+```
+* kafka镜像：
+```
+docker pull wurstmeister/kafka:0.10.2.0
+```
+* kafka-manager镜像：
+```
+docker pull sheepkiller/kafka-manager:latest
+```
+### zookeepr run 
+```
+docker run --name  zookeeper --restart always -p 2181:2181 -v /data/zookeeper:/data -d zookeeper:3.4.9
+```
+
+### kafka run 
+
+```
+docker run -d --name kafka --publish 9092:9092 \
+--link zookeeper \
+--env KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 \
+--env KAFKA_ADVERTISED_HOST_NAME=127.0.0.1 \
+--env KAFKA_ADVERTISED_PORT=9092 \
+wurstmeister/kafka:0.10.2.0
+```
+### Test 读写验证
+
+读写验证的方法有很多，这里我们用kafka容器自带的工具来验证，首先进入到kafka容器的交互模式
+
+```
+docker exec -it kafka /bin/bash
+```
+
+创建一个主题：
+
+```
+/opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic my-test
+```
+
+查看刚创建的主题
+
+```
+/opt/kafka/bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+```
+
+发送消息：
+
+```
+/opt/kafka/bin/kafka-console-producer.sh --broker-list  localhost:9092 --topic my-test
+
+```	
+
+读取消息：
+```
+/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning
+
+```
+## 创建Kafka管理节点
+
+```
+docker run -itd \
+--restart=always \
+--name=kafka-manager \
+--link zookeeper \
+-p 9000:9000 \
+-e ZK_HOSTS="zookeeper:2181" \
+sheepkiller/kafka-manager:latest
+
+```
 # Kafka集群搭建
 
 ## 1、软件环境
