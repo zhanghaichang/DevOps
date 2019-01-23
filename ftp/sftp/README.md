@@ -27,27 +27,41 @@ chown root:sftp sftp
 chmod 755 sftp
 ```
 ### 5.修改SSH配置
+
+
 ```
-/etc/ssh/sshd_config
+vim /etc/ssh/sshd_config
 
-修改Subsystem
-
-Subsystem sftp internal-sftp
-```
-### 6.在sshd_config添加用户配置
-```
-Match User sftp   #限制的用户
-
-X11Forwarding no  
-
+#该行(上面这行)注释掉
+#Subsystem sftp /usr/lib/openssh/sftp-server
+ 
+# 添加以下几行
+Subsystem sftp internal-sftp 
+Match group sftp
+#Match user test
+#匹配sftp组，如为单个用户可用：Match user 用户名;  设置此用户登陆时的shell设为/bin/false,这样它就不能用ssh只能用sftp
+ChrootDirectory /home/test
+#指定用户被锁定到的那个目录，为了能够chroot成功，该目录必须属主是root，并且其他用户或组不能写
+X11Forwarding no
 AllowTcpForwarding no
-
 ForceCommand internal-sftp
 
-ChrootDirectory /home/sftp  #用户的根目录
 ```
 
-### 7.最后重启SSH
+### 6.最后重启SSH
 ```
 /etc/init.d/ssh restart
+```
+
+
+### 测试
+
+```
+[root@localhost etc]# sftp test@172.19.194.30
+test@172.19.194.30's password: 
+Connected to 172.19.194.30.
+sftp> ls
+a                a.log            authorized_keys  mysql.sh         
+sftp>
+
 ```
