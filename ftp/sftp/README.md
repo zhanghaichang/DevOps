@@ -54,7 +54,7 @@ ForceCommand internal-sftp
 ```
 
 
-### 测试
+### 7.测试
 
 ```
 [root@localhost etc]# sftp test@172.19.194.30
