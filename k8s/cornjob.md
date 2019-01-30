@@ -22,7 +22,18 @@ spec:
           restartPolicy: OnFailure
 ```
 
+```
+Crontab的基本格式
 
+<分钟> <小时> <日> <月份> <星期> <命令>
+
+分钟 值从 0 到 59.
+小时 值从 0 到 23.
+日 值从 1 到 31.
+月 值从 1 到 12.
+星期 值从 0 到 6, 0 代表星期日
+多个时间可以用逗号隔开，范围可以用连字符给出，*可以作为通配符。空格用来分开字段
+```
 ```
 $ kubectl create -f ./cronjob.yaml
 cronjob "hello" created
