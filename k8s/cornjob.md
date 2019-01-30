@@ -1,11 +1,11 @@
 ### Creating a Cron Job
 
 
-```shell
+```yaml
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: hello
+  name: image-clean-cronJob
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
