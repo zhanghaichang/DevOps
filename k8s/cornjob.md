@@ -5,7 +5,7 @@
 apiVersion: batch/v1beta1
 kind: CronJob
 metadata:
-  name: image-clean-cronJob
+  name: image-clean
 spec:
   schedule: "*/1 * * * *"
   jobTemplate:
