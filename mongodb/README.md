@@ -25,7 +25,6 @@ docker run --name mongodb -v /data/mongodb0:/data/db -p 27017:27017 -d mongo --a
 
 ```
 docker exec -it some-mongo mongo admin
-
 ```
 
 ```
