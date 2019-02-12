@@ -44,3 +44,9 @@ sudo yum remove docker \
                   docker-engine-selinux \
                   docker-engine
 ```
+
+## 升级到最新版
+
+```
+curl -fsSL https://get.docker.com/ | sh
+```
