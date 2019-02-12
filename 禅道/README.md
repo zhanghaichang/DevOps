@@ -39,7 +39,7 @@ docker run --name [容器名称] -p [主机端口]:80 -v [主机代码目录]:/a
 
 例如
 
-创建 /data/www /data/data 目录。
+创建 /data/www,/data/data 目录。
 
 执行命令：
 ```
