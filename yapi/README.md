@@ -31,7 +31,7 @@ docker run -it --rm \
   --link mongo-yapi:mongo \
   --entrypoint npm \
   --workdir /api/vendors \
-  registry.cn-hangzhou.aliyuncs.com/anoy/yapi \
+  zhanghaichang/yapi:1.5.0 \
   run install-server
 ```
 
