@@ -45,7 +45,7 @@ spec:
   ports:
   - port: 3000
     targetPort: 3000
-    nodePort: 31112
+    nodePort: 30005
   selector:
     app: yapi
   type: NodePort
