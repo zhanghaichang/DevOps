@@ -1,10 +1,20 @@
 {
   "port": "3000",
-  "closeRegister":true
+  "closeRegister": true
   "adminAccount": "admin@admin.com",
   "db": {
     "servername": "mongo",
     "DATABASE": "yapi",
     "port": 27017
+  }
+  "mail": {
+    "enable": true,
+    "host": "smtp.163.com",    //邮箱服务器
+    "port": 465,               //端口
+    "from": "***@163.com",     //发送人邮箱
+    "auth": {
+        "user": "***@163.com", //邮箱服务器账号
+        "pass": "*****"        //邮箱服务器密码
+    }
   }
 }
