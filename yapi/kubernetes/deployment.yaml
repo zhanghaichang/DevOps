@@ -1,21 +1,32 @@
-apiVersion: batch/v1
-kind: Job
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  name: yapi-install
+  name: yapi
+  labels:
+    app: yapi
 spec:
-  backoffLimit: 1
+  selector:
+    matchLabels:
+      app: yapi
+  strategy:
+    type: Recreate
   template:
+    metadata:
+      labels:
+        app: yapi
     spec:
       containers:
       - name: yapi
         image: zhanghaichang/yapi:1.5.0
+        ports:
+        - containerPort: 3000
         workingDir: /api/vendors
-        command: ["npm", "run", "install-server"]
+        args:
+          - server/app.js
         volumeMounts:
           - mountPath: /api/config.json
             name: yapi-config
             subPath: config.json
-      restartPolicy: Never
       volumes:
         - name: yapi-config
           configMap:
@@ -23,3 +34,18 @@ spec:
             items:
               - key: config.json
                 path: config.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: yapi
+  labels:
+    app: yapi
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+    nodePort: 31112
+  selector:
+    app: yapi
+  type: NodePort
