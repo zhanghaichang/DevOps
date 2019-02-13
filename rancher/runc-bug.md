@@ -12,7 +12,7 @@ which docker-runc
 mv /usr/bin/docker-runc /usr/bin/docker-runc.orig.$(date -Iseconds)
 
 # Copy file
-cp runc-v17.06.2-amd64 /usr/bin/docker-runc
+cp runc-v17.03.2-amd64 /usr/bin/docker-runc
 
 # Ensure it's executable
 chmod +x /usr/bin/docker-runc
