@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: yapi-install
+spec:
+  backoffLimit: 1
+  template:
+    spec:
+      containers:
+      - name: yapi
+        image: zhanghaichang/yapi:1.5.0
+        workingDir: /api/vendors
+        command: ["npm", "run", "install-server"]
+        volumeMounts:
+          - mountPath: /api/config.json
+            name: yapi-config
+            subPath: config.json
+      restartPolicy: Never
+      volumes:
+        - name: yapi-config
+          configMap:
+            name: yapi-config
+            items:
+              - key: config.json
+                path: config.json
