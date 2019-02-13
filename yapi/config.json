@@ -1,7 +1,7 @@
 {
   "port": "3000",
   "closeRegister": true
-  "adminAccount": "admin@admin.com",
+  "adminAccount": "admin@topcheer.com",
   "db": {
     "servername": "mongo",
     "DATABASE": "yapi",
