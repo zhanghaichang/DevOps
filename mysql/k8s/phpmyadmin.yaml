@@ -1,0 +1,50 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: phpmyadmin-server
+  labels:
+    app: phpmyadmin-server
+spec:
+  template:
+    metadata:
+      labels:
+        app: phpmyadmin-server
+    spec:
+      containers:
+      - name: phpmyadmin-server
+        image: ebspace/armhf-phpmyadmin 
+        env:
+        - name: PMA_HOST
+          value: 10.244.2.31  
+        - name: MYSQL_ROOT_PASSWORD 
+          valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials 
+                  key: rootpw 
+        - name: PMA_USER 
+          valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials 
+                  key: user
+        - name: PMA_PASSWORD 
+          valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials 
+                  key: password 
+        ports:
+        - containerPort: 80
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: phpmyadmin-server
+spec:
+  type: NodePort
+  selector:
+    app: phpmyadmin-server
+  ports:
+    - name: php
+      protocol: TCP
+      port: 80
+      nodePort: 32221
+      targetPort: 80
