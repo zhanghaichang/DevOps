@@ -14,5 +14,5 @@ docker run --name mysql -d --net keycloak-network -e MYSQL_DATABASE=keycloak -e 
 ```
 
 ```
-docker run --name keycloak -p 443:443 -p 9990:9990 -p 8080:8080 --net keycloak-network jboss/keycloak:4.8.3.Final
+docker run --name keycloak -p 443:443 -p 9990:9990 -p 8080:8080 --net keycloak-network  -d jboss/keycloak:4.8.3.Final
 ```
