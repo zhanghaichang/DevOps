@@ -7,6 +7,18 @@ LDAP 具有两个国家标准，分别是X.500 和LDAP。OpenLDAP 是基于X.500
 OpenLDAP 则直接运行在更简单和更通用的TCP/IP 或其他可靠的传输协议层上，避免了在OSI会话层和表示层的开销，使连接的建立和包的处理更简单、更快，对于互联网和企业网应用更理想。LDAP 提供并实现目录服务的信息服务，目录服务是一种特殊的数据库系统，对于数据的读取、浏览、搜索有很好的效果。目录服务一般用来包含基于属性的描述性信息并支持精细复杂的过滤功能，但OpenLDAP 目录服务不支持通用数据库的大量更新操作所需要的复杂的事务管理或回滚策略等。
 
 
+
+### LDAP简称对应
+
+```
+o：organization（组织-公司）
+ou：organization unit（组织单元-部门）
+c：countryName（国家）
+dc：domainComponent（域名）
+sn：suer name（真实名称）
+cn：common name（常用名称）
+```
+
 [ldap](https://www.cnblogs.com/linuxws/p/9085641.html)
 ## phpldapadmin
 
