@@ -8,6 +8,17 @@ OpenLDAP 则直接运行在更简单和更通用的TCP/IP 或其他可靠的传�
 
 
 
+
+### LDAP特点
+
+* LDAP的结构用树来表示
+* 查询快，写慢
+* LDAP提供了静态数据的快速查询方式
+* Client/server模型，Server 用于存储数据，Client提供操作目录信息树的工具
+* 这些工具可以将数据库的内容以文本格式（LDAP 数据交换格式，LDIF）呈现在您的面前
+* LDAP是一种开放Internet标准，LDAP协议是跨平台的Interent协议
+
+
 ### LDAP简称对应
 
 ```
