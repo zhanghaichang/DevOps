@@ -2,5 +2,5 @@
 
 
 ```
-./certbot-auto certonly --standalone --email admin@example.com -d example.com -d www.example.com -d other.example.net
+./certbot-auto certonly --standalone --email zhang.hc@topcheer.com -d pydx.itophis.com
 ```
