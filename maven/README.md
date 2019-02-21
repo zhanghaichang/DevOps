@@ -71,25 +71,30 @@ OS name: "linux", version: "3.13.0-35-generic", arch: "amd64", family: "unix"
 ### 传统项目 POM.xml
 
 ```xml
-<build>
-		<finalName>websit-demo</finalName>
-		<plugins>
+<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<!--配置本地jar包在项目的存放路径 -->
+					<compilerArguments>
+						<extdirs>${project.basedir}/src/main/webapp/WEB-INF/lib</extdirs>
+					</compilerArguments>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-clean-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>clean</id>
-						<phase>pre-clean</phase>
-						<goals>
-							<goal>clean</goal>
-						</goals>
-						<configuration>
-							<directory>src/main/webapp/WEB-INF/lib</directory>
-						</configuration>
-					</execution>
-				</executions>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webResources>
+						<resource>
+							<!--配置本地jar包在项目中的存放路径 -->
+							<directory>src/main/webapp/WEB-INF/lib/</directory>
+							<!--配置打包时jar包的存放路径 -->
+							<targetPath>WEB-INF/lib</targetPath>
+							<includes>
+								<include>**/*.jar</include>
+							</includes>
+						</resource>
+					</webResources>
+				</configuration>
 			</plugin>
-		</plugins>
-	</build>
 ```
