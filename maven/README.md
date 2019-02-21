@@ -67,3 +67,29 @@ OS name: "linux", version: "3.13.0-35-generic", arch: "amd64", family: "unix"
         </mirror>
 </mirrors>
 ```
+
+### 传统项目 POM.xml
+
+```xml
+<build>
+		<finalName>websit-demo</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>clean</id>
+						<phase>pre-clean</phase>
+						<goals>
+							<goal>clean</goal>
+						</goals>
+						<configuration>
+							<directory>src/main/webapp/WEB-INF/lib</directory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+```
