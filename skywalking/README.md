@@ -14,3 +14,15 @@ SW总体可以分为四部分：
 **3. Storage：** Skywalking的存储，时间更迭，sw已经开发迭代到了6.x版本，在6.x版本中支持以ElasticSearch、Mysql、TiDB、H2、作为存储介质进行数据存储。
 
 **4. UI ：** Web可视化平台，用来展示落地的数据。
+
+
+### Docker
+```
+docker run -d  -p 8080:8080 -p 10800:10800 -p 11800:11800 -p 12800:12800 \
+-m 2048m --memory-swap 2400m \
+-e JAVA_OPTS="-Xms1024m -Xmx2048m" \
+-e ES_CLUSTER_NAME=elasticsearch \
+-e ES_ADDRESSES=127.17.0.3:9300 \
+wutang/skywalking-docker
+
+```
