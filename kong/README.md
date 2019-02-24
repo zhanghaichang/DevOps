@@ -98,3 +98,13 @@ docker run --rm -p 8080:8080 pgbi/kong-dashboard start --help
 You can now browse Kong Dashboard at http://localhost:8080
 
 ```
+# 接口注册kong
+
+```
+curl -i -X POST \
+  --url  http://47.75.219.241:8001/apis/ \
+  --data 'name=weather-api' \
+  --data 'hosts=www.sojson.com' \
+  --data 'upstream_url=https://www.sojson.com/open/api/weather/json.shtml'
+  
+```
