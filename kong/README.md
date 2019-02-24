@@ -57,3 +57,8 @@ docker run -d --name kong \
      -p 8444:8444 \
      kong:latest
 ```
+## 访问
+
+```
+ $ curl -i http://localhost:8001/
+```
