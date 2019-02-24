@@ -1,7 +1,7 @@
 # kong
 
 
-### Docker Installation
+### Docker 安装
 
 
 ```
@@ -62,7 +62,17 @@ docker run -d --name kong \
 ```
  $ curl -i http://localhost:8001/
 ```
+```
+默认情况下，KONG监听的端口为：
 
+　　· 8000：此端口是KONG用来监听来自客户端传入的HTTP请求，并将此请求转发到上有服务器；
+
+　　· 8443：此端口是KONG用来监听来自客户端传入的HTTP请求的。它跟8000端口的功能类似，但是它只是用来监听HTTP请求的，没有转发功能。可以通过修改配置文件来禁止它；
+
+　　· 8001：Admin API，通过此端口，管理者可以对KONG的监听服务进行配置；
+
+　　· 8444：通过此端口，管理者可以对HTTP请求进行监控.
+```
 ## Kong Dashboard
 
 ```
