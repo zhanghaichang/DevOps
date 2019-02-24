@@ -58,6 +58,11 @@ docker run -d --name kong \
 -p 8444:8444 \
 kong:0.12
 ```
+## 建立连接
+
+```
+docker network connect kong-net kong
+```
 ## 访问
 
 ```
