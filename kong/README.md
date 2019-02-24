@@ -36,7 +36,7 @@ docker run --rm \
      -e "KONG_DATABASE=postgres" \
      -e "KONG_PG_HOST=kong-database" \
      -e "KONG_CASSANDRA_CONTACT_POINTS=kong-database" \
-     kong:latest kong migrations bootstrap
+     kong:0.12 kong migrations up
      
 ```
 ## 安装
@@ -55,7 +55,7 @@ docker run -d --name kong \
      -p 8443:8443 \
      -p 8001:8001 \
      -p 8444:8444 \
-     kong:latest
+     kong:0.12
 ```
 ## 访问
 
@@ -75,7 +75,7 @@ docker run --rm -p [port]:8080 pgbi/kong-dashboard start --kong-url http://kong:
 # Start Kong Dashboard with basic auth
 
 docker run --rm -p 8080:8080 pgbi/kong-dashboard start \
-  --kong-url http://kong:8001
+  --kong-url http://kong:8001 \
   --basic-auth user1=admin user2=admin
 
 # See full list of start options
