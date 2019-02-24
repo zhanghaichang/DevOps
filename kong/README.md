@@ -83,7 +83,7 @@ docker network connect kong-net kong
 
 ```
 # Start Kong Dashboard
-docker run --rm -p 8080:8080 pgbi/kong-dashboard start --kong-url http://kong:8001
+docker run --rm --network=kong-net -p 8080:8080 pgbi/kong-dashboard start --kong-url http://kong:8001
 
 # Start Kong Dashboard on a custom port
 docker run --rm -p [port]:8080 pgbi/kong-dashboard start --kong-url http://kong:8001
