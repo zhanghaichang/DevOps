@@ -45,13 +45,13 @@ docker exec -it kafka /bin/bash
 ```
 cd /opt/kafka_2.11-0.9.0.1/bin
 
-./kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic my-test
+./kafka-topics.sh --create --zookeeper 172.18.161.165:2181 --replication-factor 1 --partitions 1 --topic my-test
 ```
 
 查看刚创建的主题
 
 ```
-/opt/kafka_2.11-0.9.0.1/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
+/opt/kafka_2.11-0.9.0.1/bin/kafka-topics.sh --list --zookeeper 172.18.161.165:2181
 
 ```
 
@@ -65,7 +65,7 @@ cd /opt/kafka_2.11-0.9.0.1/bin
 读取消息：
 ```
 /opt/kafka_2.11-0.9.0.1/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning \
---zookeeper zookeeper:9092
+--zookeeper 172.18.161.165:2181
 
 ```
 ## 创建Kafka管理节点
