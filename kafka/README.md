@@ -43,26 +43,29 @@ docker exec -it kafka /bin/bash
 创建一个主题：
 
 ```
-/opt/kafka/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic my-test
+cd /opt/kafka_2.11-0.9.0.1/bin
+
+./kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic my-test
 ```
 
 查看刚创建的主题
 
 ```
-/opt/kafka/bin/kafka-topics.sh --list --zookeeper localhost:2181
+/opt/kafka_2.11-0.9.0.1/bin/kafka-topics.sh --list --zookeeper zookeeper:2181
 
 ```
 
 发送消息：
 
 ```
-/opt/kafka/bin/kafka-console-producer.sh --broker-list  localhost:9092 --topic my-test
+/opt/kafka_2.11-0.9.0.1/bin/kafka-console-producer.sh --broker-list  localhost:9092 --topic my-test
 
 ```	
 
 读取消息：
 ```
-/opt/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning
+/opt/kafka_2.11-0.9.0.1/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning \
+--zookeeper zookeeper:9092
 
 ```
 ## 创建Kafka管理节点
