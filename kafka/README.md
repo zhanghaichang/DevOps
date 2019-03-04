@@ -23,7 +23,6 @@ docker run --name  zookeeper --restart always -p 2181:2181 -v /data/zookeeper:/d
 
 ```
 docker run -d --name kafka --publish 9092:9092 \
---link zookeeper \
 -e KAFKA_BROKER_ID=0 \
 --env KAFKA_ADVERTISED_HOST_NAME=localhost \
 --env KAFKA_ZOOKEEPER_CONNECT=172.18.161.165:2181 \
