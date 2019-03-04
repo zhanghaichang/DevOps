@@ -24,10 +24,10 @@ docker run --name  zookeeper --restart always -p 2181:2181 -v /data/zookeeper:/d
 ```
 docker run -d --name kafka --publish 9092:9092 \
 -e KAFKA_BROKER_ID=0 \
---env KAFKA_ADVERTISED_HOST_NAME=localhost \
+--env KAFKA_ADVERTISED_HOST_NAME=Database \
 --env KAFKA_ZOOKEEPER_CONNECT=172.18.161.165:2181 \
 --env KAFKA_ADVERTISED_PORT=9092 \
---env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://47.106.217.33:9092  \
+--env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://172.18.161.165:9092  \
 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 \
 --net=host \
 wurstmeister/kafka:2.11-0.9.0.1
