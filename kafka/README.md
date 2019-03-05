@@ -8,7 +8,7 @@ docker pull zookeeper:3.4.9
 ```
 * kafka镜像：
 ```
-docker pull wurstmeister/kafka:2.11-0.9.0.1
+docker pull wurstmeister/kafka:2.12-2.1.0
 ```
 * kafka-manager镜像：
 ```
@@ -24,13 +24,13 @@ docker run --name  zookeeper --restart always -p 2181:2181 -v /data/zookeeper:/d
 ```
 docker run -d --name kafka --publish 9092:9092 \
 -e KAFKA_BROKER_ID=0 \
---env KAFKA_ADVERTISED_HOST_NAME=localhost \
+--env KAFKA_ADVERTISED_HOST_NAME=47.106.217.33 \
 --env KAFKA_ZOOKEEPER_CONNECT=172.18.161.165:2181 \
 --env KAFKA_ADVERTISED_PORT=9092 \
 --env KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://47.106.217.33:9092  \
 --env KAFKA_LISTENERS=PLAINTEXT://0.0.0.0:9092 \
 --net=host \
-wurstmeister/kafka:2.11-0.9.0.1
+wurstmeister/kafka:2.12-2.1.0
 ```
 ### Test 读写验证
 
@@ -43,7 +43,7 @@ docker exec -it kafka /bin/bash
 创建一个主题：
 
 ```
-cd /opt/kafka_2.11-0.9.0.1/bin
+cd /opt/kafka_2.12-2.1.0/bin
 
 ./kafka-topics.sh --create --zookeeper 172.18.161.165:2181 --replication-factor 1 --partitions 1 --topic my-test
 ```
@@ -51,20 +51,20 @@ cd /opt/kafka_2.11-0.9.0.1/bin
 查看刚创建的主题
 
 ```
-/opt/kafka_2.11-0.9.0.1/bin/kafka-topics.sh --list --zookeeper 172.18.161.165:2181
+/opt/kafka_2.12-2.1.0/bin/kafka-topics.sh --list --zookeeper 172.18.161.165:2181
 
 ```
 
 发送消息：
 
 ```
-/opt/kafka_2.11-0.9.0.1/bin/kafka-console-producer.sh --broker-list  localhost:9092 --topic my-test
+/opt/kafka_2.12-2.1.0/bin/kafka-console-producer.sh --broker-list  localhost:9092 --topic my-test
 
 ```	
 
 读取消息：
 ```
-/opt/kafka_2.11-0.9.0.1/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning \
+/opt/kafka_2.12-2.1.0/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic my-test --from-beginning \
 --zookeeper 172.18.161.165:2181
 
 ```
