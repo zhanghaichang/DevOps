@@ -113,7 +113,6 @@ cd /opt/kafka/kafka_2.11-2.1.0/config/
 有很多文件，这里可以发现有Zookeeper文件，我们可以根据Kafka内带的zk集群来启动，但是建议使用独立的zk集群
 
 ```shell
--rw-r--r--. 1 root root 5699 Feb 22 09:41 192.168.7.101
 -rw-r--r--. 1 root root  906 Feb 12 08:37 connect-console-sink.properties
 -rw-r--r--. 1 root root  909 Feb 12 08:37 connect-console-source.properties
 -rw-r--r--. 1 root root 2110 Feb 12 08:37 connect-distributed.properties
