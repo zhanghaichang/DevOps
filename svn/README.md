@@ -57,3 +57,18 @@ www=liuzd,fushan
 先kill掉svn进程：killall svnserve
 启动svn：sudo svnserve -d -r /home/ssl/repos/
 ```
+
+编辑cd /conf目录svnserve.conf主配置文件，对以下几项修改如下
+
+```shell
+
+[general]
+
+anon-access = none    #取消匿名访问
+
+auth-access = write    #授权用户有可写权限
+
+password-db = passwd    #指定用户配置文件，后面会用到
+
+authz-db = authz    #指定权限配置文件，后面会用到
+```
