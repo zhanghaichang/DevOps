@@ -22,3 +22,23 @@ svnserve --version
 # 卸载旧版本SVN
 # yum remove subversion
 ```
+### 添加用户
+
+
+```
+1、 找到svn安装路径  我的是 /home/ssl/repos/rogue_server/conf/ （如果不知道，可以搜索 ：find / -name svn）
+2、进入该目录的conf，其中包含authz、passwd、svnserve.conf三个文件
+3、进入passwd，在[users]下面加上你要添加的svn账号及密码   格式为：
+[users]
+liuzd=rogue_2016
+fushan=rogue_2016
+然后保存wq
+（如果只增加用户，不用重启）
+4、再进入authz，在[groups]下加上刚刚添加的用户名，格式为
+[groups] 
+www=liuzd,fushan
+然后保存wq
+5、重启svn
+先kill掉svn进程：killall svnserve
+启动svn：sudo svnserve -d -r /home/ssl/repos/
+```
