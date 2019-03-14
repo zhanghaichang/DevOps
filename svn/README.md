@@ -22,6 +22,21 @@ svnserve --version
 # 卸载旧版本SVN
 # yum remove subversion
 ```
+
+### 恢复数据
+
+将备份文件load进新服务器仓库
+
+```
+svnadmin load /usr/local/svnRepo/demo/ < /data/20180524.dump
+```
+
+使用scp命令，将源服务器上配置文件
+
+```
+scp -r /usr/local/svnRepo/demo/conf/ root@新服务器IP:/data/
+```
+
 ### 添加用户
 
 
