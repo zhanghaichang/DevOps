@@ -75,7 +75,31 @@ authz-db = authz    #指定权限配置文件，后面会用到
 
 ### CollabNet Subversion 安装
 
-数据迁移
+# SVN数据转移
+
+一、旧服务器上要迁移的文件
+```
+1.1 拷贝csvn/data/repositories             　    (数据文件）
+
+1.2 拷贝csvn/data/csvn-production-hsqldb.script     （用户配置文件）
+
+1.3 拷贝csvn/data/conf/svn_auth_file              (用户列表文件)
+
+1.4 拷贝csvn/data/conf/svn_access.file             (用户权限文件)
+```
+
+```
+二、新服务器配置文件位置
+
+2.1 数据文件                  /home/svn/csvn/data/repositories
+
+2.2 用户配置文件            /home/svn/csvn/data/csvn-production-hsqldb.script
+
+2.3 用户列表文件            /home/svn/csvn/data/conf/svn_auth_file
+
+2.4 用户权限文件            /home/svn/csvn/data/conf/ svn_access.file
+```
+
 
 保留版本记录方式:
 
