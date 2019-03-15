@@ -112,6 +112,26 @@ wKiom1WuChCga254AAAmdGkb1UQ329.jpg
 
     /用户列表文件 svn_auth_file/
 ```
+```
+  /用户配置文件 csvn-production-hsqldb.script/
+
+(主要修改  INSERT INTO USER VALUES 这部分，其中参数含义在下图.)
+```
+```
+3.3数据文件、用户权限文件、这两个可以直接拷贝覆盖。
+
+四、调整数据文件权限
+
+4.1 chown –R svnroot:svn /xxxxxxxxxx
+
+          分别修改四个文件的属主、属组
+
+五、启动
+
+     至此，修改完毕，启动csvn csvn-httpd即可
+     
+```
+
 保留版本记录方式:
 
 原仓库中dump库，新仓库中load
