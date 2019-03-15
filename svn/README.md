@@ -88,9 +88,9 @@ authz-db = authz    #指定权限配置文件，后面会用到
 1.4 拷贝csvn/data/conf/svn_access.file             (用户权限文件)
 ```
 
-```
 二、新服务器配置文件位置
 
+```
 2.1 数据文件                  /home/svn/csvn/data/repositories
 
 2.2 用户配置文件            /home/svn/csvn/data/csvn-production-hsqldb.script
@@ -100,13 +100,10 @@ authz-db = authz    #指定权限配置文件，后面会用到
 2.4 用户权限文件            /home/svn/csvn/data/conf/ svn_access.file
 ```
 
-
-```
 三、正式开始
 
+```
 3.1 首先，停止csvn 、csvn-httpd 服务  
-
-wKiom1WuChCga254AAAmdGkb1UQ329.jpg
 
 3.2 先修改用户的文件，注意：旧的配置文件不能直接替换新服务器上的，需要修改新服务器文件的内容，主要改用户列表和用户配置两个文件。
 
@@ -122,11 +119,14 @@ wKiom1WuChCga254AAAmdGkb1UQ329.jpg
 
 四、调整数据文件权限
 
+```
 4.1 chown –R svnroot:svn /xxxxxxxxxx
-
-          分别修改四个文件的属主、属组
+```
+分别修改四个文件的属主、属组
+```
 
 五、启动
+```
 
      至此，修改完毕，启动csvn csvn-httpd即可
      
