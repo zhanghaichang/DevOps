@@ -75,6 +75,31 @@ authz-db = authz    #指定权限配置文件，后面会用到
 
 ### CollabNet Subversion 安装
 
+
+配置开机启动[可选]
+```
+sudo bin/csvn-httpd install     #svn服务端
+sudo -E bin/csvn install           #web页面
+```
+
+```
+cd csvn/bin/
+sh csvn start　　#启动
+#如果使用start启动失败，可以使用下面的命令
+sh csvn console　　#此命令会在控制台输出启动日志，便于确定是什么错误导致启动失败
+
+#注意：如果确认已经安装JDK，但是程序依然提示没有找到。请配置如下
+vim data/conf/csvn.conf
+#在#JAVA_HOME下添加如下
+JAVA_HOME="/usr/java/xxxx"   #/usr/java/xxxx是你自己的JDK路径
+```
+```
+Address: http://localhost:3343/csvn
+You can access the SSL version on this URL:
+Address: https://localhost:4434/csvn
+```
+
+
 # SVN数据转移
 
 一、旧服务器上要迁移的文件
