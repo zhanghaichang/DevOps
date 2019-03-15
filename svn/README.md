@@ -72,3 +72,7 @@ password-db = passwd    #指定用户配置文件，后面会用到
 
 authz-db = authz    #指定权限配置文件，后面会用到
 ```
+
+### CollabNet Subversion 安装
+
+
