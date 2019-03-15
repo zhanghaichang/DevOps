@@ -75,4 +75,12 @@ authz-db = authz    #指定权限配置文件，后面会用到
 
 ### CollabNet Subversion 安装
 
+数据迁移
 
+保留版本记录方式:
+
+原仓库中dump库，新仓库中load
+
+svnadmin dump /home/svn/csvn/data/repositories/projects > svn_bak
+
+svnadmin load /opt/csvn/data/repositories/tr < /usr/svnbak/svn_bak
