@@ -166,7 +166,8 @@ Address: https://localhost:4434/csvn
 svnadmin create  pzwg /usr/local/csvn/data/repositories
 ```
 原仓库中dump库，新仓库中load
-
+```
 svnadmin dump /home/svn/csvn/data/repositories/projects > svn_bak
 
 svnadmin load /opt/csvn/data/repositories/tr/ < /usr/svnbak/svn_bak
+```
