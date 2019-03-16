@@ -159,8 +159,16 @@ Address: https://localhost:4434/csvn
 
 保留版本记录方式:
 
+
+
 原仓库中dump库，新仓库中load
+
+目录下创建一个仓库 
+
+```
+svnadmin create  pzwg /usr/local/csvn/data/repositories
+```
 
 svnadmin dump /home/svn/csvn/data/repositories/projects > svn_bak
 
-svnadmin load /opt/csvn/data/repositories/tr < /usr/svnbak/svn_bak
+svnadmin load /opt/csvn/data/repositories/tr/ < /usr/svnbak/svn_bak
