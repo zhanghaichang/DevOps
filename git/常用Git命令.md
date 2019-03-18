@@ -37,7 +37,7 @@ $ git config --global user.email  # 获取当前登录用户的邮箱
 $ git config --global user.name 'userName'    # 设置git账户，userName为你的git账号，
 $ git config --global user.email 'email'
 # 获取Git配置信息，执行以下命令：
-$ git config –list
+$ git config –-list
 ```
 ## 配置https和ssh推送时保存用户名和密码
 ```shell
