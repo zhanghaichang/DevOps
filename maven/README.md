@@ -98,3 +98,15 @@ OS name: "linux", version: "3.13.0-35-generic", arch: "amd64", family: "unix"
 				</configuration>
 			</plugin>
 ```
+
+Maven是一个常用的构建工具，但是Maven的版本和插件的配合并不是那么完美，有时候你不得不切换到一个稍微旧一些的版本，以保证所有东西正常工作。
+
+而Gradle提供了一个Wrapper，可以很好解决版本切换的问题，当然更重要的是不需要预安装Gradle。
+
+Maven虽然没有官方的Wrapper，但是有一个第三方的Wrapper可以使用。
+
+安装很简单 `mvn -N io.takari:maven:wrapper` ，安装完成如下
+
+安装
+
+使用的时候直接 `./mvnw clean install` 即可，它会自动下载最新版本来执行
