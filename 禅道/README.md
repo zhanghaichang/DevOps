@@ -45,6 +45,11 @@ docker run --name [容器名称] -p [主机端口]:80 -v [主机代码目录]:/a
 ```
 docker run --name zentao -p 80:80 -v /data/www:/app/zentaopms -v /data/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d zentao:latest
 ```
+其他端口路径
+
+```
+docker run --name zentao -p 30004:80 -v /data/zentao/www:/app/zentaopms -v /data/zentao/data:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d 172.18.161.165:8888/topcheer/zentao:latest
+```
 
 3、安装禅道
 
