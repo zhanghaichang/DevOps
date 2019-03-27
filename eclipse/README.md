@@ -25,7 +25,7 @@
 /**   
  * @ClassName:  ${type_name}   
  * @Description:${todo}(这里用一句话描述这个类的作用)   
- * @author: 天源迪科 
+ * @author: 张海昌
  * @date:   ${date} ${time}   
  *   
  * ${tags}  
