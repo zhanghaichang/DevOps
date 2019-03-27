@@ -6,11 +6,10 @@
 
 ```
 /**  
- * All rights Reserved, Designed By www.tydic.com
  * @Title:  ${file_name}   
  * @Package ${package_name}   
  * @Description:    ${todo}(用一句话描述该文件做什么)   
- * @author: 张海昌    
+ * @author: ${user}    
  * @date:   ${date} ${time}   
  * @version V1.0 
  * @Copyright: ${year} www.topcheer.com Inc. All rights reserved. 
@@ -25,7 +24,7 @@
 /**   
  * @ClassName:  ${type_name}   
  * @Description:${todo}(这里用一句话描述这个类的作用)   
- * @author: 张海昌
+ * @author: ${user}
  * @date:   ${date} ${time}   
  *   
  * ${tags}  
