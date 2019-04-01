@@ -47,3 +47,11 @@ docker run \
     -p xxx:80 \
     --detach osixia/phpldapadmin:0.7.1
 ```
+
+
+```
+# 登陆用户
+cn=admin,dc=example,dc=org
+#搜索
+ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,dc=org" -w admin
+```
