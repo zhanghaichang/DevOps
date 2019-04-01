@@ -94,3 +94,26 @@ ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,d
  oclRootDN: cn=admin,dc=xxx,dc=com
  #这个是设置管理员dn，xxx可以换成自己的域名～
 ```
+
+
+```
+ldapsearch -H ldap:// -x -D "cn=admin,dc=topcheer,dc=com" -W
+  
+  
+vim /etc/ldap/slapd.d/cn=config/olcDatabase={1}bdb.ldif
+
+ldapsearch -x -H ldap://localhost -b dc=topcheer,dc=com -D "cn=admin,dc=topcheer,dc=com" -w admin
+
+
+---
+  adminPassword: "admin"
+  configPassword: "admin"
+  env: 
+    LDAP_ADMIN_PASSWORD: "admin"
+    LDAP_DOMAIN: "topcheer.com"
+    LDAP_ORGANISATION: "topcheer"
+  image: 
+    tag: "1.2.1"
+  persistence: 
+    enabled: "true"
+```
