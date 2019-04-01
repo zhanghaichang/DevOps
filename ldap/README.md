@@ -73,7 +73,24 @@ docker run \
       
 ```
 # 登陆用户
-cn=admin,dc=example,dc=org
+cn=admin,dc=topcheer,dc=com
 #搜索
 ldapsearch -x -H ldap://localhost -b dc=example,dc=org -D "cn=admin,dc=example,dc=org" -w admin
+```
+
+```
+ 首先生成管理员密码。
+ slappasswd
+ 输入两次得到一个密码，我的这个密码是1234
+ {SSHA}7Wi/7NzFL/b6y+a7jZsDos5ax3HK0gUZ
+ 修改数据库配置文件，设置域名，密码等
+ 
+ ```
+ > vim /etc/openldap/slapd.d/cn=config/olcDatabase={2}bdb.ldif
+ 
+ ```
+ olcSuffix: dc=xxx,dc=com
+ #这个主要设置目录树根的域名。
+ oclRootDN: cn=admin,dc=xxx,dc=com
+ #这个是设置管理员dn，xxx可以换成自己的域名～
 ```
