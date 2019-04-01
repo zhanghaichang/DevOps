@@ -49,6 +49,28 @@ docker run \
 ```
 
 
+### OpenLDAP的相关配置文件信息
+
+```
+  /etc/openldap/slapd.conf：OpenLDAP的主配置文件，记录根域信息，管理员名称，密码，日志，权限等
+  /etc/openldap/slapd.d/*：这下面是/etc/openldap/slapd.conf配置信息生成的文件，每修改一次配置信息，这里的东西就要重新生成
+  /etc/openldap/schema/*：OpenLDAP的schema存放的地方
+  /var/lib/ldap/*：OpenLDAP的数据文件
+  /usr/share/openldap-servers/slapd.conf.obsolete 模板配置文件
+  /usr/share/openldap-servers/DB_CONFIG.example 模板数据库配置文件
+```
+
+### OpenLDAP监听的端口：
+ ```
+默认监听端口：389（明文数据传输）
+加密监听端口：636（密文数据传输）
+```      
+### 检测配置文件
+
+```
+先检测/etc/openldap/slapd.conf是否有错误：slaptest -f /etc/openldap/slapd.conf
+```
+      
 ```
 # 登陆用户
 cn=admin,dc=example,dc=org
