@@ -1,11 +1,11 @@
-
+ 
 ### swagger ui
 
 ```
 <dependency>
   <groupId>com.github.caspar-chen</groupId>
   <artifactId>swagger-ui-layer</artifactId>
-  <version>${last-version}</version>
+  <version>1.1.3</version>
 </dependency>
 <dependency>
   <groupId>com.github.xiaoymin</groupId>
