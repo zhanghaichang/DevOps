@@ -41,3 +41,43 @@ groupdel groupname
 ```
 usermod -G groupname username
 ```
+
+
+## Linux用户密码期限修改
+
+
+先重置用户密码，发现过期日志为Oct 08, 2017，有效期为90天。
+
+```
+[root@01 ~]# chage -l testuser
+Last password change     : Jul 10, 2017
+Password expires     : Oct 08, 2017
+Password inactive     : never
+Account expires     : never
+Minimum number of days between password change     : 0
+Maximum number of days between password change     : 90
+Number of days of warning before password expires    : 10
+```
+修改密码为永不过期，修改后见红色标注
+
+```
+[root@01 ~]# chage -M 99999 testuser
+[root@01 ~]# chage -l testuser
+Last password change                    : Jul 10, 2017
+Password expires                    : never
+Password inactive                    : never
+Account expires                        : Oct 16, 2243
+Minimum number of days between password change        : 0
+Maximum number of days between password change        : 99999
+Number of days of warning before password expires    : 10
+```
+
+如果账户设置过了过期时间，后面新加的用户都会受到这个设置的影响
+
+这个主要是由/etc/login.defs参数文件中的一些参数控制的的。它主要用于用户账号限制
+```
+PASS_MAX_DAYS 90
+PASS_MIN_DAYS	0
+PASS_MIN_LEN	6
+PASS_WARN_AGE	10
+```
