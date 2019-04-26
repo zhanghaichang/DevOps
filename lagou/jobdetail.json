@@ -1,0 +1,41 @@
+{
+	"msg": "请求成功!",
+	"code": 2000,
+	"data": {
+		"recruitId": 510018,
+		"recruitPostName": "消防工程师",
+		"cityName": [
+			{
+				"cityId": null,
+				"cityName": "温州市",
+				"cityRootId": null
+			}
+		],
+		"recruitLowPay": "2000",
+		"recruitTallPay": "30000",
+		"recruitPersonally": true,
+		"postCategoryName": "消防维保员",
+		"recruitWorkAge": "无工作经验",
+		"recruitFreshGraduate": true,
+		"companyName": "深圳市杨氏集团无限公司",
+		"companyId": 459,
+		"recruitVisitors": "117",
+		"recruitNumber": 2,
+		"recruitEducation": "不限",
+		"welfareName": [
+			{
+				"welfareName": "不定期聚会"
+			},
+			{
+				"welfareName": "员工旅游"
+			},
+			{
+				"welfareName": "补贴"
+			}
+		],
+		"recruitDescribe": "岗位职责：\r\n1、在现场按要求进行消防设施安全检测及维护，对故障设备进行维修、更换工作；\r\n2、懂得线路排查与修复、水系统等各种故障维修；\r\n3、做好现场维保原始数据的采集和记录；\r\n4、协助完成维保报告。\r\n\r\n任职要求：\r\n1、大专以上学历，从事消防维保工作5年以上；\r\n2、建筑工程类专业、给排水专业、电工电子相关专业专业优先，有驾照并熟练驾驶优先考虑；\r\n3、熟悉CAD，办公软件操作或有中级建构筑物消防员资格证者和电工证优先考虑。\r\n\r\n上班地址：XXXXXXX",
+		"recruitOperationState": "上架中",
+		"recruitCollect": true
+	}
+
+}
