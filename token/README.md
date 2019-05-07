@@ -1,7 +1,7 @@
 # Token 认证
 
 
-### 用户会话token多设备登录
+### 1.用户会话token多设备登录
 
 1. 检查token有效期
 2. token持久化
