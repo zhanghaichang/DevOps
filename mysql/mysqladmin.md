@@ -2,13 +2,17 @@
 
 
 mysqladmin 工具的使用格式：
-``
+
+```
 mysqladmin [option] command [command option] command ......
 参数选项：
 -c number 自动运行次数统计，必须和 -i 一起使用
 -i number 间隔多长时间重复执行
 ```
+
+
 ### 0）每个两秒查看一次服务器的状态，总共重复5次。
+
 ```
 [root@test-huanqiu ~]# mysqladmin -uroot -p -i 2 -c 5 status
 ```
