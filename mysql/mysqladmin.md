@@ -11,7 +11,7 @@ mysqladmin [option] command [command option] command ......
 ```
 
 
-### 0）每个两秒查看一次服务器的状态，总共重复5次。
+### (0) 每个两秒查看一次服务器的状态，总共重复5次。
 
 ```
 [root@test-huanqiu ~]# mysqladmin -uroot -p -i 2 -c 5 status
