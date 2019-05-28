@@ -31,3 +31,4 @@ docker run -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d xuxueli/x
 */
 docker run -e PARAMS="--spring.datasource.url=jdbc:mysql://127.0.0.1:3306/xxl-job?Unicode=true&characterEncoding=UTF-8" -p 8080:8080 -v /tmp:/data/applogs --name xxl-job-admin  -d xuxueli/xxl-job-admin:2.0.1
 ```
+### 执行器
