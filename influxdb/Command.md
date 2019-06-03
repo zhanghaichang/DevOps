@@ -80,6 +80,15 @@
 
     show series from weather
     
+### 用户管理
+
+```
+show users ; 显示用户
+create user “username” with password ‘password’ 创建用户
+create user “username” with password ‘password’ with all privileges 创建管理员权限的用户
+drop user ‘username’ 删除用户
+SET PASSWORD FOR admin =’influx@gpscloud’
+```
 
 #### 创建保存策略：
 
