@@ -7,28 +7,27 @@ Influxdb是一个开源分布式时序、事件和指标数据库。使用Go 语
 
 InfluxDB有三大特性：
 
-* 1. Time Series （时间序列）：你可以使用与时间有关的相关函数（如最大，最小，求和等）
-* 2. Metrics（度量）：你可以实时对大量数据进行计算
-* 3. Eevents（事件）：它支持任意的事件数据
+* 1 Time Series （时间序列）：你可以使用与时间有关的相关函数（如最大，最小，求和等）
+* 2 Metrics（度量）：你可以实时对大量数据进行计算
+* 3 Eevents（事件）：它支持任意的事件数据
 
 **特点**
 
-* 1. schemaless(无结构)，可以是任意数量的列
-* 2. Scalable
-* 3. min, max, sum, count, mean,median 一系列函数，方便统计
-* 4. Native HTTP API, 内置http支持，使用http读写
-* 5. Powerful Query Language 类似sql
-* 6. Built-in Explorer 自带管理工具
+* 1 schemaless(无结构)，可以是任意数量的列
+* 2 Scalable
+* 3 min, max, sum, count, mean,median 一系列函数，方便统计
+* 4 Native HTTP API, 内置http支持，使用http读写
+* 5 Powerful Query Language 类似sql
+* 6 Built-in Explorer 自带管理工具
 
 
 ```shell
-docker run -p 8086:8086  -v $PWD:/var/lib/influxdb influxdb
-#admin ui
-docker run -p 8086:8086 -p 8083:8083 -e INFLUXDB_ADMIN_ENABLED=true influxdb
-
-docker run -d -p 8083:8083 -p 8086:8086 tutum/influxdb
+docker run -d -p 8083:8083 -p 8086:8086 -e ADMIN_USER="root" -e INFLUXDB_INIT_PWD="somepassword" -e PRE_CREATE_DB="db1;db2;db3" tutum/influxdb:latest
 
 ```
+
+启动influxdb后，influxdb会启动一个内部的HTTP server管理工具，用户可以通过接入该web服务器来操作influxdb。当然，也可以通过CLI即命令行的方式访问influxdb。打开浏览器，输入http://Host_IP:8083，访问管理工具的主页：
+
 
 ```
 
