@@ -1,5 +1,26 @@
 # influxdb
 
+
+### 1. 简介：
+
+Influxdb是一个开源分布式时序、事件和指标数据库。使用Go 语言编写，无需外部依赖。其设计目标是实现分布式和水平伸缩扩展。本文主要介绍在Docker环境下Influxdb的使用。
+
+InfluxDB有三大特性：
+
+* 1. Time Series （时间序列）：你可以使用与时间有关的相关函数（如最大，最小，求和等）
+* 2. Metrics（度量）：你可以实时对大量数据进行计算
+* 3. Eevents（事件）：它支持任意的事件数据
+
+**特点**
+
+* 1. schemaless(无结构)，可以是任意数量的列
+* 2. Scalable
+* 3. min, max, sum, count, mean,median 一系列函数，方便统计
+* 4. Native HTTP API, 内置http支持，使用http读写
+* 5. Powerful Query Language 类似sql
+* 6. Built-in Explorer 自带管理工具
+
+
 ```shell
 docker run -p 8086:8086  -v $PWD:/var/lib/influxdb influxdb
 #admin ui
