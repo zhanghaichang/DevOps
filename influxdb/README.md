@@ -3,9 +3,9 @@
 ```shell
 docker run -p 8086:8086  -v $PWD:/var/lib/influxdb influxdb
 #admin ui
-docker run -p 8086:8086 -p 8083:8083 \
-    -e INFLUXDB_ADMIN_ENABLED=true \
-    influxdb
+docker run -p 8086:8086 -p 8083:8083 -e INFLUXDB_ADMIN_ENABLED=true influxdb
+
+docker run -d -p 8083:8083 -p 8086:8086 tutum/influxdb
 
 ```
 
