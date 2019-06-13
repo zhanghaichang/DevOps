@@ -110,3 +110,10 @@ Maven虽然没有官方的Wrapper，但是有一个第三方的Wrapper可以使�
 安装
 
 使用的时候直接 `./mvnw clean install` 即可，它会自动下载最新版本来执行
+
+
+### 上传jar包到私服仓库
+
+```shell
+mvn deploy:deploy-file -DgroupId=com.maven.api -DartifactId=maven-api -Dversion=1.0 -Dpackaging=jar -Dfile=本地jar包的地址 -Durl=上传到的私有仓库的地址 -DrepositoryId=nexus
+```
