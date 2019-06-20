@@ -1,17 +1,17 @@
 #### 下载Anaconda
 
-    [root@master tmp]# wget https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh
+    [root@master tmp]# wget https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-ppc64le.sh
     
 
 #### 进入安装文件存放目录
 
     [root@master tmp]# ll
-    -rw-r--r-- 1 root root 508722275 May 31 03:20 Anaconda2-4.4.0-Linux-x86_64.sh
+    -rw-r--r-- 1 root root 508722275 May 31 03:20 Anaconda3-2019.03-Linux-ppc64le.sh
     
 
 #### 输入安装命令
 
-    [root@master tmp]# bash Anaconda2-4.4.0-Linux-x86_64.sh
+    [root@master tmp]# bash Anaconda3-2019.03-Linux-ppc64le.sh
     
 
 #### 根据提示按ENTER
