@@ -38,3 +38,12 @@ $ yum install mssql-tools
 ```
 $ sqlcmd -S localhost -U SA -P 你设置的密码
 ```
+
+https://github.com/twright-msft/mssql-node-docker-demo-app
+
+### 导入脚本
+
+```
+sqlcmd -S localhost -U sa -P Yukon900 -d master -i setup.sql
+```
+
