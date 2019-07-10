@@ -34,7 +34,7 @@ Rancher从v1.6.15开始到v2.x.x,Rancher系统相关的所有镜像(包括1.6.x�
 ```
 > 可以设置多个registry-mirrors地址，以数组形式书写，地址需要添加协议头(https或者http)。
 
-## 配置insecure-registries私有仓库
+## 配置insecure-registries 私有仓库
 
 Docker默认只信任TLS加密的仓库地址(https)，所有非https仓库默认无法登陆也无法拉取镜像。insecure-registries字面意思为不安全的仓库，通过添加这个参数对非https仓库进行授信。可以设置多个insecure-registries地址，以数组形式书写，地址不能添加协议头(http)。
 
