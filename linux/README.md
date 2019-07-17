@@ -146,3 +146,56 @@ ps -ef |grep XXXXX
 *　　hard　　nofile　　65536
 ```
 修改以后保存，注销当前用户，重新登录，执行ulimit -a ,ok ,参数生效了：
+
+
+## Linux添加硬盘和挂载磁盘
+
+1.使用fdisk -l 查看硬盘的详细信息
+
+```
+fdisk -l
+```
+2 创建新硬盘分区
+
+```
+fdisk /dev/sdc
+```
+选择n p 编号1，其他用默认，最后w （w相当于保存）
+
+3、最后fdisk -l 看到有linux格式的磁盘了 
+
+```
+fdisk -l
+```
+4、文件格式化
+
+```
+mkfs -t ext4 /dev/sdc1
+```
+
+5、计划/dev/sdc1挂载到 /data2 
+```
+mkdir /data2
+```
+查看sdc1对应的uuid
+```
+ll /dev/disk/by-uuid  
+```
+
+然后将自动挂载添加到/etc/fstab中
+
+```
+ vi /etc/fstab
+    UUID=XXXX  /data2 ext4 defaults 0 0 
+```
+
+6、挂载 
+
+```
+mount -a
+```
+7、查看一下挂载是否成功了
+
+```
+df -TH /data2
+```
