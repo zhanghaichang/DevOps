@@ -73,9 +73,28 @@ docker run -p 389:389 --name myopenldap --network bridge --hostname openldap-hos
 
 
 
+### 使用docker 安装 PHPLdapAdmin
+
+```
+docker run -d --privileged -p 10004:80 --name myphpldapadmin --env PHPLDAPADMIN_HTTPS=false --env PHPLDAPADMIN_LDAP_HOSTS=172.17.0.6 --detach osixia/phpldapadmin
+```
+
+配置的Ldap地址：--env PHPLDAPADMIN_LDAP_HOSTS=172.17.0.6
+
+配置不开启HTTPS：--env PHPLDAPADMIN_HTTPS=false（默认是true）
+
+
+如果开启HTTPS，需要配置443端口映射：-p 8443:443，并采用https访问
+
+通过访问http://localhost:10004 来管理，登陆界面
+
+点击login进行登录
+
+Login DN：cn=admin,dc=mylitboy,dc=com
+
+Password：ldap123
 
 -------------
-
 可以使用这个docker一键启动openldap服务器，参考：[github.com/osixia/dock…](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fosixia%2Fdocker-openldap) 编写docker-compose.yml如下
 
     version: '3'
