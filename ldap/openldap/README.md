@@ -47,6 +47,33 @@ LDIF: openldap的数据描述格式，类比linux的/etc/passwd文件格式，�
 objectClass列表参考：[www.zytrax.com/books/ldap/…](https://link.juejin.im?target=http%3A%2F%2Fwww.zytrax.com%2Fbooks%2Fldap%2Fape%2F%23objectclasses) 可以通过定义schema创建新的objectClass: [www.openldap.org/doc/admin24…](https://link.juejin.im?target=http%3A%2F%2Fwww.openldap.org%2Fdoc%2Fadmin24%2Fschema.html)
 
 搭建openldap服务器
+
+### 使用docker 安装 openldap
+
+https://github.com/osixia/docker-openldap
+
+拉取镜像
+
+```
+docker pull osixia/openldap
+```
+
+运行镜像
+```
+docker run -p 389:389 --name myopenldap --network bridge --hostname openldap-host --env LDAP_ORGANISATION="mylitboy" --env LDAP_DOMAIN="mylitboy.com" --env LDAP_ADMIN_PASSWORD="ldap123" --detach osixia/openldap
+
+```
+配置LDAP组织者：`--env LDAP_ORGANISATION="mylitboy"`
+
+配置LDAP域：`--env LDAP_DOMAIN="mylitboy.com"`
+
+配置LDAP密码：`--env LDAP_ADMIN_PASSWORD="ldap123"`
+
+默认登录用户名：`admin`
+
+
+
+
 -------------
 
 可以使用这个docker一键启动openldap服务器，参考：[github.com/osixia/dock…](https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fosixia%2Fdocker-openldap) 编写docker-compose.yml如下
