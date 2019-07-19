@@ -96,3 +96,9 @@ CAS Client 负责部署在客户端（注意，我是指 Web 应用），原则�
 docker run  --name cas -p 8443:8443 -p 8878:8080  apereo/cas /bin/sh /cas-overlay/bin/run-cas.sh
 
 ```
+
+## 登录访问
+
+用户名 casuser 密码  Mellon
+
+https://localhost:8443/cas/login
