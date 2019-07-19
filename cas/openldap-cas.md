@@ -1,4 +1,4 @@
-# cas server openldap 配置
+# Cas server openldap 配置
 
 可以参考官方文档 https://apereo.github.io/cas/5.3.x/installation/LDAP-Authentication.html#ldap-authentication
 
