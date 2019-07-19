@@ -60,7 +60,7 @@ docker pull osixia/openldap
 
 运行镜像
 ```
-docker run -p 389:389 --name myopenldap --network bridge --hostname openldap-host --env LDAP_ORGANISATION="mylitboy" --env LDAP_DOMAIN="mylitboy.com" --env LDAP_ADMIN_PASSWORD="ldap123" --detach osixia/openldap
+docker run -p 389:389 --name myopenldap --network bridge --hostname openldap-host --env LDAP_ORGANISATION="mylitboy" --env LDAP_DOMAIN="mylitboy.com" --env LDAP_ADMIN_PASSWORD="ldap123" --detach osixia/openldap:1.2.4
 
 ```
 配置LDAP组织者：`--env LDAP_ORGANISATION="mylitboy"`
