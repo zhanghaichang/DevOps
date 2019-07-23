@@ -27,3 +27,6 @@
 6.eclipse中点选Window---Preferences---maven---Archetypes,点选Add Remote Catalog,输入nexus中的地址并取一个描述名字.nexus的地址形如:
 
 http://localhost:8081/nexus/content/groups/public/archetype-catalog.xml  ,为archetype-catalog.xml文件的地址.
+
+
+执行mvn deploy部署archetype到私服或者中央仓库，注意pom.xml需要设置私服的地址和archetype的坐标信息（下一步测试需要）。
