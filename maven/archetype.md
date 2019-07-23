@@ -1,6 +1,6 @@
 # archetype
 
-、进入模版项目的根目录，执行命令：mvn archetype:create-from-project
+1 .进入模版项目的根目录，执行命令：mvn archetype:create-from-project
 
 生成以该项目为模版的项目原型(archetype)，具体的项目结构在target/generated-sources目录下；
 
