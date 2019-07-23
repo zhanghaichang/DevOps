@@ -21,3 +21,9 @@
         </repository>
     </distributionManagement>
 ```
+
+5.执行maven命令deploy将原型项目发布到nexus仓库.
+
+6.eclipse中点选Window---Preferences---maven---Archetypes,点选Add Remote Catalog,输入nexus中的地址并取一个描述名字.nexus的地址形如:
+
+http://localhost:8081/nexus/content/groups/public/archetype-catalog.xml  ,为archetype-catalog.xml文件的地址.
