@@ -17,7 +17,7 @@ wget https://pkg.rainbond.com/releases/common/v5.1/grctl
 chmod +x ./grctl
 
 ## 第一个节点管理节点和计算节点复用
-./grctl init --iip <内网ip> --eip <弹性ip/所在公网ip/slb ip> --role master,compute --storage nas 
+./grctl init --iip <内网ip> --eip <弹性ip/所在公网ip/slb ip>
 
 
 ## 第一个节点仅作为管理节点
