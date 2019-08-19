@@ -15,3 +15,12 @@
 - 使用jmeter 打开test.jmx
 - 在httpRequest下的csv data set config 中配置实际data.csv的路径
 - 运行.net core web service
+
+## TPS插件
+
+1、下载插件http://pan.baidu.com/s/1mioVJni
+
+2、解压下载的安装包；
+
+将 jpgc-graphs-basic-2.0.zip 解压缩后只有一个 lib 目录，该目录下有一个 ext 文件夹和一个 jmeter-plugins-cmn-jmeter-0.3.jar 包，ext 文件夹中有 jmeter-plugins-graphs-basic-2.0.jar 和 jmeter-plugins-manager-0.10.jar 包。
+将 lib 目录下的 jmeter-plugins-cmn-jmeter-0.3.jar 拷贝到 %JMeter%/lib 目录下；
