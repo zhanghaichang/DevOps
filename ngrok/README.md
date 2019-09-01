@@ -43,7 +43,7 @@ openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateseria
 cp rootCA.pem assets/client/tls/ngrokroot.crt 
 cp server.crt assets/server/tls/snakeoil.crt 
 cp server.key assets/server/tls/snakeoil.key
-
+```
 ### 编译生成服务端
 ```
 # 编译生成服务端
@@ -97,13 +97,17 @@ server_addr: xxx.com:8443
 trust_host_root_certs: false
 ```
 
-本地启动客户端
+### 本地启动客户端
+
+```
 # 目录下打开命令行
 # 然后使用以下任一命令运行ngrok：
 ngrok -config ngrok.yml 8080
 ngrok -config ngrok.yml -subdomain wx 8080 # 或者指定域名 wx.xxx.com
+```
 
-ngrok 加入系统服务 开机启动
+### ngrok 加入系统服务 开机启动
+```
 vi /usr/lib/systemd/system/ngrok.service
 # 在CentOS 7上利用systemctl添加自定义系统服务
 [Unit]
@@ -129,14 +133,19 @@ systemctl enable ngrok.service
 
 # 启动服务
 systemctl start ngrok.service
-常用命令
+```
+
+### 常用命令
+```
 #设置开机启动：
 systemctl enable ngrok.service
 #启动服务：
 systemctl start ngrok.service
 #停止服务：
 systemctl stop ngrok.service
-附带一份 nginx.conf 配置文件
+```
+### 附带一份 nginx.conf 配置文件
+```
 # ngrok
 upstream ngrok {
 	server 127.0.0.1:800;
@@ -157,3 +166,4 @@ server {
 		expires 5s;
 	}
 }
+```
