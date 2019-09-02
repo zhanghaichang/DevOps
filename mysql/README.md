@@ -193,3 +193,28 @@ show databases;
 (注:u与root可以不用加空格，其它也一样)
 
 3、退出MYSQL命令： exit (回车)
+
+### mysql 忽略大小写配置
+
+1.新安装mysql5.7版本后，linux环境下默认是大小写敏感的。可以在客户端执行以下命令:
+
+```
+SHOW VARIABLES LIKE '%case%'
+```
+可以看到 lower_case_table_names 的值是 0, 我们要做的就是把它设置成 1. 具体步骤如下:
+
+2. 使用 vi /etc/mysql/my.cnf, 打开mysql 的配置文件, 在 mysqld 这个节点下, 加入:
+
+```
+lower_case_table_names=1
+```
+注意: 一定要放在 mysqld 节点下 , 放在其他节点下, 会不生效 !!!!
+
+设置完后, 保存重启mysql 服务,再执行`SHOW VARIABLES LIKE '%case%'`.
+
+在重启mysql 服务时, 会用到 restart 命令
+
+```
+service mysqld restart 
+
+```
