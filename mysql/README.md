@@ -10,6 +10,28 @@ $ docker pull mysql:5.7
 $ sudo docker run --name first-mysql -p 3306:3306 -e MYSQL\_ROOT\_PASSWORD=123456 -d mysql
 
 ```
+配置文件映射 不区分大小写
+
+```
+docker run -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql:/mysql_data -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.14 --lower_case_table_names=1
+```
+
+查看当前mysql的大小写敏感配置
+
+```
+show global variables like '%lower_case%';
+lower_case_file_system
+表示当前系统文件是否大小写敏感，只读参数，无法修改。
+ON  大小写不敏感 
+OFF 大小写敏感 
+
+进入docker的MySQL容器，编辑/etc/mysql/mysql.conf.d/mysqld.cnf文件，在[mysqld]下添加如下：
+[mysqld] 
+lower_case_table_names=1
+
+保存，退出容器；
+```
+
 持久化运行
 
 ```
