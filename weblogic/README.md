@@ -12,7 +12,7 @@ docker pull ismaleiva90/weblogic12
 ## 运行
 
 ```
-docker run -d -p 49163:7001 -p 49164:7002 -v <host directory>:/u01/oracle/user_projects -p 49165:5556 ismaleiva90/weblogic12:latest
+docker run -d -p 49163:7001 -p 49164:7002 -v <host directory>:/u01/oracle/weblogic/user_projects/ -p 49165:5556 ismaleiva90/weblogic12:latest
 ```
 
 访问地址
