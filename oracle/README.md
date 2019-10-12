@@ -1,5 +1,12 @@
-## oracle 安装
+## oracle docker 安装
 
+```
+ docker pull mritschel/oracle12cr1_base
+
+ docker run -d -p 8080:8080 -p 5500:5500 -p 1521:1521 -v [<host mount point>:]/u01/oracle/oradata  --name oracle12cr2_base mritschel/oracle12cr1_base 
+
+```
+https://hub.docker.com/r/mritschel/oracle12cr1_base
 
 ## oracle clinet 安装
 
