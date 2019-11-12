@@ -28,7 +28,7 @@
 创建 Kubernetes 的 PV、PVC 资源，其中 PV 用于与 NFS 关联，需要设置 NFS Server 服务器地址和挂载的路径，修改占用空间大小。而 PVC 则是与应用关联，方便应用与 NFS 绑定挂载，下面是 PV、PVC 的资源对象 yaml 文件。
 
 **jenkins-storage.yaml**
-
+```yaml
     apiVersion: v1
     kind: PersistentVolume
     metadata:
@@ -61,7 +61,7 @@
       selector:
         matchLabels:
           app: jenkins
-
+```
 将 PV 与 PVC 部署到 Kubernetes 中：
 
 - -n：指定 namespace
@@ -75,7 +75,7 @@ Kubernetes 集群一般情况下都默认开启了 RBAC 权限，所以需要创
 - **注意：** 请修改下面的 Namespace 参数，改成部署的 Jenkins 所在的 Namespace。
 
 **jenkins-rbac.yaml**
-
+```
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -98,7 +98,7 @@ Kubernetes 集群一般情况下都默认开启了 RBAC 权限，所以需要创
       kind: ClusterRole
       name: cluster-admin
       apiGroup: rbac.authorization.k8s.io
-
+```
 将 Jenkins 的 RBAC 部署到 Kubernetes 中：
 
 - -n：指定 namespace
@@ -113,7 +113,7 @@ Kubernetes 集群一般情况下都默认开启了 RBAC 权限，所以需要创
 - Deployment： Deployment 中，需要设置容器安全策略为 `runAsUser: 0` 赋予容器以 `Root` 权限运行，并且暴露 `8080` 与 `50000` 两个端口与 Service 对应，而且还要注意的是，还要设置上之前创建的服务账户 “jenkins-admin”。
 
 **jenkins-deployment.yaml**
-
+```
     apiVersion: v1
     kind: Service
     metadata:
@@ -193,7 +193,7 @@ Kubernetes 集群一般情况下都默认开启了 RBAC 权限，所以需要创
           - name: data
             persistentVolumeClaim:
               claimName: jenkins                 #设置PVC
-
+```
 **参数说明：**
 
 - **JAVA_OPTS：** JVM 参数设置
@@ -368,7 +368,7 @@ Jenkins 中可以打开 **系统管理->插件管理->可选插件** 来安装�
 [![](https://mydlq-club.oss-cn-beijing.aliyuncs.com/images/jenkins-kubernetes-ci&cd-kubernetes-plugin-pod-template-2.png)](https://mydlq-club.oss-cn-beijing.aliyuncs.com/images/jenkins-kubernetes-ci&cd-kubernetes-plugin-pod-template-2.png)
 
 yaml 内容如下：
-
+```
     apiVersion: v1
     kind: Pod
     metadata:
@@ -383,7 +383,7 @@ yaml 内容如下：
         tty: true
         workingDir: /home/jenkins/agent
         image: registry.cn-shanghai.aliyuncs.com/mydlq/jnlp-slave:3.35-5-alpine
-
+```
 ### 3、Kubernetes 插件 Container 配置
 
 将配置 Jenkins Slave 在 Kubernetes 中的 Pod 中所包含容器信息，这里镜像都可以从官方 Docker Hub 下载，由于网速原因，本人已经将其下载到 Aliyun 镜像仓库。
@@ -433,7 +433,7 @@ yaml 内容如下：
 然后，Kubernetes 下再创建 Maven 的 PV、PVC 部署文件：
 
 **maven-storage.yaml**
-
+```
     apiVersion: v1
     kind: PersistentVolume
     metadata:
@@ -466,7 +466,7 @@ yaml 内容如下：
       selector:
         matchLabels:
           app: maven
-
+```
 部署 PV、PVC 到 Kubernetes 中：
 
 - -n：指定 namespace
@@ -523,7 +523,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
 - **Content：** 内容如下 ↓：
 
 > 为了加快 jar 包的下载速度，这里将仓库地址指向 aliyun Maven 仓库地址。
-
+```
     <?xml version="1.0" encoding="UTF-8"?>
 
     <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -553,7 +553,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
       </profiles>
 
     </settings>
-
+```
 ### 2、新增 Dockerfile 文件
 
 选择 **Add a new Config—>Custom file** 来新增一个 **Dockerfile** 文件：
@@ -562,7 +562,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
 - **Name：** Dockerfile
 - **Comment：** 全局 Dockerfile 文件
 - **Content：** 内容如下 ↓：
-
+```
   FROM openjdk:8u222-jre-slim
   VOLUME /tmp
   ADD target/\*.jar app.jar
@@ -572,7 +572,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
   #Java 应用参数
   ENV APP_OPTS=""
   ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar $APP_OPTS" ]
-
+```
 ### 3、新增 Kubernetes 部署文件
 
 选择 **Add a new Config—>Custom file** 来新增一个 **Kubernetes 部署文件**：
@@ -581,7 +581,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
 - **Name：** deployment.yaml
 - **Comment：** 全局 Kubernetes 部署文件
 - **Content：** 内容如下 ↓：
-
+```
   apiVersion: v1
   kind: Service
   metadata:
@@ -637,7 +637,7 @@ Kubernetes 中 Pod 的容器是启动在各个节点上，每个节点就是一�
   requests:
   cpu: 1000m
   memory: 512Mi
-
+```
 为了模板能够动态替换某些值，上面模板中设置了几个可替换的参数，用 **#变量名称** 来标记，后面我们在执行 Pipeline 时候将里面的 **#xxx 变量** 标记替换掉，上面配置的变量有：
 
 - **#APP_NAME：** 应用名称。
@@ -676,13 +676,14 @@ Git 插件方法使用格式，及其部分参数：
 ### 3、脚本中使用 Kubernetes 插件
 
 Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自动在 Kubernetes 中创建 Pod Template 配置的 Slave Pod，在其中执行 podTemplate 代码块中的脚本。
-
+```
     def label = "jnlp-agent"
     podTemplate(label: label,cloud: 'kubernetes' ){
         node (label) {
             print "在 Slave Pod 中执行任务"
         }
     }
+```
 
 **podTemplate 方法参数简介：**
 
@@ -700,6 +701,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 既然每个容器都能提供特定的环境，那么再执行执行 Pipleline 脚本时候，就可以在不同的镜像中使用不同的环境的命令：
 
 - **Maven 镜像**
+```
 
   container('maven') {  
    sh "mvn install
@@ -716,6 +718,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
   container('kubectl') {  
    sh "kubectl apply -f xxxx.yaml"
   }
+```
 
 ### 5、脚本中引入 Jenkins 中预先存储的文件
 
@@ -756,28 +759,33 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 脚本中可以使用 HttpRequest 来对某一地址进行请求，这里简单使用 Get 请求地址，复杂的可以查看 Jenkins 插件的官网查看使用示例。
 
 下面是使用 Http Request 的 Get 请求示例：
+```
 
     result = httpRequest "http:www.baidu.com"
 
     if ("${result.status}" == "200") {
         print "Http 请求成功"
     }
+```
 
 ### 8、脚本中使用 Kubernetes Cli 插件
 
 在之前说过，在 kubectl 镜像中能够使用 kubectl 命令，不过由于执行 Kubectl 命令一般需要在镜像的 **\$HOME/.kube/** 目录中存在连接 **Kubernetes API** 的 **config** 文件，使其 **kubectl** 命令有明确请求 **kubernetes API** 的地址和用户权限，不过将 **config** 文件挂入镜像内部是一件比较繁琐的事情。
 
 好在 **Jenkins** 提供的 **Kubectl Cli** 插件，只要在其中配置连接 **Kubernetes 的 Token** 凭据，就能够在 **Kubectl Cli** 提供的 **withKubeConfig** 方法，拥有类似存在 **config** 一样的功能，在 **kubectl** 镜像中的 **withKubeConfig** 方法块内执行 **kubectl** 就可以操作配置的 **Kubectl Cli** 的凭据的 **K8S** 集群。
+```
 
     container('kubectl') {
         withKubeConfig([credentialsId: "Kubernetes Token 凭据 ID",serverUrl: "https://kubernetes.default.svc.cluster.local"]) {
             sh "kubectl get nodes"
         }
     }
+```
 
 ### 9、脚本中操作字符串替换值
 
 在使用 Groovy 语法写 Pipleline 脚本时候，我们经常要替换先前设置好的一些文本的值，这里我们简单示例一下，如何替换字符串。
+```
 
     // 测试的字符串
     sourceStr = "这是要替换的值：#value1，这是要替换的值：#value2"
@@ -785,6 +793,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
     afterStr = deploy.replaceAll("#value1","AAA").replaceAll("#value2","BBB")
     // 输出替换后的字符串
     print "${afterStr}"
+```
 
 ### 10、脚本中读取 pom.xml 参数
 
@@ -801,6 +810,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 ### 11、脚本中使用 Docker 插件构建与推送镜像
 
 在流水线脚本中，我们一般不直接使用 Docker 命令，而是使用 Docker 插件提供的 docker.withRegistry(“”) 方法来构建与推送镜像，并且还能在方法中配置登录凭据信息，来让仓库验证权限，这点是非常方便的。使用示例如下：
+```
 
     docker.withRegistry("http://xxxx Docker 仓库地址", "Docker 仓库凭据 ID") {
             // 构建 Docker 镜像
@@ -808,6 +818,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             // 推送 Docker 镜像
             customImage.push()
         }
+```
 
 ## 七、在 Jenkins 创建模板任务
 
@@ -992,6 +1003,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 ### 1、脚本中使用 Kubernetes 插件及设置超时时间
 
 使用 Kubernetes 插件执行任务，并设置超时时间为 10 分钟，脚本如下：
+```
 
     // 设置超时时间 600 SECONDS，方法块内的方法执行超时，任务就标记为失败
     timeout(time: 600, unit: 'SECONDS') {
@@ -1003,10 +1015,12 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 ### 2、脚本中 Git 拉取项目阶段
 
 接下来接着往整体的脚本中添加 Git 模块，其中需要引用上面配置的变量，将变量填入脚本中的方法，如下：
+```
 
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
@@ -1021,6 +1035,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1029,6 +1044,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 - **GIT_CREADENTIAL：** Git 凭据 ID 变量。
 
 ### 3、脚本中 Maven 编译项目阶段
+```
 
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
@@ -1052,6 +1068,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1061,6 +1078,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 ### 4、脚本中读取 pom.xml 参数阶段
 
 这里使用 `Pipeline Utility Steps` 的 `readMavenPom` 方法读取项目的 `pom.xml` 文件，并设置 `appName` 与 `appVersion` 两个全局参数。
+```
 
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
@@ -1091,6 +1109,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1098,7 +1117,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 - **pom.version：** 从 pom.xml 文件中读取的 version 参数值。
 
 ### 5、脚本中 Docker 镜像构建与推送模块
-
+```
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
         podTemplate(label: label,cloud: 'kubernetes' ){
@@ -1146,6 +1165,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1157,6 +1177,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 - **appVersion：** 从 pom.xml 中读取的应用版本号。
 
 ### 6、Kubernetes 模块
+```
 
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
@@ -1228,6 +1249,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1239,6 +1261,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 - **dockerImageName：** Docker 镜像名称。
 
 ### 7、HTTP 健康检查模块
+```
 
     timeout(time: 600, unit: 'SECONDS') {
         def label = "jnlp-agent"
@@ -1342,6 +1365,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 **变量介绍：**
 
@@ -1353,6 +1377,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
 - **appName：** 从 pom.xml 中读取的应用名称。
 
 ### 8、完整脚本
+```
 
     def label = "jnlp-agent"
     timeout(time: 900, unit: 'SECONDS') {
@@ -1457,6 +1482,7 @@ Kubernetes 插件中存在 PodTemplate 方法，在执行脚本时候，会自�
             }
         }
     }
+```
 
 将该流水线代码，配置到之前的模板 Job 的流水线脚本中，方便后续项目以此项目为模板。
 
