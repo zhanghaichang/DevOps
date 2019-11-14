@@ -13,6 +13,10 @@ $ sudo docker run --name first-mysql -p 3306:3306 -e MYSQL\_ROOT\_PASSWORD=12345
 配置文件映射 不区分大小写
 
 ```
+# 持久化存储
+docker run --name mysql -p 30006:3306 -v /data/k8s/mysql:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=topcheer123 -d mysql:5.7.14 --lower_case_table_names=1
+
+
 docker run -p 3306:3306 --name mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/logs:/logs -v /data/mysql:/mysql_data -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.14 --lower_case_table_names=1
 ```
 
