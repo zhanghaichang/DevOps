@@ -244,3 +244,17 @@ lower_case_table_names=1
 service mysqld restart 
 
 ```
+
+## mysql 默认链接数是100个 最大是16384。
+
+显示当前状态：mysql> show status
+
+Threads_running    1 ##（当前连接数）
+
+设置新的最大连接数为200：mysql> set GLOBAL max_connections=200
+
+需要重启数据库
+修改 my.conf 
+```
+max_connection = 1000;
+```
