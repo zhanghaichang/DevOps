@@ -247,6 +247,9 @@ service mysqld restart
 
 ## mysql 默认链接数是100个 最大是16384。
 
+查看最大连接数:
+show variables like '%max_connections%';
+
 显示当前状态：mysql> show status
 
 Threads_running    1 ##（当前连接数）
