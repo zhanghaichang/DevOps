@@ -1,0 +1,73 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: tracker-deploy
+    namespace: paas-basic
+    labels:
+        name: tracker-deploy
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: tracker
+        spec:
+            nodeSelector:
+              fastdfs: "tracker"
+            terminationGracePeriodSeconds: 0
+            containers:
+            - name: tracker
+              image: luhuiguo/fastdfs
+              imagePullPolicy: Always
+              ports:
+              - containerPort: 22122
+              - containerPort: 23000
+              - containerPort: 8080
+              - containerPort: 8888
+              volumeMounts:
+              - name: tracker-volume
+                mountPath: /var/fdfs
+              command: ["/usr/bin/start.sh","tracker"]
+            volumes:
+            - name: tracker-volume
+              hostPath:
+                path: /home/data/fastdfs/tracker
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: storage0-deploy
+    namespace: paas-basic
+    labels:
+        name: storage0-deploy
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: storage0
+        spec:
+            nodeSelector:
+              fastdfs: "storage0"
+            terminationGracePeriodSeconds: 0
+            containers:
+            - name: storage0
+              image: luhuiguo/fastdfs
+              imagePullPolicy: Always
+              ports:
+              - containerPort: 22122
+              - containerPort: 23000
+              - containerPort: 8080
+              - containerPort: 8888
+              volumeMounts:
+              - name: storage0-volume
+                mountPath: /var/fdfs
+              env:
+              - name: TRACKER_SERVER
+                value: 10.96.0.110:22122
+              command: ["/usr/bin/start.sh","storage"]
+            volumes:
+            - name: storage0-volume
+              hostPath:
+                path: /home/data/fastdfs/storage0
