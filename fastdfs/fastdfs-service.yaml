@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: tracker
+    labels:
+        app: tracker
+    namespace: paas-basic
+spec:
+    selector:
+        app: tracker
+    type: NodePort
+    clusterIP: 10.96.0.110
+    ports:
+    - name: "22122"
+      port: 22122
+      targetPort: 22122
+      protocol: TCP
+    - name: "23000"
+      port: 23000
+      targetPort: 23000
+      protocol: TCP
+    - name: "8080"
+      port: 8080
+      targetPort: 8080
+      protocol: TCP
+    - name: "8888"
+      port: 8888
+      targetPort: 8888
+      protocol: TCP
