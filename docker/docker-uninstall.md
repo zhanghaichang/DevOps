@@ -43,6 +43,13 @@ sudo yum remove docker \
                   docker-selinux \
                   docker-engine-selinux \
                   docker-engine
+                  
+                  
+rm -rf /etc/systemd/system/docker.service.d
+ 
+rm -rf /var/lib/docker
+ 
+rm -rf /var/run/docker
 ```
 
 ## 升级到最新版
