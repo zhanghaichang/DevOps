@@ -110,3 +110,9 @@ DOCKER_STORAGE_OPTIONS=”–storage-driver overlay ”
 
 ```systemctl start docker
 ```
+
+### jenkins中国插件中心
+
+```
+https://jenkins-zh.gitee.io/update-center-mirror/tsinghua/update-center.json
+```
