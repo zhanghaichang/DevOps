@@ -115,4 +115,6 @@ DOCKER_STORAGE_OPTIONS=”–storage-driver overlay ”
 
 ```
 https://jenkins-zh.gitee.io/update-center-mirror/tsinghua/update-center.json
+
+https://mirrors.tuna.tsinghua.edu.cn/jenkins/updates/update-center.json
 ```
