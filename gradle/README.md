@@ -16,6 +16,7 @@
 ./gradlew assembleRelease 编译并打Release的包
 ```
 
+## 常用命令
 
 ```gradle
 #查看所有可用的task
