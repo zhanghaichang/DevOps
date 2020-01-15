@@ -52,3 +52,43 @@ gradle install
 #生成pom.xml文件，将会在build根目录下生成pom.xml文件，把它复制项目根目录下，即可将gradle方便转成maven项目
 gradle createPom
 ```
+
+## Gradle配置本地仓库
+
+一、配置远程阿里云仓库
+
+在gradle目录下的init.d目录中创建名为init.gradle文件，内容如下：
+
+```
+allprojects{
+    repositories {
+        def REPOSITORY_URL = 'http://maven.aliyun.com/nexus/content/groups/public/'
+        all { ArtifactRepository repo ->
+            if(repo instanceof MavenArtifactRepository){
+                def url = repo.url.toString()
+                if (url.startsWith('https://repo1.maven.org/maven2') || url.startsWith('https://jcenter.bintray.com/')) {
+                    project.logger.lifecycle "Repository ${repo.url} replaced by $REPOSITORY_URL."
+                    remove repo
+                }
+            }
+        }
+        maven {
+            url REPOSITORY_URL
+        }
+    }
+}
+```
+
+二、配置本地仓库位置
+
+在环境变量中添加所希望的本地仓库
+
+> GRADLE_USER_HOME=D:\gradle-6.0.1\repos
+
+三、提高编译速度
+
+在gradle仓库.gradle目录下创建一个gradle.properties 文件，在其中添加如下语句:
+
+> org.gradle.daemon=true
+
+
