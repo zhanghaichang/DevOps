@@ -1,4 +1,4 @@
-# IDEA
+# IDEA 33个IDEA配置
 
 ## 1.设置maven
 
