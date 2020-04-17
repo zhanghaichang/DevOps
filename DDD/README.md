@@ -35,7 +35,7 @@
   *  **领域服务(Domain Services)**: 一些行为无法归类到实体对象或值对象上，本质是一些操作，而非事物
   *  **聚合/聚合根(Aggregates & Aggregate Roots)**: 聚合是指一组具有内聚关系的相关对象的集合，每个聚合都有一个root和boundary
   *  **工厂(Factories)**: 创建复杂对象，隐藏创建细节
-  *  **仓储(Repository)**: 提供查找和持久化对象的方法
+  *  **仓储(Repository)**: 提供查找和持久化对象的方法,只是接口,不包括实现。
 
 
 * 基础设施层{infrastructrue}
