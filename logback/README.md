@@ -15,8 +15,8 @@ springboot`默认使用的日志框架是`logback，其由三个组件组成
 logback-spring.xml 文件放在classpath （resource目录）下 即可自动加载
 
 二logback 基本属性
-=============
 
+```xml
     <configuration debug="true"> 
     
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
@@ -32,7 +32,7 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
       </root>
     </configuration>
     复制代码
-
+```
 日志格式说明
 
 1.  %d 表示日期时间
@@ -112,36 +112,37 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
 </tr>
 </tbody>
 </table>
+
 2.1 configuration 标签属性
 ----------------------
 
 *   scan : 配置文件如果发生改变，将会被重新加载，默认值为true
-
+```
     <configuration debug="true"> 
     	...
     </configuration>
-    复制代码
+```
 
 *   debug: 实时查看logback运行状态，默认值为false
-
+```
     <configuration scan="true"> 
       ... 
     </configuration>
-    复制代码
+```
 
 *   scanPeriod: 监测配置文件是否有修改的时间间隔, 默认 每分钟；读者可以设置 示例`30 seconds`, `30 minutes`, `3 hours`
-
+```
     <configuration scan="true" scanPeriod="30 seconds" > 
       ...
     </configuration> 
-    复制代码
+```
 
 *   packagingData : 堆栈跟踪中是否启用打包数据，默认false;
-
+```
     <configuration packagingData="true">
       ...
     </configuration>
-    复制代码
+```
 
 2.2 statusListener 标签
 ---------------------
