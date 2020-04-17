@@ -18,7 +18,6 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
 
 ```xml
     <configuration debug="true"> 
-    
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender"> 
         <!-- encoders are  by default assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder -->
@@ -26,12 +25,10 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
           <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
       </appender>
-    
       <root level="debug">
         <appender-ref ref="STDOUT" />
       </root>
     </configuration>
-    复制代码
 ```
 日志格式说明
 
@@ -146,62 +143,56 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
 
 2.2 statusListener 标签
 ---------------------
-```xml
+
 `statusListener` 为configuration 的子元素。称为状态监听器，在 configuration 的子标签顶层，意指监听事件；
 
+```xml
     <configuration>
       <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />  
-    
       ... the rest of the configuration file  
     </configuration>
-    复制代码
 ```
 2.3 property标签
 --------------
 
 属性 name , value 用来定义变量的 名称 和值 ，在上下文中可以通过 ${name} 的方式进行调用
+
 ```xml
     <configuration>
-    
       <property name="USER_HOME" value="/home/sebastien" />
-    
       <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${USER_HOME}/myApp.log</file>
         <encoder>
           <pattern>%msg%n</pattern>
         </encoder>
       </appender>
-    
       <root level="debug">
         <appender-ref ref="FILE" />
       </root>
     </configuration>
-    复制代码
+    
 ```
 如果 定义如下示例会去 variables1.properties 中读取配置信息
 ```xml
     <configuration>
-    
       <property file="src/main/java/chapters/configuration/variables1.properties" />
-    
       <appender name="FILE" class="ch.qos.logback.core.FileAppender">
          <file>${USER_HOME}/myApp.log</file>
          <encoder>
            <pattern>%msg%n</pattern>
          </encoder>
        </appender>
-    
        <root level="debug">
          <appender-ref ref="FILE" />
        </root>
     </configuration>
-
+```
 
 variables1.properties：
 
     USER_HOME=/home/sebastien
-    复制代码
-```
+    
+
 2.4appender标签
 -------------
 
@@ -214,21 +205,17 @@ variables1.properties：
 如下示例 ： 定义2 个组件， 一个是文件存储，一个控制输出，通过 root 标签引用即可同时生效；
 ```xml
     <configuration>
-    
       <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>myApp.log</file>
-    
         <encoder>
           <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
         </encoder>
       </appender>
-    
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
           <pattern>%msg%n</pattern>
         </encoder>
       </appender>
-    
       <root level="debug">
         <appender-ref ref="FILE" />
         <appender-ref ref="STDOUT" />
@@ -238,9 +225,8 @@ variables1.properties：
 
 2.5contextName标签
 ----------------
-```xml
 `contextName`configuration 的子元素。每一个logger 都可以绑定一个`contextName`，默认上下文名称为 default ， 如果设定完成，则不能改变;
-
+```xml
     <configuration>
       <contextName>myAppName</contextName>
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -248,7 +234,6 @@ variables1.properties：
           <pattern>%d %contextName [%t] %level %logger{36} - %msg%n</pattern>
         </encoder>
       </appender>
-    
       <root level="debug">
         <appender-ref ref="STDOUT" />
       </root>
@@ -263,7 +248,6 @@ variables1.properties：
 如下所示，不想看见包chapters.configuration 中的debug级别日志，可以进行如下配置
 ```xml
     <configuration>
-    
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
              ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
@@ -271,15 +255,12 @@ variables1.properties：
           <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
       </appender>
-    
       <logger name="chapters.configuration" level="INFO"/>
-    
       <!-- Strictly speaking, the level attribute is not necessary since -->
       <!-- the level of the root level is set to DEBUG by default.       -->
       <root level="DEBUG">          
         <appender-ref ref="STDOUT" />
-      </root>  
-      
+      </root>
     </configuration>
 ```
 
@@ -287,7 +268,7 @@ variables1.properties：
 
     17:34:07.578 [main] INFO  chapters.configuration.MyApp3 - Entering application.
     17:34:07.578 [main] INFO  chapters.configuration.MyApp3 - Exiting application.
-    复制代码
+    
 
 2.7 root 标签
 -----------
@@ -330,7 +311,7 @@ includedConfig.xml 示例，必须包含`<included>`标签
 如过是URL
 
     <include url="http://some.host.com/includedConfig.xml"/>
-    复制代码
+    
 
 三 多环境配置
 =======
