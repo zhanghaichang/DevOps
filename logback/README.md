@@ -117,28 +117,28 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
 ----------------------
 
 *   scan : 配置文件如果发生改变，将会被重新加载，默认值为true
-```
+```xml
     <configuration debug="true"> 
     	...
     </configuration>
 ```
 
 *   debug: 实时查看logback运行状态，默认值为false
-```
+```xml
     <configuration scan="true"> 
       ... 
     </configuration>
 ```
 
 *   scanPeriod: 监测配置文件是否有修改的时间间隔, 默认 每分钟；读者可以设置 示例`30 seconds`, `30 minutes`, `3 hours`
-```
+```xml
     <configuration scan="true" scanPeriod="30 seconds" > 
       ...
     </configuration> 
 ```
 
 *   packagingData : 堆栈跟踪中是否启用打包数据，默认false;
-```
+```xml
     <configuration packagingData="true">
       ...
     </configuration>
@@ -146,7 +146,7 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
 
 2.2 statusListener 标签
 ---------------------
-
+```xml
 `statusListener` 为configuration 的子元素。称为状态监听器，在 configuration 的子标签顶层，意指监听事件；
 
     <configuration>
@@ -155,12 +155,12 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
       ... the rest of the configuration file  
     </configuration>
     复制代码
-
+```
 2.3 property标签
 --------------
 
 属性 name , value 用来定义变量的 名称 和值 ，在上下文中可以通过 ${name} 的方式进行调用
-
+```xml
     <configuration>
     
       <property name="USER_HOME" value="/home/sebastien" />
@@ -177,9 +177,9 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
       </root>
     </configuration>
     复制代码
-
+```
 如果 定义如下示例会去 variables1.properties 中读取配置信息
-
+```xml
     <configuration>
     
       <property file="src/main/java/chapters/configuration/variables1.properties" />
@@ -195,13 +195,13 @@ logback-spring.xml 文件放在classpath （resource目录）下 即可自动加
          <appender-ref ref="FILE" />
        </root>
     </configuration>
-    复制代码
+
 
 variables1.properties：
 
     USER_HOME=/home/sebastien
     复制代码
-
+```
 2.4appender标签
 -------------
 
@@ -212,7 +212,7 @@ variables1.properties：
 *   `scope`：指定作用域 ； `LOCAL`, `CONTEXT`,`SYSTEM`
 
 如下示例 ： 定义2 个组件， 一个是文件存储，一个控制输出，通过 root 标签引用即可同时生效；
-
+```xml
     <configuration>
     
       <appender name="FILE" class="ch.qos.logback.core.FileAppender">
@@ -234,11 +234,11 @@ variables1.properties：
         <appender-ref ref="STDOUT" />
       </root>
     </configuration>
-    复制代码
+```
 
 2.5contextName标签
 ----------------
-
+```xml
 `contextName`configuration 的子元素。每一个logger 都可以绑定一个`contextName`，默认上下文名称为 default ， 如果设定完成，则不能改变;
 
     <configuration>
@@ -253,7 +253,7 @@ variables1.properties：
         <appender-ref ref="STDOUT" />
       </root>
     </configuration>
-    复制代码
+```
 
 2.6 logger标签
 ------------
@@ -261,7 +261,7 @@ variables1.properties：
 用来设置某个包或及具体的某个类的日志输出以及指定 `<appender>`; name 属性一个， level，addtivity（是否向上级loger传递打印信息） 属性可选
 
 如下所示，不想看见包chapters.configuration 中的debug级别日志，可以进行如下配置
-
+```xml
     <configuration>
     
       <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -281,7 +281,7 @@ variables1.properties：
       </root>  
       
     </configuration>
-    复制代码
+```
 
 打印如下
 
@@ -293,19 +293,19 @@ variables1.properties：
 -----------
 
 root标签实质是`<logger>`标签，不过其是根标签；若 `<logger >` 或 `<appender>` 标签为设置输出级别时就会默认继承该标签设置的级别！
-
+```xml
     <!-- 日志输出级别 -->
     	<root level="INFO">
     		<appender-ref ref="STDOUT" />
     		<appender-ref ref="FILE" />
     	</root>
-    复制代码
+```
 
 2.8 include标签
 -------------
 
 包含其它文件的配置信息
-
+```xml
     <configuration>
       <include file="src/main/java/chapters/configuration/includedConfig.xml"/>
     
@@ -314,10 +314,10 @@ root标签实质是`<logger>`标签，不过其是根标签；若 `<logger >` �
       </root>
     
     </configuration>
-    复制代码
+```
 
 includedConfig.xml 示例，必须包含`<included>`标签
-
+```xml
     <included>
       <appender name="includedConsole" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
@@ -325,7 +325,7 @@ includedConfig.xml 示例，必须包含`<included>`标签
         </encoder>
       </appender>
     </included>
-    复制代码
+```
 
 如过是URL
 
@@ -338,7 +338,7 @@ includedConfig.xml 示例，必须包含`<included>`标签
 为了支持 development, testing 和 production 多环境下logback 不冲突的问题，可以使用 `<if>` , `then` 进行配置，使目标环境生效；
 
 格式如下
-
+```xml
      <!-- if-then form -->
        <if condition="some conditional expression">
         <then>
@@ -355,14 +355,14 @@ includedConfig.xml 示例，必须包含`<included>`标签
           ...
         </else>    
       </if>
-    复制代码
+```
 
 四 示例
 ====
 
 4.1正常日志appender示例
 -----------------
-
+```xml
     <!-- 日志 appender ： 按照每天生成日志文件 -->
     <appender name="NORMAL-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <append>true</append>
@@ -382,12 +382,11 @@ includedConfig.xml 示例，必须包含`<included>`标签
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    
-    复制代码
+```
 
 4.2错误日志appender示例
 -----------------
-
+```xml
     <!-- 错误日志 appender ： 按照每天生成日志文件 -->
     <appender name="ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <append>true</append>
@@ -411,7 +410,7 @@ includedConfig.xml 示例，必须包含`<included>`标签
             <charset>UTF-8</charset>
         </encoder>
     </appender>
-    复制代码
+```
 
 五 官方文档
 ======
