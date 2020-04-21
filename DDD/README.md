@@ -55,6 +55,14 @@
   * **Facade组件**
 Facade是外观模式的践行者，作用与传统三层架构的Controller类似，负责将一个或多个service方法组合起来，然后封装为一个接口提供为外部系统。换句话说，他负责将外部请求委派给一个或多个service进行处理。他本身不处理任何业务逻辑
 
+#### 分层领域模型规约
+
+* DO（Data Object）：此对象与数据库表结构一一对应，通过DAO层向上传输数据源对象。 
+* DTO（Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。 
+* BO（Business Object）：业务对象，由Service层输出的封装业务逻辑的对象。 
+* AO（Application Object）：应用对象，在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。 
+* VO（View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。 
+* Query：数据查询对象，各层接收上层的查询请求。注意超过2个参数的查询封装，禁止使用Map类来传输。
 
 #### 代码示例
 
