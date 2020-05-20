@@ -1,4 +1,4 @@
-# IDEA正确使用姿势|几个让你爽到爆的IDEA必备插件推荐
+# IDEA正确使用姿势几个让你爽到爆的IDEA必备插件推荐
 
 ### Grep Console:控制台输出处理
 
@@ -68,41 +68,4 @@ SonarLint 帮助你发现代码的错误和漏洞，就像是代码拼写检查�
 
 ### Lombok:帮你简化代码
 
-之前没有推荐这个插件的原因是觉得已经是人手必备的了。如果你要使用 Lombok 的话，不光是要安装这个插件，你的项目也要引入相关的依赖。
-
-```xml
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <optional>true</optional>
-        </dependency>
-```
-复制代码使用 Lombok 能够帮助我们少写很多代码比如 Getter/Setter、Constructor等等。
-关于Lombok的使用，可以查看这篇文章：《十分钟搞懂Java效率工具Lombok使用与原理》。
-
-### CodeGlance:代码微型地图
-
-提供一个代码的微型地图，当你的类比较多的时候可以帮忙你快速定位到要去的位置。这个插件在我们日常做普通开发的时候用处不大，不过，在你阅读源码的时候还是很有用的，如下图所示：
-
-### Java Stream Debugger:Java8 Stream调试器
-
-Stream API 让你的代码更加优雅，但是有一个缺点是代码更难阅读和理解，没关系，这个插件应该可以帮助到你！
-
-### Git Commit Template:使用模板创建commit信息
-
-没有安装这个插件之前，我们使用IDEA提供的Commit功能提交代码是下面这样的：
-
-使用了这个插件之后是下面这样的，提供了一个commit信息模板的输入框：
-
-完成之后的效果是这样的：
-
-### 其他常用插件推荐
-
-* leetcode editor :提供在线 Leetcode 刷题功能，比较方便我们刷题，不过我试用之后发现有一些小 bug，个人感觉还是直接在网站找题目刷来的痛快一些。
-* A Search with Github ：直接通过 Github搜索相关代码。
-stackoverflow : 选中相关内容后单击右键即可快速跳转到 stackoverflow 。
-* CodeStream ：让code review变得更加容易。
-* Code screenshots ：代码片段保存为图片。
-* activate-power-mode : 写代码的时候自带动画效果！
-* GitToolBox :Git工具箱
-* OK, Gradle! ：搜索Java库用于Gradle项目
+之前没有推荐这个插件的原因是觉得已经是人手必备的了。如果你要使用 Lombok 的
