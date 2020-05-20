@@ -78,7 +78,8 @@ Alibaba Java Code Guidelines—阿里巴巴 Java 代码规范
 img
 这个可以对应上 《阿里巴巴Java开发手册》 这本书关于创建线程池的方式说明。
 
-GsonFormat+RoboPOJOGenerator—JSON转类对象
+### GsonFormat+RoboPOJOGenerator—JSON转类对象
+
 这个插件可以根据Gson库使用的要求,将JSONObject格式的String 解析成实体类。
 这个插件使用起来非常简单，我们新建一个类，然后在类中使用快捷键 option + s(Mac)或alt + s (win)调出操作窗口（必须在类中使用快捷键才有效），如下图所示。
 
