@@ -19,9 +19,9 @@
 
 * [2] 在“运行”对话框中，键入 notepad %systemroot%/Microsoft.Net/Framework64/v4.0.30319/CONFIG/machine.config，然后单击“确定”。(不同的.NET版本路径不一样，可以选择你自己当前想设置的.NET版本的config)
 
-* [3] 找到如下所示的 processModel 元素：<processModel autoConfig="true" />
+* [3] 找到如下所示的 processModel 元素：`<processModel autoConfig="true" />`
 
-* [4] 将 processModel 元素替换为以下值：<processModel enable="true" requestQueueLimit="15000" />
+* [4] 将 processModel 元素替换为以下值：`<processModel enable="true" requestQueueLimit="15000" />`
 
 * [5] 保存并关闭 Machine.config 文件。
 
