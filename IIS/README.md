@@ -3,9 +3,9 @@
 
 ### 1.修改IIS的 appConcurrentRequestLimit 设置
 
-默认值是5000，修改为50000（或者更大的值）
+默认值是5000，修改为100000（或者更大的值）
 
->c:\windows\system32\inetsrv\appcmd.exe set config /section:serverRuntime /appConcurrentRequestLimit:50000
+>c:/windows/system32/inetsrv/appcmd.exe set config /section:serverRuntime /appConcurrentRequestLimit:100000
 
 在%systemroot%\System32\inetsrv\config\applicationHost.config中可以查看到该设置：
 
