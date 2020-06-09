@@ -25,7 +25,7 @@
 
 * [5] 保存并关闭 Machine.config 文件。
 
-><processModel enable="true" requestQueueLimit="15000" maxWorkerThreads="100" maxIoThreads="100" minWorkerThreads="50" minIoThreads="50" />
+>`<processModel enable="true" requestQueueLimit="15000" maxWorkerThreads="100" maxIoThreads="100" minWorkerThreads="50" minIoThreads="50" />`
 
 有4个相关设置：maxWorkerThreads（默认值是20）, maxIoThreads（默认值是20）, minWorkerThreads（默认值是1）, minIoThreads（默认值是1）。（这些设置是针对每个CPU核）
 
