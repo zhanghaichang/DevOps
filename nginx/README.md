@@ -25,7 +25,7 @@ yum install -y openssl openssl-devel
 解压、配置（Nginx支持各种配置选项,文末一一列出 Nginx配置选项 ）、编译、安装nginx
 
 ```
-tar -zxvf nginx-1.15.tar.gz cd nginx-1.16.1
+tar -zxvf nginx-1.16.1.tar.gz cd nginx-1.16.1
 cd nginx-1.16.1
 ./configure
 make && sudo make install 
