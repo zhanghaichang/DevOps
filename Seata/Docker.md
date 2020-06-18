@@ -1,0 +1,68 @@
+### 启动seata-server实例
+
+Start a seata-server instance
+
+```
+$ docker run --name seata-server -p 8091:8091 seataio/seata-server:latest
+
+```
+#### 指定自定义配置文件启动
+
+```
+$ docker run --name seata-server \
+        -p 8091:8091 \
+        -e SEATA_CONFIG_NAME=file:/root/seata-config/registry \
+        -v /PATH/TO/CONFIG_FILE:/root/seata-config  \
+        seataio/seata-server
+```
+
+指定seata-server IP 启动
+
+```
+$ docker run --name seata-server \
+        -p 8091:8091 \
+        -e SEATA_IP=192.168.1.1 \
+        seataio/seata-server
+```
+
+进入容器
+
+```
+$ docker exec -it seata-server sh
+
+```
+
+#### 使用自定义配置文件
+
+默认的配置文件路径为 /seata-server/resources，建议将自定义配置文件放到其他目录下; 使用自定义配置文件时必须指定环境变量 SEATA_CONFIG_NAME，
+并且环境变量的值需要以file:开始, 如: seata-config/registry
+
+```
+$ docker run --name seata-server \
+        -p 8091:8091 \
+        -e SEATA_CONFIG_NAME=file:/root/seata-config/registry \
+        -v /PATH/TO/CONFIG_FILE:/root/seata-config  \
+        seataio/seata-server
+```
+
+#### 环境变量
+
+seata-server 支持以下环境变量：
+
+* SEATA_IP
+可选，指定seata-server启动的IP，该IP用于向注册中心注册时使用，如eureka等.
+
+* SEATA_PORT
+可选，指定seata-server启动的端口，默认为 8091
+
+* STORE_MODE
+可选，指定seata-server的事务日志存储方式，支持db 和 file, 默认是 file.
+
+* SERVER_NODE
+可选，用于指定seata-server节点ID, 如 1,2,3..., 默认为 1
+
+* SEATA_ENV
+可选，指定 seata-server 运行环境, 如 dev, test 等. 服务启动时会使用 registry-dev.conf 这样的配置.
+
+* SEATA_CONFIG_NAME
+The variable is optional, specifies the configuration file path, like the file:/root/registry, will load file/root/registry.conf as configuration. 可选, 指定配置文件位置, 如 file:/root/registry, 将会加载 /root/registry.conf 作为配置文件.
