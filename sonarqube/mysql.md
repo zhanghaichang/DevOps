@@ -33,3 +33,29 @@ scp 是 SSH cp。用户为 root，主机号为 10.9.40.121。
 
 输入 yes，输入 root 的密码
 ```
+
+递归修改文件夹权限
+
+`chmod -R 777 /data/sonarqube/`
+
+
+### 启动 Sonar
+
+```shell
+docker run \
+ -d \
+ --name sonarqube \
+ -p 9000:9000 \
+ -p 9092:9092 \
+ -v /data/sonarqube/logs:/opt/sonarqube/logs \
+ -v /data/sonarqube/conf:/opt/sonarqube/conf \
+ -v /data/sonarqube/data:/opt/sonarqube/data \
+ -v /data/sonarqube/extensions:/opt/sonarqube/extensions \
+ -e SONARQUBE_JDBC_USERNAME=sonar \
+ -e SONARQUBE_JDBC_PASSWORD=sonar \
+ -e SONARQUBE_JDBC_URL="jdbc:mysql://xx.xx.xx.xx:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance&useSSL=false" \
+ sonarqube:7.4-community
+
+
+```
+
