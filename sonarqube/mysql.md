@@ -1,6 +1,5 @@
 # SoanrQube Mysql 数据源
 
-```shell
 登录 MySQL
 
 `mysql -u root -p`
@@ -20,4 +19,4 @@
 退出 MySQL
 
 `exit`
-```
+
