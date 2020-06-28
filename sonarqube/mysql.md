@@ -1,4 +1,4 @@
-# SoanrQube Mysql 数据源
+# SoanrQube 切换Mysql数据源
 
 登录 MySQL
 
@@ -20,3 +20,16 @@
 
 `exit`
 
+### 配置迁移
+
+```
+使用 scp 命令，将重要文件复制到本机的 /data/sonarqube/ 下
+
+scp -r conf/ data/ extensions/ logs/ root@10.9.40.121:/data/sonarqube
+
+命令解释： 将 conf/ data/ extensions/ logs/ 复制到 /data/sonarqube 目录下
+
+scp 是 SSH cp。用户为 root，主机号为 10.9.40.121。
+
+输入 yes，输入 root 的密码
+```
