@@ -146,7 +146,25 @@ show databases;
   select * from 表名;
 ```
  
+### 快速复制数据库
 
+创建新的数据库
+
+```
+mysql -u root -p123456
+
+mysql>CREATE DATABASE `newdb` DEFAULT CHARACTER SET UTF8 COLLATE UTF8_GENERAL_CI;
+```
+复制数据库，使用mysqldump及mysql的命令组合，一次性完成复制
+
+```
+mysqldump db1 -u root -p123456 --add-drop-table | mysql newdb -u root -p123456
+```
+不在同一个mysql服务器上
+
+```
+mysqldump db1 -uroot -p123456 --add-drop-table | mysql -h 192.168.1.22 newdb -u root -p123456
+```
 ### 导出和导入数据
 
 1. 导出数据：
