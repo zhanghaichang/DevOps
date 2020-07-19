@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: skywalking-oap-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: skywalking-oap-server
+  template:
+    metadata:
+      labels:
+        app: skywalking-oap-server
+    spec:
+      containers:
+        - image: apache/skywalking-oap-server:latest
+          imagePullPolicy: IfNotPresent
+          name: skywalking-oap-server
+          ports:
+            - containerPort: 11800
+              name: grpc
+            - containerPort: 12800
+              name: rest
+---
+#-----------------定义skywalking的代理服务--------------
+apiVersion: v1
+kind: Service
+metadata:
+  name: skywalking-oap-server
+spec:
+  ports:
+    - name: grpcporst
+      nodePort: 31800
+      port: 11800
+      protocol: TCP
+      targetPort: 11800
+    - name: restport
+      nodePort: 32100
+      port: 12800
+      protocol: TCP
+      targetPort: 12800
+  selector:
+    app: skywalking-oap-server
+  type: NodePort
