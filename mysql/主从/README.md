@@ -86,7 +86,7 @@ mysql> show master status;
 ### 安装启动从库
 
 ```
-docker run -d -p 3606:3306 --name=mysql-savle -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/mysql:/var/lib/mysql -w /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7.29
+docker run -d -p 3306:3306 --name=mysql-slave -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/mysql:/var/lib/mysql -w /var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 mysql:5.7.29
 
 ```
 
