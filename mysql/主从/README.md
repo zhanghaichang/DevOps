@@ -41,4 +41,51 @@ mkdir -p /data/mysql-110/{mysql,conf,data}
 ### 安装启动主库
 
 ```
+docker run -d -p 3306:3306 --name=mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/mysql:/var/lib/mysql -w /var/lib/mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7.29
 ```
+
+### 创建授权用户
+
+连接mysql主数据库，键入命令mysql -u root -p，输入密码后登录数据库。创建用户用于从库同步复制，授予复制、同步访问的权限
+
+```
+mysql> CREATE USER 'slave'@'%' IDENTIFIED BY '123456';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> GRANT REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'slave'@'%';
+Query OK, 0 rows affected (0.00 sec)
+```
+log_bin是否开启
+
+```
+mysql> show variables like 'log_bin';
++---------------+-------+
+| Variable_name | Value |
++---------------+-------+
+| log_bin       | ON    |
++---------------+-------+
+1 row in set
+```
+查看master状态
+
+```
+mysql> show master status;
++------------------+----------+--------------+--------------------------------------------------+-------------------+
+| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB                                 | Executed_Gtid_Set |
++------------------+----------+--------------+--------------------------------------------------+-------------------+
+| mysql-bin.000001 |     154  | test         | mysql,information_schema,performation_schema,sys |                   |
++------------------+----------+--------------+--------------------------------------------------+-------------------+
+1 row in set
+```
+注意：mysql-bin.000001 跟154这俩参数从库会使用到，根据实际情况修改
+
+### 【从库】配置及操作
+
+配置my.cnf,把该文件放到主库所在配置文件路径下：/data/mysql/conf/
+
+### 安装启动从库
+
+```
+docker run -d -p 3606:3306 --name=mysql -v /data/mysql/conf:/etc/mysql/conf.d -v /data/mysql/mysql:/var/lib/mysql -w /var/lib/mysql -e MYSQL_ROOT_PASSWORD=root mysql:5.7.29
+```
+
