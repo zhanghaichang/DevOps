@@ -222,3 +222,22 @@ mysql> show variables like 'log_error%';
 * 如果某段时间内，【从数据库】服务器异常导致同步中断（可能是同步点位置不匹配），可以尝试以下恢复方法：进入【主数据库】服务器（正常），在bin-log中找到【从数据库】出错前的position，然后在【从数据库】上执行change master，将master_log_file和master_log_pos重新指定后，开始同步。
 使用root账号登录【主服务器】，创建test数据库
 
+
+###  问题处理
+
+删除失败，在master上删除一条记录，而slave上找不到。
+
+```
+Last_SQL_Error: Could not execute Delete_rows event on table hcy.t1; 
+Can't find record in 't1',
+Error_code: 1032; handler error HA_ERR_KEY_NOT_FOUND; 
+the event's master log mysql-bin.000006, end_log_pos 254
+```
+*解决方法：*
+
+由于master要删除一条记录，而slave上找不到故报错，这种情况主上都将其删除了，那么从机可以直接跳过。可用命令：
+```
+stop slave;
+set global sql_slave_skip_counter=1;
+start slave;
+```
