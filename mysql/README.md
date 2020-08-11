@@ -257,6 +257,26 @@ mysqldump db1 -uroot -p123456 --add-drop-table | mysql -h 192.168.1.22 newdb -u 
 
 3、退出MYSQL命令： exit (回车)
 
+### 行锁分析
+
+* 执行 SQL 分析命令
+
+```
+show status like 'innodb_row_lock%';
+```
+
+* Variable_name 说明
+
+  *  Innodb_row_lock_current_waits：当前正在等待锁定的数量。
+
+  *  Innodb_row_lock_time：从系统启动到现在锁定的时长。
+
+  *  Innodb_row_lock_time_avg：每次等待锁所花平均时间。
+
+  *  Innodb_row_lock_time_max：从系统启动到现在锁等待最长的一次所花的时间。
+
+  *  Innodb_row_lock_waits：系统启动后到现在总共等待锁的次数。
+
 ### mysql 忽略大小写配置
 
 1.新安装mysql5.7版本后，linux环境下默认是大小写敏感的。可以在客户端执行以下命令:
