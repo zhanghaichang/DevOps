@@ -1,44 +1,79 @@
-# Mysql docker install
+# Linux安装MySQL5.7
 
-拉镜像
-```
-$ docker pull mysql:5.7
-```
+下载地址：https://dev.mysql.com/downloads/mysql/5.7.html#downloads
 
-运行
+**解压**
 ```
-$ sudo docker run --name first-mysql -p 3306:3306 -e MYSQL\_ROOT\_PASSWORD=123456 -d mysql
-
+tar -xvf mysql-5.7.26-linux-glibc2.12-x86_64.tar 
 ```
-配置文件映射 不区分大小写
+**再移动并重命名一下**
 
 ```
-# 持久化存储
-docker run --name mysql -p 30006:3306 -v /data/k8s/mysql:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=topcheer123 -d mysql:5.7.14 --lower_case_table_names=1
-
-
-docker run -p 3306:3306 --name mysql \
-       -v /data/mysql/conf:/etc/mysql/conf.d \
-       -v /data/mysql/logs:/logs \
-       -v /data/mysql:/mysql_data \
-       -e MYSQL_ROOT_PASSWORD=123456 \
-       -d mysql:5.7.14 \
-       --lower_case_table_names=1
+mv mysql-5.7.26-linux-glibc2.12-x86_64 /usr/local/mysql
 ```
--d ： 后台运行容器，并返回容器 ID
+**创建mysql用户组和用户并修改权限**
 
--p 3307:3306 ： 将容器的 3307 端口映射到主机的 3306 端口
+```
+groupadd mysql
+useradd -r -g mysql mysql
+```
 
-–name mysql ： 命名为 mysql
+**创建数据目录并赋予权限**
 
--v /data/mysql/conf:/etc/mysql/conf.d ： 将本机 /data/mysql/conf/my.cnf 挂载到容器的 /etc/mysql/my.cnf
+```
+mkdir -p  /data/mysql              #创建目录
+chown mysql:mysql -R /data/mysql   #赋予权限
+```
 
--v /data/mysql/logs:/logs ： 将本机 /data/mysql/logs 目录挂载到容器的 /logs
+**配置my.cnf**
 
--v /data/mysql/data:/var/lib/mysql ： 将本机 /data/mysql/data 目录挂载到容器的 /var/lib/mysql
+`vim /etc/my.cnf`
 
--e MYSQL_ROOT_PASSWORD=123456 ： 初始化 root 用户，密码设置为 123456
+```
+[mysqld]
+bind-address=0.0.0.0
+port=3306
+user=mysql
+basedir=/usr/local/mysql
+datadir=/data/mysql
+socket=/tmp/mysql.sock
+log-error=/data/mysql/mysql.err
+pid-file=/data/mysql/mysql.pid
+#character config
+character_set_server=utf8mb4
+symbolic-links=0
+explicit_defaults_for_timestamp=true
+```
 
+**初始化数据库**
+进入mysql的bin目录
+
+```
+cd /usr/local/mysql/bin/
+```
+**初始化**
+```
+./mysqld --defaults-file=/etc/my.cnf --basedir=/usr/local/mysql/ --datadir=/data/mysql/ --user=mysql --initialize
+```
+
+**查看密码**
+
+```
+cat /data/mysql/mysql.err
+```
+
+#### 启动mysql，并更改root 密码
+
+```
+cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysql
+
+service mysql start
+
+ps -ef|grep mysql
+```
+
+ 
+ 
 查看当前mysql的大小写敏感配置
 
 ```
