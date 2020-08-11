@@ -29,6 +29,14 @@ yum -y install postgresql-devel
 make -j
 make install
 ```
+
+**安装成功**
+
+```
+[root@test sysbench-1.0]# sysbench --version
+sysbench 1.0.9
+```
+
 **开始测试**
 
 ```
