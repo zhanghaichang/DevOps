@@ -5,14 +5,12 @@
 
 ```
 show variables like "%profiling%";
-
 ```
 
 * 开启
 
 ```
 set profiling = 1;
-
 ```
 
 ### 开始分析
@@ -47,3 +45,6 @@ set profiling = 1;
 
 * Sending data
 > 解释：从server端发送数据到客户端，也有可能是接收存储引擎层返回的数据，再发送给客户端，数据量很大时尤其经常能看见。备注：Sending Data不是网络发送，是从硬盘读取，发送到网络是Writing to net。建议：通过索引或加上LIMIT，减少需要扫描并且发送给客户端的数据量
+
+
+https://mp.weixin.qq.com/s?__biz=MzU0NDA2MjY5Ng==&mid=2247485173&idx=1&sn=cfbddaa71d8a33e74e9cd876a3fe5f92&scene=19#wechat_redirect
