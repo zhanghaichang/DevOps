@@ -36,6 +36,23 @@ make install
 [root@test sysbench-1.0]# sysbench --version
 sysbench 1.0.9
 ```
+**准备数据**
+
+```
+sysbench ./tests/include/oltp_legacy/oltp.lua --mysql-host=192.168.10.10 --mysql-port=3306 --mysql-user=root --mysql-password=123456 --oltp-test-mode=complex --oltp-tables-count=10 --oltp-table-size=100000 --threads=10 --time=120 --report-interval=10 prepare
+```
+其中，执行模式为complex，使用了10个表，每个表有10万条数据，客户端的并发线程数为10，执行时间为120秒，每10秒生成一次报告。
+
+**执行测试**
+将测试结果导出到文件中，便于后续分析
+```
+sysbench ./tests/include/oltp_legacy/oltp.lua --mysql-host=192.168.10.10 --mysql-port=3306 --mysql-user=root --mysql-password=123456 --oltp-test-mode=complex --oltp-tables-count=10 --oltp-table-size=100000 --threads=10 --time=120 --report-interval=10 run >> /home/test/mysysbench.log
+```
+**清理数据**
+执行完测试后，清理数据，否则后面的测试会受到影响。
+```
+sysbench ./tests/include/oltp_legacy/oltp.lua --mysql-host=192.168.10.10 --mysql-port=3306 --mysql-user=root --mysql-password=123456 cleanup
+```
 
 **开始测试**
 
