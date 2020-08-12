@@ -96,20 +96,6 @@ lower_case_table_names=1
 保存，退出容器；
 ```
 
-持久化运行
-
-```
-$ sudo docker run --name mysql -p 3306:3306 -v /docker/data/mysql:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=topcheer123 -d mysql:5.7
-```
-
-
-## mysql run 
-
-```
-mysql -h localhost -P端口 -u root -p 123456 
-
-```
-
 ## Mysql 远程登录及常用命令
 
 ### mysql服务的启动和停止
