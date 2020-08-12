@@ -53,6 +53,8 @@ cd /usr/local/mysql/bin/
 ```
 **初始化**
 ```
+yum install -y libaio 
+
 ./mysqld --defaults-file=/etc/my.cnf --basedir=/usr/local/mysql/ --datadir=/data/mysql/ --user=mysql --initialize
 ```
 
