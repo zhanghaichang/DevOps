@@ -114,6 +114,11 @@ mysql>
 ```
 注意，如果是连接到另外的机器上，则需要加入一个参数-h机器IP
 
+### 开启远程访问权限
+
+```
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'XXXXXXX'  
+```
 ### 增加新用户
 
    格式：grant 权限 on 数据库.* to 用户名@登录主机 identified by "密码"
