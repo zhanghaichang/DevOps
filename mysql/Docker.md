@@ -38,3 +38,18 @@ docker run -p 3306:3306 --name mysql \
 -v /data/mysql/data:/var/lib/mysql ： 将本机 /data/mysql/data 目录挂载到容器的 /var/lib/mysql
 
 -e MYSQL_ROOT_PASSWORD=123456 ： 初始化 root 用户，密码设置为 123456
+
+
+## 持久化运行
+
+```
+$ sudo docker run --name mysql -p 3306:3306 -v /docker/data/mysql:/var/lib/mysql -e MYSQL\_ROOT\_PASSWORD=topcheer123 -d mysql:5.7
+```
+
+
+## mysql run 
+
+```
+mysql -h localhost -P端口 -u root -p 123456 
+
+```
