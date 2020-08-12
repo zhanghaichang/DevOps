@@ -73,8 +73,12 @@ service mysql start
 
 ps -ef|grep mysql
 ```
-
+**用SET PASSWORD命令**
  
+ ```
+格式：mysql> set password for 用户名@localhost = password('新密码'); 
+例子：mysql> set password for root@localhost = password('123'); 
+ ```
  
 查看当前mysql的大小写敏感配置
 
@@ -202,6 +206,7 @@ mysqldump db1 -u root -p123456 --add-drop-table | mysql newdb -u root -p123456
 ```
 mysqldump db1 -uroot -p123456 --add-drop-table | mysql -h 192.168.1.22 newdb -u root -p123456
 ```
+
 ### 导出和导入数据
 
 1. 导出数据：
@@ -278,7 +283,6 @@ mysqldump db1 -uroot -p123456 --add-drop-table | mysql -h 192.168.1.22 newdb -u 
 ```
   mysql>update MYTABLE set sex="f" where name='hyq';
 
-  posted on 2006-01-10 16:21 happytian 阅读(6) 评论(0) 编辑 收藏 收藏至365Key
 ```
 13：备份数据库
 ```
