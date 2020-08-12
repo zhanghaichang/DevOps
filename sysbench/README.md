@@ -41,7 +41,41 @@ sysbench 1.0.9
 
 >  oltp是针对数据库的基准测试，例如每次对数据库进行优化后执行基准测试来测试不同的配置的tps。sysbench 0.5之后通过一系列LUA脚本来替换之前的oltp，来模拟更接近真实的基准测试环境。这些测试脚本包含：insert.lua、oltp.lua、parallel_prepare.lua、select_random_points.lua、update_index.lua、delete.lua oltp_simple.lua、select.lua、select_random_ranges.lua、update_non_index.lua
 
-
+```
+预置条件：
+a)创建数据库：
+mysqladmin create sbtest -uroot –p
+或者
+SQL>create database sbtest
+b)增加权限：
+grant usage on . to 'sbtest'@'%' identified by password '*2AFD99E79E4AA23DE141540F4179F64FFB3AC521';
+其中密码通过如下命令获取：
+select password('sbtest');
++-------------------------------------------+
+| password('sbtest') |
++-------------------------------------------+
+| 2AFD99E79E4AA23DE141540F4179F64FFB3AC521 |
++-------------------------------------------+
+1 row in set (0.00 sec)
+c)增加权限：
+GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,ALTER,INDEX ON sbtest.TO 'sbtest'@"%";
+grant all privileges on . to 'sbtest'@'%';
+flush privileges;
+或者简单粗暴：
+create user 'sbtest'@'127.0.0.1' identified by 'sbtest';
+grant all privileges on . to
+flush privileges;
+e)OLTP测试：
+准备阶段：
+sysbench --test= /usr/local/share/sysbench/tests/include/oltp_legacy/oltp.lua --oltp-table-size=10000 --mysql-table-engine=innodb --oltp-tables-count=10 --mysql-user=sbtest --mysql-password=sbtest --mysql-port=3306 --mysql-host=127.0.0.1 --max-requests=0 --time=10 --report-interval=1 --threads=10 --oltp-point-selects=1 --oltp-simple-ranges=0 --oltp_sum_ranges=0 --oltp_order_ranges=0 --oltp_distinct_ranges=0 --oltp-read-only=on prepare
+测试阶段：
+命令如下：
+sysbench --test= /usr/local/share/sysbench/tests/include/oltp_legacy/oltp.lua --oltp-table-size=10000 --mysql-table-engine=innodb --oltp-tables-count=10 --mysql-user=sbtest --mysql-password=sbtest --mysql-port=3306 --mysql-host=127.0.0.1 --max-requests=0 --time=10 --report-interval=1 --threads=10 --oltp-point-selects=1 --oltp-simple-ranges=0 --oltp_sum_ranges=0 --oltp_order_ranges=0 --oltp_distinct_ranges=0 --oltp-read-only=on run
+清理阶段：
+sysbench --test= /usr/local/share/sysbench/tests/include/oltp_legacy/oltp.lua --oltp-table-size=10000 --mysql-table-engine=innodb --oltp-tables-count=10 --mysql-user=sbtest --mysql-password=sbtest --mysql-port=3306 --mysql-host=127.0.0.1 --max-requests=0 --time=10 --report-interval=1 --threads=10 --oltp-point-selects=1 --oltp-simple-ranges=0 --oltp_sum_ranges=0 --oltp_order_ranges=0 --oltp_distinct_ranges=0 --oltp-read-only=on cleanup
+最后删除数据库
+SQL>drop database sbtest;
+```
 **准备数据**
 
 ```
