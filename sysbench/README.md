@@ -113,6 +113,16 @@ sysbench --test= /usr/local/share/sysbench/tests/include/oltp_legacy/oltp.lua --
 最后删除数据库
 SQL>drop database sbtest;
 ```
+
+**MySQL执行参数**
+
+* --oltp-test-mode：执行模式，包括simple、nontrx和complex，默认是complex。simple模式下只测试简单的查询；nontrx不仅测试查询，还测试插入更新等，但是不使用事务；complex模式下测试最全面，会测试增删改查，而且会使用事务。可以根据自己的需要选择测试模式。
+* --oltp-tables-count：测试的表数量，根据实际情况选择
+* --oltp-table-size：测试的表的大小，根据实际情况选择
+* --threads：客户端的并发连接数
+* --time：测试执行的时间，单位是秒，该值不要太短，可以选择120
+* --report-interval：生成报告的时间间隔，单位是秒，如10
+
 **准备数据**
 
 ```
