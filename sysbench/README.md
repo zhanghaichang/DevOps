@@ -35,12 +35,13 @@ make install
 ```
 [root@test sysbench-1.0]# sysbench --version
 sysbench 1.0.9
+```
 
 # OLTP测试
 
 >  oltp是针对数据库的基准测试，例如每次对数据库进行优化后执行基准测试来测试不同的配置的tps。sysbench 0.5之后通过一系列LUA脚本来替换之前的oltp，来模拟更接近真实的基准测试环境。这些测试脚本包含：insert.lua、oltp.lua、parallel_prepare.lua、select_random_points.lua、update_index.lua、delete.lua oltp_simple.lua、select.lua、select_random_ranges.lua、update_non_index.lua
 
-```
+
 **准备数据**
 
 ```
