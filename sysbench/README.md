@@ -36,6 +36,43 @@ make install
 [root@test sysbench-1.0]# sysbench --version
 sysbench 1.0.9
 ```
+# 1 CPU测试
+
+对CPU的性能测试通常有：1.质数计算；2圆周率计算；sysbench使用的就是通过质数相加的测试。对CPU测试直接运行run即可
+
+```
+sysbench --threads=20 --events=10000 --debug=on --test=cpu --cpu-max-prime=20000 run
+20个线程执行1万条请求，每个请求执行质数相加到20000   
+```
+# 2 内存测试
+
+```
+测试8K顺序分配：
+sysbench --threads=12 --events=10000 --test=memory --memory-block-size=8K --memory-total-size=100G --memory-access-mode=seq run
+测试8K随机分配。
+sysbench --threads=12 --events=10000 --test=memory --memory-block-size=8K --memory-total-size=100G --memory-access-mode=rnd run
+ ```
+ # 3 文件io测试
+
+```
+IO的测试主要用于测试IO的负载性能。主要测试选项为--file-test-mode。还有可以关注的参数包括--file-block-size、--file-io-mode、--file-fsync-freq 、--file-rw-ratio，具体参数含义请见参数解释章节。
+sysbench --threads=12 --events=10000 fileio --file-total-size=3G --file-test-mode=rndrw prepare
+sysbench --threads=12 --events=10000 fileio --file-total-size=3G --file-test-mode=rndrw run
+sysbench --threads=12 --events=10000 fileio --file-total-size=3G --file-test-mode=rndrw cleanup
+对比两台服务器的io性能，需要跑相同的线程
+```
+
+# 4 锁测试
+
+```
+互斥锁测试模拟所有线程在同一时刻并发运行。
+sysbench --threads=12 mutex --mutex-num=1024 --mutex-locks=10000 --mutex-loops=10000 run
+```
+# 5 线程测试
+
+```
+sysbench threads --num-threads=64 --thread-yields=100 --thread-locks=2 run
+```
 
 # OLTP测试
 
