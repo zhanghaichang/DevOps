@@ -131,16 +131,13 @@ sysbench /usr/share/sysbench/tests/include/oltp_legacy/oltp.lua --mysql-host=172
 
 执行完测试后，清理数据，否则后面的测试会受到影响。
 ```
-sysbench /usr/share/sysbench/tests/include/oltp_legacy/oltp.lua --mysql-host=172.24.239.69 --mysql-port=3306 --mysql-user=root --mysql-password=XXXXX cleanup
+sysbench /usr/share/sysbench/tests/include/oltp_legacy/oltp.lua --mysql-host=172.24.239.69 --mysql-port=3306 --mysql-user=root --mysql-password=XXXXXXX  --oltp-tables-count=10  cleanup
 
 ```
 
-**开始测试**
+**执行结束后查看测试报告**
 
 ```
-shell> sysbench --test=oltp --oltp_tables_count=10 --oltp-table-size=100000 --mysql-user=root --mysql-password=123456 --num-threads=20 --max-time=120 --max-requests=0 --oltp-test-mode=complex run >> /tmp/log/sysbench_oltpx_20161121.log
-
-#执行结束后查看测试报告
 shell> less /tmp/log/sysbench_oltpx_20161121.log
 sysbench 1.0:  multi-threaded system evaluation benchmark
 
