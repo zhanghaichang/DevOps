@@ -350,3 +350,16 @@ Threads_running    1 ##（当前连接数）
 ```
 max_connection = 1000;
 ```
+
+### 慢查询
+
+```
+[mysqlld] 
+long_query_time=2 
+#5.0、5.1等版本配置如下选项 
+log-slow-queries="mysql_slow_query.log" 
+#5.5及以上版本配置如下选项 
+slow-query-log=On 
+slow_query_log_file="mysql_slow_query.log" 
+log-query-not-using-indexes 
+```
