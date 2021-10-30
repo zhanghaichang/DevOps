@@ -118,7 +118,7 @@ host    all             all             ::1/128                 ident
 
 ```
 
-5.4 修改postgresql文件pg_hba.conf以开启远程访问
+5.4 修改postgresql文件postgresql.conf以开启远程访问
 
 ```
 listen_addresses = '*'
