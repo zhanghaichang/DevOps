@@ -104,9 +104,11 @@ grant all privileges on database kong to kong;
 
 ```
 
-5.3 修改postgresql权限控制文件pg_hba.conf
+5.3 修改postgresql权限控制文件 pg_hba.conf
 
 ```
+vi /var/lib/pgsql/9.6/data/pg_hba.conf
+
 local   all             all                                     trust
 host    all             all             0.0.0.0/0               md5
 # IPv4 local connections:
