@@ -192,9 +192,15 @@ chmod 700 /var/lib/pgsql/9.6/data
 #启动docker
 systemctl start docker
 
-docker pull pantsel/konga:latest
+docker pull pantsel/konga:0.14.1
 
-docker run --rm pantsel/konga:latest -c prepare -a postgres -u postgresql://kong:123456@118.31.12.176:5432/kong
+先创建数据库
+
+create database konga owner kong;
+
+grant all privileges on database konga to kong;
+
+docker run --rm pantsel/konga:0.14.1 -c prepare -a postgres -u postgresql://kong:123456@118.31.12.176:5432/konga
 
 docker run -d -p 1337:1337 \
              -e "DB_ADAPTER=postgres" \
@@ -202,10 +208,10 @@ docker run -d -p 1337:1337 \
              -e "DB_PORT=5432" \
              -e "DB_USER=kong" \
              -e "DB_PASSWORD=123456" \
-             -e "DB_DATABASE=kong" \
+             -e "DB_DATABASE=konga" \
              -e "DB_PG_SCHEMA=public"\
              -e "NODE_ENV=production" \
              --name konga \
-             pantsel/konga:latest
+             pantsel/konga:0.14.1
 
 ```
