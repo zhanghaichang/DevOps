@@ -50,6 +50,21 @@ sudo yum install -y https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhe
 
 yum install postgresql96-server
 
+#初始化数据库
+
+/usr/pgsql-9.6/bin/postgresql96-setup initdb
+
+执行完毕显示：Initializing database ... OK
+
+创建用户组和用户：
+
+sudo groupadd postgresql
+
+sudo useradd -gpostgresql postgresql
+
+#实现开机自启服务
+systemctl enable postgresql-9.6
+
 #启动
 service postgresql-9.6 start
 
@@ -158,6 +173,12 @@ curl 127.0.0.1:8001
 
 ```
 
+ yum 安装postgresql9.6遇到的坑及问题解决：
+
+```
+权限的问题，授权一下：
+chmod 700 /var/lib/pgsql/9.6/data
+```
 
 
 7 开源项目konga
