@@ -127,7 +127,8 @@ listen_addresses = '*'
 
 ```
 #kong一定要在1.0和1.3之间 不然konga不支持
-yum install -y https://bintray.com/kong/kong-rpm/download_file?file_path=centos/7/kong-1.3.0.el7.amd64.rpm
+curl -Lo kong-1.3.1.el7.amd64.rpm $( rpm --eval "https://download.konghq.com/gateway-1.x-centos-%{centos_ver}/Packages/k/kong-1.3.1.el%{centos_ver}.amd64.rpm")
+$ sudo yum -y install kong-1.3.1.el7.amd64.rpm
 
 ```
 
