@@ -140,6 +140,10 @@ iptables -P OUTPUT ACCEPT
 iptables -P FORWARD DROP
 ```
 
+关闭端口号 8099
+```
+iptables -A OUTPUT -p tcp --dport 8099 -j DROP
+```
 ## 更多常用命令操作
 
 清除规则
