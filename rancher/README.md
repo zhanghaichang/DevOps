@@ -16,9 +16,9 @@ sudo docker run -d -v /data/k8s/rancher:/var/lib/rancher/ --restart=unless-stopp
 
 ```
 
-### 稳定版本
+### 稳定版本 2.5.11
 ```
-sudo docker run -d --privileged --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:stable
+sudo docker run -d --privileged --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:v2.5.11
 ```
 
 ### 关闭防火墙 
