@@ -3,6 +3,8 @@
 ```
 curl -s https://releases.rancher.com/install-docker/17.03.sh|sh
 
+curl -s https://releases.rancher.com/install-docker/18.03.1.sh|sh
+
 ```
 
 
