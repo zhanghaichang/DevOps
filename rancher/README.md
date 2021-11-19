@@ -8,13 +8,13 @@ curl -s https://releases.rancher.com/install-docker/18.03.1.sh|sh
 ```
 
 
-# rancher 2.0安装
+# rancher v2.3.11 安装
 
 ```
 vim /etc/sysconfig/docker
  remove --selinux-enabled from the OPTIONS variable
 
-sudo docker run -d -v /data/k8s/rancher:/var/lib/rancher/ --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
+sudo docker run -d -v /data/k8s/rancher:/var/lib/rancher/ --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher:v2.3.11
 
 ```
 
