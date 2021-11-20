@@ -47,3 +47,9 @@ sudo systemctl enable docker;
  Docker-engine
 
 Docker-Engine Docker官方已经不推荐使用，请安装Docker-CE。
+
+# Docker 18.06 一键在线安装
+
+```
+curl -sSL https://releases.rancher.com/install-docker/18.06.sh |sh
+```
