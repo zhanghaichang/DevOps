@@ -74,5 +74,3 @@ OpenJDK Runtime Environment (build 1.8.0_232-b09)
 OpenJDK 64-Bit Server VM (build 25.232-b09, mixed mode)
 ```
 
-※source指令报错请仔细确认步骤4内容是否有误。
-
