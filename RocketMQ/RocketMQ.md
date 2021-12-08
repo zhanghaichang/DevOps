@@ -57,10 +57,11 @@ tail -f ~/logs/rocketmqlogs/broker.log
 4. 关闭MQ
 
 ```
-cd distribution/bin
-先关闭 
-mqbroker sh /bin/mqshutdown broker
-再关
-nameserv sh /bin/mqshutdown namesrv
+cd distribution/target/rocketmq-4.9.2/rocketmq-4.9.2
+
+先关闭 mqbroker
+ sh /bin/mqshutdown broker
+再关 nameserv
+ sh /bin/mqshutdown namesrv
 ```
 
