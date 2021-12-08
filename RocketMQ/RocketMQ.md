@@ -33,15 +33,16 @@ mvn -Prelease-all -DskipTests clean install -U
 修改运行内存
 
 ```
-vi distribution/bin/runbroker.sh
-vi distribution/bin/runserver.sh
+cd distribution/target/rocketmq-4.9.2/rocketmq-4.9.2
+
+vi bin/runbroker.sh
+
+vi bin/runserver.sh
 ```
 
 3.启动
 
 ```
-cd distribution/target/rocketmq-4.9.2/rocketmq-4.9.2
-
 nohup sh bin/mqnamesrv &
 
 tail -f ~/logs/rocketmqlogs/namesrv.log
@@ -60,6 +61,6 @@ cd distribution/bin
 先关闭 
 mqbroker sh /bin/mqshutdown broker
 再关
-nameservsh /bin/mqshutdown namesrv
+nameserv sh /bin/mqshutdown namesrv
 ```
 
