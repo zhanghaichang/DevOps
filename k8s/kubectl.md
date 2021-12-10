@@ -38,3 +38,9 @@ EOF
 ```
 ### 安装命令
 > yum install -y kubectl
+
+### 测试安装版本
+
+```
+kubectl version --client
+```
