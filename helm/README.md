@@ -14,7 +14,7 @@ Helm和charts的主要作用：
 * 依赖检查
 * 便于应用程序分发
 
-## Helm 安装
+## Helm 安装 v2
 
 ```
 $ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
@@ -47,4 +47,13 @@ kubectl patch deploy --namespace kube-system tiller-deploy -p '{"spec":{"templat
 $ helm version
 Client: &version.Version{SemVer:"v2.3.1", GitCommit:"32562a3040bb5ca690339b9840b6f60f8ce25da4", GitTreeState:"clean"}
 Server: &version.Version{SemVer:"v2.3.1", GitCommit:"32562a3040bb5ca690339b9840b6f60f8ce25da4", GitTreeState:"clean"}
+```
+
+
+## Helm 安装 v3
+
+```
+$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+$ chmod 700 get_helm.sh
+$ ./get_helm.sh
 ```
