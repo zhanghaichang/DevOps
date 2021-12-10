@@ -65,3 +65,4 @@ Snap package 维护站点 Snapcrafters.
 ```
 $ sudo snap install helm --classic
 ```
+如果使用了 Helm v3，则不用安装 tiller
