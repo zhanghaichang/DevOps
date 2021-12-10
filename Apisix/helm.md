@@ -111,7 +111,7 @@ spec:
 
 ## 配置路由代理-使用ingress的方式apisix-ingress.yml
 
-```
+```yaml
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
