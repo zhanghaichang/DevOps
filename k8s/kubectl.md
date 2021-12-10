@@ -37,7 +37,10 @@ gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cl
 EOF
 ```
 ### 安装命令
-> yum install -y kubectl
+
+```
+yum install -y kubectl
+```
 
 ### 测试安装版本
 
