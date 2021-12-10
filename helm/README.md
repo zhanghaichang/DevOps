@@ -58,3 +58,10 @@ curl -LO https://get.helm.sh/helm-${VERSION}-linux-amd64.tar.gz
 tar -zxf ./helm-${VERSION}-darwin-amd64.tar.gz
 mv darwin-amd64/helm /usr/local/bin/
 ```
+
+##  通过 Snap (Linux)
+Snap package 维护站点 Snapcrafters.
+
+```
+$ sudo snap install helm --classic
+```
