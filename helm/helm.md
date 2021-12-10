@@ -7,7 +7,9 @@ https://github.com/helm/helm/releases/tag/v3.1.2 下载地址
 
 2 查看helm版本
 
+```
 helm version
+```
 
 ## 2 配置下载源
 
