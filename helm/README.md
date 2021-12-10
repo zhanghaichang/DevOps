@@ -53,7 +53,8 @@ Server: &version.Version{SemVer:"v2.3.1", GitCommit:"32562a3040bb5ca690339b9840b
 ## Helm 安装 v3
 
 ```
-$ curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-$ chmod 700 get_helm.sh
-$ ./get_helm.sh
+VERSION=v3.5.4
+curl -LO https://get.helm.sh/helm-${VERSION}-linux-amd64.tar.gz
+tar -zxf ./helm-${VERSION}-darwin-amd64.tar.gz
+mv darwin-amd64/helm /usr/local/bin/
 ```
