@@ -23,6 +23,11 @@ Loading mirror speeds from cached hostfile
 
 完毕！
 ```
+## 启动服务并配置开机自动启动
+
+```
+systemctl start nfs && systemctl enable nfs
+```
 
 ## 五、服务端配置
  
