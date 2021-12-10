@@ -44,3 +44,11 @@ EOF
 ```
 kubectl version --client
 ```
+### 检查集群
+
+执行命令测试
+
+```
+kubectl get nodes
+```
+
