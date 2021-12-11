@@ -133,7 +133,11 @@ spec:
               port:
                 number: 80
 ```
+## 标签
 
+我们添加了 kubernetes.io/ingress.class: apisix 的 annotation 配置，用于支持集群内多 ingress-controller 的场景。
+ 
+ 
 ## 测试访问
 
 whoami 修改路由的域名选项改成空
