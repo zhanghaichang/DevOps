@@ -40,14 +40,22 @@ vi bin/runbroker.sh
 vi bin/runserver.sh
 ```
 
+修改bin/broker.conf配置 IP
+
+```
+namesrvAddr = 192.168.1.110:9876
+brokerIP1 = 192.168.1.110
+```
+
+
 3.启动
 
 ```
-nohup sh bin/mqnamesrv &
+nohup sh bin/mqnamesrv -n 101.43.8.198:987 &
 
 tail -f ~/logs/rocketmqlogs/namesrv.log
 
-nohup sh bin/mqbroker -n localhost:9876 &
+nohup sh bin/mqbroker -n 101.43.8.198:9876 -c conf/broker.conf autoCreateTopicEnable=true &
 
 tail -f ~/logs/rocketmqlogs/broker.log 
 
