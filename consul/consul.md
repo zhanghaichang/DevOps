@@ -83,11 +83,11 @@ unzip consul_1.11.1_linux_amd64.zip
 # consul version
 
 #前台启动
-consul agent -server -bind=10.36.11.161 -client=10.36.11.161 -ui -data-dir /home/consul -node=agent-one -bootstrap
+consul agent -server -bind=101.43.8.198 -client=101.43.8.198 -ui -data-dir /export/consul -node=agent-one -bootstrap
 
 
 #后台启动
-nohup consul agent -server -bind=10.36.11.161 -client=10.36.11.161 -ui -data-dir /home/consul -node=agent-one -bootstrap >> /home/logs/consul.log &
+nohup consul agent -server -bind=101.43.8.198 -client=101.43.8.198 -ui -data-dir /export/consul -node=agent-one -bootstrap >> /export/logs/consul.log &
 
 说明: 
 bind  集群通信(只能指定ip 不能用0.0.0.0)
