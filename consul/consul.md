@@ -63,17 +63,17 @@ consul agent -h
 ```
 1.下载并解压consul
 
-# cd /opt/
+cd /opt/
 
-# mkdir consul
+mkdir consul
 
-# chmod 777 consul
+chmod 777 consul
 
-#cd consul
+cd consul
 
-#wget https://releases.hashicorp.com/consul/1.3.0/consul_1.3.0_linux_amd64.zip
+wget https://releases.hashicorp.com/consul/1.11.1/consul_1.11.1_linux_amd64.zip
 
-#unzip consul_1.3.0_linux_amd64.zip
+unzip consul_1.3.0_linux_amd64.zip
 
 # cp consul /usr/local/bin/
 
