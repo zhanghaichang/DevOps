@@ -1,4 +1,4 @@
-# consul 集群搭建
+# consul 搭建
 
 
 ## linux 安装
@@ -55,4 +55,43 @@ consul info
 # 帮助
 consul agent -h
 
+```
+
+
+## 安装
+
+```
+1.下载并解压consul
+
+# cd /opt/
+
+# mkdir consul
+
+# chmod 777 consul
+
+#cd consul
+
+#wget https://releases.hashicorp.com/consul/1.3.0/consul_1.3.0_linux_amd64.zip
+
+#unzip consul_1.3.0_linux_amd64.zip
+
+# cp consul /usr/local/bin/
+
+2. 检查是否安装成功
+# consul
+
+# consul version
+
+#前台启动
+consul agent -server -bind=10.36.11.161 -client=10.36.11.161 -ui -data-dir /home/consul -node=agent-one -bootstrap
+
+
+#后台启动
+nohup consul agent -server -bind=10.36.11.161 -client=10.36.11.161 -ui -data-dir /home/consul -node=agent-one -bootstrap >> /home/logs/consul.log &
+
+说明: 
+bind  集群通信(只能指定ip 不能用0.0.0.0)
+client 客户端通信(只能指定ip 不能用0.0.0.0)
+
+3.浏览器输入:http://IP:8500/出现ConsulWeb界面就表示成功了
 ```
