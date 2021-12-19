@@ -73,7 +73,7 @@ cd consul
 
 wget https://releases.hashicorp.com/consul/1.11.1/consul_1.11.1_linux_amd64.zip
 
-unzip consul_1.3.0_linux_amd64.zip
+unzip consul_1.11.1_linux_amd64.zip
 
 # cp consul /usr/local/bin/
 
