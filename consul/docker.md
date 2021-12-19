@@ -1,6 +1,8 @@
 ## Consul docker 安装
 
+```shell
 docker pull consul
+```
 
 ## Running Consul for Development
 
