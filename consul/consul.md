@@ -82,6 +82,11 @@ unzip consul_1.11.1_linux_amd64.zip
 
 # consul version
 
+启动开发模式（快速启动一个单节点Consul,但是不能数据持久化，不能用于生产环境）
+
+nohup ./consul agent -dev -client 0.0.0.0 -ui &
+
+
 #前台启动
 consul agent -server -bind=101.43.8.198 -client=101.43.8.198 -ui -data-dir /export/consul -node=agent-one -bootstrap
 
