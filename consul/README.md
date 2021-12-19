@@ -50,3 +50,10 @@
 </tr>
 </tbody>
 </table>
+
+
+# Consul 和 eureka的对比
+
+
+<table><thead><tr><th>Feature</th><th>Euerka</th><th>Consul</th></tr></thead><tbody><tr><td>服务健康检查</td><td>可配支持</td><td>服务状态，内存，硬盘等</td></tr><tr><td>多数据中心</td><td>—</td><td>支持</td></tr><tr><td>kv 存储服务</td><td>—</td><td>支持</td></tr><tr><td>一致性</td><td>—</td><td>raft</td></tr><tr><td>cap</td><td>ap</td><td>cp</td></tr><tr><td>使用接口(多语言能力)</td><td>http（sidecar）</td><td>支持 http 和 dns</td></tr><tr><td>watch 支持</td><td>支持 long polling/大部分增量</td><td>全量/支持long polling</td></tr><tr><td>自身监控</td><td>metrics</td><td>metrics</td></tr><tr><td>安全</td><td>—</td><td>acl /https</td></tr><tr><td>编程语言</td><td>Java</td><td>go</td></tr><tr><td>Spring Cloud 集成</td><td>已支持</td><td>已支持</td></tr></tbody></table>
+
