@@ -21,3 +21,7 @@
 * 可观测性 : Envoy 的主要目标是使网络透明，可以生成许多流量方面的统计数据，这是其它代理软件很难取代的地方，内置 stats 模块，可以集成诸如 prometheus/statsd 等监控方案。还可以集成分布式追踪系统，对请求进行追踪。
 
 虽然 Envoy 没有把追求极致的性能作为首要目标，但并不表示 Envoy 是没有追求的，只是扩展性优先，性能稍微靠边。Envoy 和 Nginx 一样，也采用了 多线程 + 非阻塞 + 异步IO（Libevent） 的架构，性能仍然很强悍。
+
+# 架构
+
+![envoy](https://cdn.jsdelivr.net/gh/yangchuansheng/imghosting/img/20200504160047.png)
