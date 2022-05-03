@@ -28,7 +28,66 @@
 2.安装java（配置环境变量）  
 3.下载数据库驱动包放到Liquibase目录下的lib  
 
+### 设置liquibase.properties文件
 
+1.教程使用CLI。虽然可以传递所有必需的参数（如JDBC驱动程序和数据库URL），但配置 liquibase.properties文件会更容易节省时间和精力。
+
+2.创建一个 liquibase.properties。将以下内容添加到文件中，并将其保存在您解压Liquibase *zip 或 *.tar.gz的产生的目录中。
+
+```xml
+driver: org.h2.Driver
+classpath: ./h2-1.4.199.jar
+url: jdbc:h2:file:./h2tutorial
+username: admin
+password: password
+changeLogFile: myChangeLog.xml
+```
+
+### 使用 SQL 脚本
+
+1. 第一步创建一个sql文件夹
+
+在解压的Liquibase 的文件夹中 ，创建一个 sql 文件夹。在这个文件夹中你将放置 Liquibase将跟踪、版本和部署的SQL脚
+
+2. 第二步建立一个Change Log
+
+这是一次性步骤，用于配置更改日志以指向将包含 SQL 脚本的 sql 文件夹。在解压的*.zip 或*.tar.gz的 Liquibase 的目录中创建并保存文件名为 myChangeLog.xml 的文件 。myChangeLog.xml 的内容应如下所示：
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+  <includeAll path="/sql"/>
+</databaseChangeLog>
+```
+
+3. 第3步在SQL文件中新增一个SQL脚本
+
+使用教程设置中的 liquibase.properties 文件以及新创建的myChangeLog.xml，我们现在已准备好开始向 sql文件夹添加SQL脚本。Liquibase 将在文件夹中按字母数字顺序排列脚本。使用以下内容创建 001_create_person_table.sql 并将其保存在 sql文件夹中：
+
+```sql
+create table PERSON (
+    ID int not null,
+    FNAME varchar(100) not null
+);
+
+```
+
+4. 第4步 部署你的第一个修改
+
+现在，我们已准备好部署我们的第一个脚本！打开终端，如果在 UNIX系统上则运行 ./liquibase update或 如果在 Windows 上则运行liquibase.bat update。
+
+5. 第5步 检查你的数据库
+
+您将看到您的数据库现在包含一个名为PERSON的表。要将作为本教程一部分的 H2 数据库写入内容，请打开一个终端，导航到您提取的 Liquibase``*.zip 或 *.tar.gz的文件夹，并运行 java -jar h2-1.4.199.jar注意：输入您下载的 h2*.jar 的特定版本！输入JDBC URL、用户名和密码，从 liquibase.properties 文件输入您根据教程设置创建的属性文件。您会注意到还创建了另外两个表：databasechangeloglock和databasechangeloglock。databasechangelog表包含针对数据库运行的所有更改的列表。databasechangeloglock表用于确保两台计算机不会同时尝试修改数据库。
+
+```
+
+```
 ### Liquibase编写规范：
 
 * Changset 的id使用【任务ID】+【日期】+【序号的方式】一般为了简单直接使用日期加序号即可，
