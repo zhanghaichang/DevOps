@@ -85,7 +85,31 @@ create table PERSON (
 
 您将看到您的数据库现在包含一个名为PERSON的表。要将作为本教程一部分的 H2 数据库写入内容，请打开一个终端，导航到您提取的 Liquibase``*.zip 或 *.tar.gz的文件夹，并运行 java -jar h2-1.4.199.jar注意：输入您下载的 h2*.jar 的特定版本！输入JDBC URL、用户名和密码，从 liquibase.properties 文件输入您根据教程设置创建的属性文件。您会注意到还创建了另外两个表：databasechangeloglock和databasechangeloglock。databasechangelog表包含针对数据库运行的所有更改的列表。databasechangeloglock表用于确保两台计算机不会同时尝试修改数据库。
 
+### 对比数据库表结构差异
+
+liquibase.properties
+
+```properties
+driver: com.mysql.jdbc.Driver
+classpath: ./mysql-connector-java-8.0.17.jar
+url: jdbc:mysql://127.0.0.1:3307/test_liquibase?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
+username: root
+password: root
+referenceDriver: com.mysql.jdbc.Driver
+referenceUrl: jdbc:mysql://127.0.0.1:3307/refrence_db?useUnicode=true&characterEncoding=UTF-8&serverTimezone=GMT%2B8&allowMultiQueries=true
+referenceUsername: root
+referencePassword: root
 ```
+数据库差异脚本生成
+
+```shell
+liquibase --changeLogFile="changeLogFiledevtest.mysql.sql" diffChangeLog     
+```
+
+使用差异更新数据库
+
+```shell
+liquibase --changeLogFile="changeLogFiledevtest.mysql.sql" update
 
 ```
 ### Liquibase编写规范：
