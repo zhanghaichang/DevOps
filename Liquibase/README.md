@@ -110,7 +110,12 @@ liquibase --changeLogFile="changeLogFiledevtest.mysql.sql" diffChangeLog
 
 ```shell
 liquibase --changeLogFile="changeLogFiledevtest.mysql.sql" update
+```
 
+反向生产changlog 
+
+```shell
+liquibase --changeLogFile="sqls/create_table.mysql.sql"  generateChangeLog
 ```
 ### Liquibase编写规范：
 
