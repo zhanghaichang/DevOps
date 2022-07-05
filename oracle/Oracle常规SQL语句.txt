@@ -1,0 +1,14 @@
+# 查询当前用户下的所有表名：
+select t.table_name from user_tables t;
+
+# 查询当前用户下所有表的字段名：
+select t.column_name from user_col_comments t;
+
+# 查询当前用户下所有表的表名和表说明：
+select t.table_name,f.comments from user_tables t 
+inner join user_tab_comments f on t.table_name = f.table_name;
+
+
+# 查看所有用户
+select * from all_users;
+select * from user_users;
