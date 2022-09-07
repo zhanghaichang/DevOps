@@ -12,33 +12,33 @@ type是这个元素的类型，有6中类型，分别为：
 
 元素说明：
 
-开始（椭圆形）：start
-结束（椭圆形）：end
-操作（矩形）：operation
-多输出操作（矩形）：parallel
-条件判断（菱形）：condition
-输入输出（平行四边形）：inputoutput
-预处理/子程序（圣旨形）：subroutine
-content就是在框框中要写的内容，注意type后的冒号与文本之间一定要有个空格。
-url是一个连接，与框框中的文本相绑定
+* 开始（椭圆形）：start
+* 结束（椭圆形）：end
+* 操作（矩形）：operation
+* 多输出操作（矩形）：parallel
+* 条件判断（菱形）：condition
+* 输入输出（平行四边形）：inputoutput
+* 预处理/子程序（圣旨形）：subroutine
+* content就是在框框中要写的内容，注意type后的冒号与文本之间一定要有个空格。
+* url是一个连接，与框框中的文本相绑定
 
 
 关键字
 
-yes/true：condition类型变量连接时，用于分别表示yes条件的流向
-no/false：同上，表示否定条件的流向
-left/right：表示连线出口在节点位置（默认下面是出口，如op3），可以跟condition变量一起用：cond(yes,right)
-path1/path2/path3：parallel变量的三个出口路径（默认下面是出口）
+* yes/true：condition类型变量连接时，用于分别表示yes条件的流向
+* no/false：同上，表示否定条件的流向
+* left/right：表示连线出口在节点位置（默认下面是出口，如op3），可以跟condition变量一起用：cond(yes,right)
+* path1/path2/path3：parallel变量的三个出口路径（默认下面是出口）
 节点状态
 
-  为节点设置不同的状态，可以通过不同的颜色显示，其中状态包括下面6个，含义如英文所示，
+为节点设置不同的状态，可以通过不同的颜色显示，其中状态包括下面6个，含义如英文所示，
 
-past
-current
-future
-approved
-rejected
-invalid
+* past
+* current
+* future
+* approved
+* rejected
+* invalid
 
 
 ```flow
