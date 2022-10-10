@@ -490,3 +490,50 @@ location / {
    }
 }
 ```
+
+http里面加入代理超时设置
+
+```shell
+http{
+	#读取http头部的超时时间，单位秒，连接建立后，服务端接收http头部，规定时间内没收到，则超时，返回给客服端408（request time out）
+	client_header_timeout 60;
+
+	#读取http body的超时时间，单位秒，连接建立后，服务端接收body，规定时间内没收到，则超时，返回给客服端408（request time out）
+	client_body_timeout 60;
+
+	#发送响应超时时间，单位秒，服务端向客户端发送数据包，规定时间内客户端没收到，则超时
+	send_timeout 60;
+
+	#保持闲置连接的超时时间，单位秒，超过后服务器和浏览器都会关闭连接
+	keepalive_timeout 75;
+    
+    #域名解析超时时间，单位秒
+    resolve_timeout 30;
+	
+    #nginx服务器与被代理服务连接超时时间，代理超时
+	proxy_connect_timeout 60;
+
+	#nginx服务器发送数据给被代理服务器超时时间，单位秒，规定时间内nginx服务器没发送数据，则超时
+	proxy_send_timeout 60;
+
+	#nginx服务器接收被代理服务器数据超时时间，单位秒，规定时间内nginx服务器没收到数据，则超时
+    proxy_read_timeout 60;
+}
+
+```
+
+server请求超时改动
+
+```shell
+proxy_pass http://xxxx/;
+proxy_redirect  off;
+#添加下面代码
+proxy_send_timeout 300;  
+proxy_read_timeout 300; 
+proxy_connect_timeout 300;
+
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+```
