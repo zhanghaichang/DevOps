@@ -537,3 +537,16 @@ proxy_set_header X-Real-IP $remote_addr;
 proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 
 ```
+
+index.html不缓存
+
+```
+location = /index.html {
+    add_header Cache-Control "no-cache, no-store";
+}
+
+```
+
+no-cache, no-store可以只设置一个
+no-cache浏览器会缓存，但刷新页面或者重新打开时 会请求服务器，服务器可以响应304，如果文件有改动就会响应200
+no-store浏览器不缓存，刷新页面需要重新下载页面
