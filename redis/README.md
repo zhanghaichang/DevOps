@@ -9,7 +9,17 @@ $ tar xzf redis-4.0.11.tar.gz
 $ cd redis-4.0.11
 $ make
 ```
+##后台启动
 
+```
+vi redis.conf
+daemonize yes
+#然后输入:wq 进行保存
+#指定redis.conf文件启动
+/usr/local/redis-4.0.6/src/redis-server /usr/local/redis-4.0.6/redis.conf 
+#根据自己的实际地址来进行修改
+
+```
 Run Redis with:
 ```
 $ nohup src/redis-server &
