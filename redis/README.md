@@ -9,7 +9,7 @@ $ tar xzf redis-4.0.11.tar.gz
 $ cd redis-4.0.11
 $ make
 ```
-##后台启动
+## 后台启动
 
 ```
 vi redis.conf
