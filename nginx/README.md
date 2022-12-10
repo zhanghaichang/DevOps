@@ -30,6 +30,10 @@ cd nginx-1.16.1
 ./configure
 make && sudo make install 
 
+#linux 将 nginx 添加到全局变量中（环境变量）
+
+ln -s /usr/local/nginx/sbin/nginx /usr/local/bin/
+
 ```
 启动、重启、关闭
 
