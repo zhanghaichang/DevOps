@@ -32,6 +32,13 @@ erl -version
 yum -y install rabbitmq-server-3.8.5-1.el7.noarch.rpm
 ```
 
+## 启动rabbitmq
+
+```
+systemctl start rabbitmq-server.service
+```
+
+
 ## 安装rabbitmq可视化管理插件
 
 ```shell
@@ -40,9 +47,51 @@ rabbitmq-plugins enable rabbitmq_management
 
 ```
 
-## 启动rabbitmq
+## 查看状态是否启动成功
 
 ```
-systemctl start rabbitmq-server.service
+systemctl status rabbitmq-server.service
 ```
+
+远程连接rabbitmq【默认管理ui端口15672，通信端口5672】，发现问题 默认用户和密码都是guest
+
+## 查看用户列表
+
+```
+rabbitmqctl list_users
+```
+
+## 用户管理
+
+```
+#新增用户
+rabbitmqctl add_user 用户名 密码
+#删除用户
+rabbitmqctl delete_user 用户名
+#修改密码
+rabbitmqctl change_password 用户名 新密码
+```
+ ## 角色管理
  
+ ```
+ #查看用户角色
+ rabbitmqctl list_users 用户名
+ #设置用户角色
+ rabbitmqctl set_user_tags admin 角色名称（支持同时设置多个角色）
+ ```
+ 
+## 权限管理
+
+> 用户权限是指用户对exchange，queue的操作权限，包括配置权限，读写权限。配置权限会影响到exchange，queue的声明和删除。读写权限会影响到queue的读写消息、exchange发送消息以及queue和exchange的绑定操作。
+
+```
+rabbitmqctl list_user_permissions 用户名
+rabbitmqctl set_permissions -p 虚拟主机名称 用户名
+```
+
+## 虚拟主机管理
+
+```
+#查看虚拟主机
+rabbitmqctl list_vhosts
+```
