@@ -38,6 +38,12 @@ yum -y install rabbitmq-server-3.8.5-1.el7.noarch.rpm
 systemctl start rabbitmq-server.service
 ```
 
+## 重启服务
+
+```
+systemctl restart rabbitmq-server.service
+```
+
 
 ## 安装rabbitmq可视化管理插件
 
