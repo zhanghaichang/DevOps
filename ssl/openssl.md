@@ -66,3 +66,37 @@ openssl x509 -inform PEM -outform DER -in server.crt -out server.der
 openssl x509 -inform DER -outform PEM -in server.der -out server.crt
 
 ```
+
+
+## 根据配置文件生成证书
+
+1.生成key：
+
+```shell
+openssl genrsa -out D:\keys\cloudweb.key 4096
+```
+
+2.生成crs
+
+```shell
+openssl req -new -sha256 -out D:\keys\cloudweb.csr -key D:\keys\cloudweb.key -config ssl.conf 
+```
+
+3.查看crs
+
+```shell
+openssl req -text -noout -verify -in D:\keys\cloudweb.csr
+```
+
+4.CA机构为申请者生成crt
+
+```shell
+openssl x509 -req -days 3650 -in D:\keys\cloudweb.csr -signkey D:\keys\cagroup.key -out D:\keys\cloudweb.crt -extensions req_ext -extfile cassl.conf
+```
+
+5.查看crt
+
+```shell
+openssl x509 -in D:\keys\cloudweb.crt -text -noout
+
+```
