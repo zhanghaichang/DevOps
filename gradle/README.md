@@ -1,5 +1,15 @@
 # gradle
 
+>Gradle是源于Apache Ant和Apache Maven概念的项目自动化构建开源工具，它使用一种基于Groovy的特定领域语言(DSL)来声明项目设置，抛弃了基于XML的各种繁琐配置面向Java应用为主。当前其支持的语言暂时有Java、Groovy、Kotlin和Scala。
+
+Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具，支持maven， Ivy仓库，支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件，基于Groovy，build脚本使用Groovy编写。
+
+
+## 下载
+官方网站：https://gradle.org/install/#manually
+
+提供了两种下载方式，Binary-only是只下载二进制源码，Complete, with docs and sources是下载源码和文档。如果有阅读文档的需求可以下载第二个，没有需要的下载Binary-only即可。
+
 
 理解了gradle wrapper的概念，下面一些常用命令也就容易理解了。
 ```
