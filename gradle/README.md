@@ -14,13 +14,14 @@
 2.新建变量 变量名：GRADLE_HOME 变量值：解压到的目录
   - 新建变量 变量名：GRADLE_USER_HOME 变量值：自定义Gradle仓库目录或者Maven的仓库目录
   - 添加变量 变量名：Path 变量值：%GRADLE_HOME%\bin;
+
 3.配置到IDEA
-　　　　在IDEA的Setting里打开"Build, Execution, Deployment"-"Build Tools"-"Gradle"。
 
-　　　　勾选 Use local Gradle distribution，在 Gradle home 中选择安装的Gradle的路径。
+在IDEA的Setting里打开"Build, Execution, Deployment"-"Build Tools"-"Gradle"。勾选 Use local Gradle distribution，在 Gradle home 中选择安装的Gradle的路径。如果在变量和配置文件中设置了Gradle的仓库路径，在 Service directory path 中就会自动填写地址，如果想改的话可以手动修改。
 
-　　　　如果在变量和配置文件中设置了Gradle的仓库路径，在 Service directory path 中就会自动填写地址，如果想改的话可以手动修改。
-    
+
+
+
 理解了gradle wrapper的概念，下面一些常用命令也就容易理解了。
 ```
 ./gradlew -v 版本号
