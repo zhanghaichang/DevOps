@@ -1,8 +1,6 @@
 # gradle
 
->Gradle是源于Apache Ant和Apache Maven概念的项目自动化构建开源工具，它使用一种基于Groovy的特定领域语言(DSL)来声明项目设置，抛弃了基于XML的各种繁琐配置面向Java应用为主。当前其支持的语言暂时有Java、Groovy、Kotlin和Scala。
-
-Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具，支持maven， Ivy仓库，支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件，基于Groovy，build脚本使用Groovy编写。
+>Gradle是源于Apache Ant和Apache Maven概念的项目自动化构建开源工具，它使用一种基于Groovy的特定领域语言(DSL)来声明项目设置，抛弃了基于XML的各种繁琐配置面向Java应用为主。当前其支持的语言暂时有Java、Groovy、Kotlin和Scala。Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具，支持maven， Ivy仓库，支持传递性依赖管理，而不需要远程仓库或者是pom.xml和ivy.xml配置文件，基于Groovy，build脚本使用Groovy编写。
 
 
 ## 下载
@@ -10,7 +8,19 @@ Gradle是一个基于JVM的构建工具，是一款通用灵活的构建工具�
 
 提供了两种下载方式，Binary-only是只下载二进制源码，Complete, with docs and sources是下载源码和文档。如果有阅读文档的需求可以下载第二个，没有需要的下载Binary-only即可。
 
+## 安装配置环境变量
 
+1.解压安装包到想安装到的目录。
+2.新建变量 变量名：GRADLE_HOME 变量值：解压到的目录
+  - 新建变量 变量名：GRADLE_USER_HOME 变量值：自定义Gradle仓库目录或者Maven的仓库目录
+  - 添加变量 变量名：Path 变量值：%GRADLE_HOME%\bin;
+3.配置到IDEA
+　　　　在IDEA的Setting里打开"Build, Execution, Deployment"-"Build Tools"-"Gradle"。
+
+　　　　勾选 Use local Gradle distribution，在 Gradle home 中选择安装的Gradle的路径。
+
+　　　　如果在变量和配置文件中设置了Gradle的仓库路径，在 Service directory path 中就会自动填写地址，如果想改的话可以手动修改。
+    
 理解了gradle wrapper的概念，下面一些常用命令也就容易理解了。
 ```
 ./gradlew -v 版本号
