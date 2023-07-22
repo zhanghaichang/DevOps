@@ -14,10 +14,13 @@
 
 ## 添加用户
 ```
+useradd test
+
 useradd -d /usr/username -m username
 
 为用户增加密码：passwd username
 
+默认情况下，useradd命令将在/home路径中创建一个与用户名同名的主目录，
 ```
 
 ## 删除用户
