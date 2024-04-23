@@ -3,3 +3,39 @@
 
 #### 下载地址:
 http://tengine.taobao.org/download.html
+
+#### 安装tengine前安装好c语言编译工具
+```shell
+yum install gcc openssl-devel pcre-devel zlib-devel -y
+```
+
+#### 解压tengine
+
+```shell
+tar -zxvf tengine-3.1.0.tar.gz
+```
+
+#### 编译和安装软件
+```
+$ ./configure
+$ make
+$ sudo make install
+```
+
+#### 启动
+
+```shell
+/usr/local/nginx/sbin/nginx
+```
+
+#### 通过进程查看Nginx是否启动成功
+
+```shell
+ps -ef | grep nginx
+```
+
+#### 有序停止
+
+```shell
+/usr/local/tengine/sbin/nginx -s quit
+```
