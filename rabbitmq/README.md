@@ -101,3 +101,9 @@ rabbitmqctl set_permissions -p 虚拟主机名称 用户名
 #查看虚拟主机
 rabbitmqctl list_vhosts
 ```
+
+## 赋值权限
+```
+#这里的<vhost_name>是虚拟主机的名称，<username>是用户名。.*表示该用户将被授予对所有的权限。
+rabbitmqctl set_permissions -p <vhost_name> <username> ".*" ".*" ".*"
+```
