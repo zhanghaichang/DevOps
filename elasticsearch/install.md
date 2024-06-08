@@ -38,8 +38,20 @@ heap.size: 10g
 - 赋予 Elasticsearch 文件和目录适当的权限。
 - （可选）创建一个系统服务，例如使用 `systemd`。
 
+修改线程数
+```
+vim /etc/security/limits.conf
+```
+```shell
+文件末尾加入 如下三行
+用户名 soft nofile 65536
+用户名 hard nofile 65536
+用户名  -  nproc  65535
+
+```
+
 ## 6. 启动 Elasticsearch
-### 或者手动启动
+### 非root用户手动启动 
 
 ```shell
 cd /opt/elasticsearch-6.2.4/bin
