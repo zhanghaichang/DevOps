@@ -43,7 +43,7 @@ heap.size: 10g
 
 ```shell
 cd /opt/elasticsearch-6.2.4/bin
-./elasticsearch
+./elasticsearch -d
 ```
 ## 7. 验证安装
 - 在浏览器中访问 `http://your_server_ip:9200`。
